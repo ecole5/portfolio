@@ -1,0 +1,17 @@
+<nav class="navbar navbar-expand-sm navbar-light" style="background-color: #ffffff;">
+    <a class="navbar-brand" href="#">Evan Cole</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+     
+      <ul class="navbar-nav ml-auto pr-5"> <!--margin left auto pading right 5(level)*$spacing-->
+        <li class="nav-item" [routerLinkActive]="['active']"><a class="nav-link" routerLink="/home">Home</a></li>
+        <li class="nav-item" [routerLinkActive]="['active']"><a class="nav-link" routerLink="/projects">Projects</a></li>
+      </ul>
+     
+    </div>
+  </nav>
+
+
+  <router-outlet></router-outlet>
