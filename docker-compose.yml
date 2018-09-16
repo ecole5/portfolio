@@ -1,0 +1,8 @@
+version: "3.3"
+services:
+  ugames:
+    image: ecole5/ugames:latest
+    ports:
+     - "80:80"
+    volumes:
+     - ./frontend:/var/www/html/frontend`

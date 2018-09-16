@@ -1,3 +1,18 @@
-<p>
-  skills works!
-</p>
+<div class="container pt-5" >
+
+    <h4>Web</h4>
+  <div class="row">
+    <div *ngFor="let skill of allSkills" class="col-sm pt-5">
+      <div  class="card" style="width: 18rem;">
+        <img class="card-img-top" size ="500" src={{skill.src}} alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{skill.name}}</h5>
+          <p class="card-text">{{skill.description}}</p>
+        
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
