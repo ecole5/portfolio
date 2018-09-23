@@ -11,7 +11,7 @@ export const SKILLSDATA: Skill[] = [
     { name: 'Python', description: 'Mr. Nice', tag: 'cool' , src: 'assets/img/python.png'},
     { name: 'Unity 3D', description: 'Mr. Nice', tag: 'cool' , src: 'assets/img/unity.png'},
     { name: 'Unix', description: 'Mr. Nice', tag: 'cool' , src: 'assets/img/unix.png'},
-    { name: 'Ember', description: 'Mr. Nice', tag: 'cool' , src: 'assets/img/ember.png'},
+    { name: 'Ember', description: 'Mr. Nice', tag: 'cool' , src: 'assets/img/ember.jpg'},
     { name: 'EC2', description: 'Mr. Nice', tag: 'cool' , src: 'assets/img/ec2.jpg'},
     { name: 'Docker', description: 'Mr. Nice', tag: 'cool' , src: 'assets/img/docker.png'}
   ];
