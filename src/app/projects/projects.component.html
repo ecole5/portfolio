@@ -1,6 +1,8 @@
-<div *ngIf="isLoggedIn">
+<div *ngIf="ugame">
+ 
 
-
-<iframe src="http://pudpie.com/ugames/play.html"  scrolling="yes" style=" width:1000px; height: 650px;  overflow: hidden;" ></iframe>  
+<iframe src="http://pudpie.com/ugames/play.html"  scrolling="no" style=" width:960px; height: 600px;  overflow: hidden;" ></iframe>  
 
 </div>
+
+<p (click)="ugame = !ugame" >Show Game</p>
