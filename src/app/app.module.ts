@@ -1,19 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-
 import { AppComponent } from './app.component';
 
-// Here is where we add imports for bootstrap javascript comonpnents
-// WE could cereate another module and then import it into this module
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { TooltipModule } from 'ngx-bootstrap/tooltip';
-import { ModalModule } from 'ngx-bootstrap/modal';
+// Here we add modules for ngx bootstrap compoments, bootstrap is installed as npm module and we imports its style sheet in angular.json
 import {ButtonsModule} from 'ngx-bootstrap/buttons';
-import { AlertModule } from 'ngx-bootstrap/alert';
 import {CollapseModule} from 'ngx-bootstrap/collapse';
-import { AppRoutingModule } from './/app-routing.module';
 
+
+
+import { AppRoutingModule } from './/app-routing.module';
 import { ProjectsComponent } from './projects/projects.component';
 import { HomeComponent } from './home/home.component';
 import { ExperienceComponent } from './experience/experience.component';
@@ -31,11 +26,6 @@ import { BlogComponent } from './blog/blog.component';
   ],
   imports: [
     BrowserModule,
-    NgbModule,
-    BsDropdownModule.forRoot(),
-    TooltipModule.forRoot(),
-    ModalModule.forRoot(),
-    AlertModule.forRoot(),
     CollapseModule.forRoot(),
     ButtonsModule.forRoot(),
     AppRoutingModule
