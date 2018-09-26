@@ -11,8 +11,7 @@ import {CollapseModule} from 'ngx-bootstrap/collapse';
 import { AppRoutingModule } from './/app-routing.module';
 import { ProjectsComponent } from './projects/projects.component';
 import { HomeComponent } from './home/home.component';
-import { ExperienceComponent } from './experience/experience.component';
-import { SkillsComponent } from './skills/skills.component';
+
 import { BlogComponent } from './blog/blog.component';
 
 @NgModule({
@@ -20,8 +19,6 @@ import { BlogComponent } from './blog/blog.component';
     AppComponent,
     ProjectsComponent,
     HomeComponent,
-    ExperienceComponent,
-    SkillsComponent,
     BlogComponent
   ],
   imports: [

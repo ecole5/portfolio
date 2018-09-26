@@ -1,8 +1,67 @@
+
+<h2>
+    Spark Recomender Microservice Deplyoment Framework
+</h2>
+<p>
+This is the first large scale project I ever completed. UnityGames is a portal to acsses some mini games I devloped in Unity3D using C#. Each game offers many customizations that are saved to the cloud based on the logged in acccount.  To log in use username admin and password admin and create yourself an account. <img src="assets/img/spark.png"  class=" img mx-auto d-bloc" alt="Responsive image">You can log back in to your account so you will be seen on leadboards and your settings will be saved. Although the database portion is poorly done it was an intro into the LAMP stack which makes me never want to use the lamp stack again. View the game below.  
+</p>
+
+<h2>
+    GeoPredict
+</h2>
+
+
+<p>
+    Data is the primary driver of the digital economy and the world’s most valuable commodity. While it is well understood how to capture and store data from Internet-connected sources, processing it is less clear—lots of data goes to waste. One data set which is particularly difficult to process is geolocation data (a set of GPS coordinates of a user device as it moves through space). Enter GeoPredict, a machine learning model I developed during my time as a research associate in the lab as a  part of my stint as a research associate in the lab of the Western Engineer dean in association with an industry partner. Geopredict mines value from massive sets of geolocation data collected on a continuous basis by applying A.I techniques from the field of natural language processing. 
+    </p>
+<h2>
+        Unity Games
+</h2>
+<p>
+    This is the first large scale project I ever completed. UnityGames is a portal to acsses some mini games I devloped in Unity3D using C#. Each game offers many customizations that are saved to the cloud based on the logged in acccount. To log in use username admin and password admin and create yourself an account. You can log back in to your account so you will be seen on leadboards and your settings will be saved. Although the database portion is poorly done it was an intro into the LAMP stack which makes me never want to use the lamp stack again. View the game below.  
+</p>
+    
 <div *ngIf="uGame">
  
 
-<iframe src="http://pudpie.com/ugames/play.html"  scrolling="no" style=" width:960px; height: 600px;  overflow: hidden;" ></iframe>  
+<iframe src="https://pudpie.com/ugames/play.html"  scrolling="no" style=" width:960px; height: 600px;  overflow: hidden;" ></iframe>  
 
 </div>
 
 <p (click)="uGame = !uGame" >Show Game</p>
+
+
+<h2>
+    Western Student Adjudciation Center
+</h2>
+<p>
+This is the first large scale project I ever completed. UnityGames is a portal to acsses some mini games I devloped in Unity3D using C#. Each game offers many customizations that are saved to the cloud based on the logged in acccount. To log in use username admin and password admin and create yourself an account. You can log back in to your account so you will be seen on leadboards and your settings will be saved. Although the database portion is poorly done it was an intro into the LAMP stack which makes me never want to use the lamp stack again. View the game below.  
+</p>
+
+
+<h2>
+    Guitar Jamz
+</h2>
+<p>
+This is the first large scale project I ever completed. UnityGames is a portal to acsses some mini games I devloped in Unity3D using C#. Each game offers many customizations that are saved to the cloud based on the logged in acccount. To log in use username admin and password admin and create yourself an account. You can log back in to your account so you will be seen on leadboards and your settings will be saved. Although the database portion is poorly done it was an intro into the LAMP stack which makes me never want to use the lamp stack again. View the game below.  
+</p>
+
+
+<div class="container " >
+
+ 
+    <div class="row">
+      <div *ngFor="let skill of allSkills" class="col-sm pt-5">
+        <div  class="card" style="width: 18rem;">
+          <img class="card-img-top" size ="300px" src={{skill.src}} alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">{{skill.name}}</h5>
+            <p class="card-text">{{skill.description}}</p>
+          
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
