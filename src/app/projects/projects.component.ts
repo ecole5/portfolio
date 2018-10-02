@@ -6,7 +6,7 @@ import { SKILLSDATA } from '../skilldb';
   styleUrls: ['./projects.component.css']
 })
 export class ProjectsComponent implements OnInit {
-  uGame = false;
+  
   allSkills = SKILLSDATA; //SKILLS DATA should not be named skills
   constructor() { }
 

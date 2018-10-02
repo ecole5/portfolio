@@ -1,0 +1,4 @@
+#!/bin/bash
+ng build
+ssh -i ~/Desktop/Wordpress.pem ec2-user@18.219.254.47 'rm /var/www/html/assets/img/*'
+scp -i ~/Desktop/Wordpress.pem -r dist/portfolio/. ec2-user@18.219.254.47:/var/www/html
