@@ -1,47 +1,88 @@
-
 <div class="card mx-5 mb-5">
-    <div class="card-header"><h2>GeoPredict</h2>
+    <div class="card-header">
+        <h2>GeoPredict</h2>
         <img src="assets/img/pandas.png" alt="Pandas" class="img-thumbnail">
         <img src="assets/img/jupyter.png" alt="Jupyter Notebook" class="img-thumbnail">
         <img src="assets/img/python.png" alt="Python" class="img-thumbnail">
 
     </div>
     <div class="card-body">
-      <p class="card-text">Data is the primary driver of the digital economy and the world’s most valuable commodity. While it is well understood how to capture and store data from Internet-connected sources, processing it is less clear—lots of data goes to waste. One data set which is particularly difficult to process is geolocation data (a set of GPS coordinates of a user device as it moves through space). Enter GeoPredict, a machine learning model I developed using Pandas during my time as a research associate at Western University. GeoPredict mines value from massive sets of geolocation data collected on a continuous basis by applying A.I techniques from the field of natural language processing. </p>
+        <p class="card-text">Data is the primary driver of the digital economy and the world’s most valuable commodity.
+            While it is well understood how to capture and store data from Internet-connected sources, processing it is
+            less clear—lots of data goes to waste. One data set which is particularly difficult to process is
+            geolocation data (a set of GPS coordinates of a user device as it moves through space). Enter GeoPredict, a
+            machine learning model I developed using Pandas during my time as a research associate at Western
+            University. GeoPredict mines value from massive sets of geolocation data collected on a continuous basis by
+            applying A.I techniques from the field of natural language processing. </p>
     </div>
     <div class="card-footer">
-        </div>
-  </div>
+    </div>
+</div>
 
-  <div class="card m-5">
-<div class = "card-header"><h2>Spark Recommender Microservice Framework for Big Data</h2>
-    <img src="assets/img/docker.png" alt="docker" class="img-thumbnail">
-    <img src="assets/img/spark.png" alt="docker" class="img-thumbnail">
-    <img src="assets/img/swarm.png" alt="docker" class="img-thumbnail">
-    <img src="assets/img/unix.png" alt="docker" class="img-thumbnail">
-    <img src="assets/img/ec2.png" alt="docker" class="img-thumbnail">
-    <img src="assets/img/hadoop.png" alt="hadoop" class="img-thumbnail">
-</div>
-<div class="card-body">
-    <p class="card-text">Once I finished my summer research effort (GeoPredict) I wondered how to deploy the model into a production environment and make it scale. What I came up with is a framework for deploying scalable recommender systems built on Spark SQL as web-accessible microservices. Through the use of containerization, the implementation of a restFULL API and sophisticated integrated command-line tooling, I designed this framework to be highly usable, portable, customizable and interoperable. The framework is meant to allow data scientist to focus on building ML models using  instead of worrying about managing clusters and dealing with pesky configuration.</p>
-</div>
-</div>
 <div class="card m-5">
-    <div class = "card-header"><h2>Unity Minigame Suite</h2>
-      
-        <img src="assets/img/unity.png" alt="spark" class="img-thumbnail">
-        <img src="assets/img/csharp.png" alt="python"class="img-thumbnail">
-        <img src="assets/img/lamp.png" alt="docker" class="img-thumbnail">
-        
-        
+    <div class="card-header">
+        <h2>Spark Recommender Microservice Framework for Big Data</h2>
+        <img src="assets/img/docker.png" alt="docker" class="img-thumbnail">
+        <img src="assets/img/spark.png" alt="docker" class="img-thumbnail">
+        <img src="assets/img/swarm.png" alt="docker" class="img-thumbnail">
+        <img src="assets/img/unix.png" alt="docker" class="img-thumbnail">
+        <img src="assets/img/ec2.png" alt="docker" class="img-thumbnail">
+        <img src="assets/img/hadoop.png" alt="hadoop" class="img-thumbnail">
     </div>
     <div class="card-body">
-        <p class="card-text">
-                During my second year of study, I was tasked with constructing several mini-games with Unity3D and creating a portal for accessing them with an account system. The system I developed features cloud save and global leaderboards built with a primitive LAMP architecture.</p>
-            <p class = "card-text">
-                    Go ahead and try it out yourself. Note that the WebGL version is not compatible with Safari. Please be patient upon initial load. To make an account login as an administrator with user account and password: "admin".
-            </p>
-
-<a class="btn btn-primary" href="https://www.pudpie.com/ugames/play.html" role="button">Play</a>
-<a class="btn btn-primary ml-5" href="https://github.com/ecole5/UnityGames" role="button">View On Github</a>
+        <p class="card-text">Once I finished my summer research effort (GeoPredict) I wondered how to deploy the model
+            into a production environment and make it scale. What I came up with is a framework for deploying scalable
+            recommender systems built on Spark SQL as web-accessible microservices. Through the use of
+            containerization, the implementation of a restFULL API and sophisticated integrated command-line tooling, I
+            designed this framework to be highly usable, portable, customizable and interoperable. The framework is
+            meant to allow data scientist to focus on building ML models using instead of worrying about managing
+            clusters and dealing with pesky configuration.</p>
+    </div>
 </div>
+<div class="card m-5">
+    <div class="card-header">
+        <h2>Unity Minigame Suite</h2>
+
+        <img src="assets/img/unity.png" alt="spark" class="img-thumbnail">
+        <img src="assets/img/csharp.png" alt="python" class="img-thumbnail">
+        <img src="assets/img/lamp.png" alt="docker" class="img-thumbnail">
+
+
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm">
+                <carousel [interval]="myInterval" [(activeSlide)]="activeSlideIndex">
+                    <slide *ngFor="let slide of slides; let index=index">
+                        <img [src]="slide.image" alt="image slide" style="display: block; width: 100%;">
+
+
+                    </slide>
+                </carousel>
+            </div>
+            <div class="col-sm pt-3">
+                <p class="card-text">
+                    During my second year of study, I was tasked with constructing several mini-games with Unity3D and
+                    creating
+                    a portal for accessing them with an account system. The system I developed features cloud save and
+                    global
+                    leaderboards built with a primitive LAMP architecture.</p>
+                <p class="card-text">
+                    Go ahead and try it out yourself. Note that the WebGL version is not compatible with Safari. Please
+                    be
+                    patient upon initial load. To make an account login as an administrator with user account and
+                    password:
+                    "admin".
+                </p>
+                <a class="btn btn-primary" href="https://www.pudpie.com/ugames/play.html" role="button">Play</a>
+                <a class="btn btn-primary ml-5" href="https://github.com/ecole5/UnityGames" role="button">View On
+                    Github</a>
+            </div>
+
+        </div>
+
+
+
+
+
+    </div>
