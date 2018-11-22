@@ -1,0 +1,17 @@
+
+<div class="card">
+    <div class="card-header">
+        <h2>{{model.title}}</h2>
+        {{#each model.pic as |pict|}}
+        <img src="img/{{pict}}.png" class="img-thumbnail" > {{/each}}
+    </div>
+    <div class="card-body">
+       {{{model.body}}}
+    </div>
+    <div class="card-footer">
+    </div>
+</div>
+
+
+
+{{outlet}}

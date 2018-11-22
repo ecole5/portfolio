@@ -1,0 +1,37 @@
+{{#bs-navbar toggleBreakpoint="sm" backgroundColor="#FFFFF" as |navbar|}}
+              <div class="navbar-header">
+            
+                
+                  {{navbar.toggle}}
+              </div>
+              {{#navbar.content}}
+              <a class="navbar-brand" href="#">EC</a>
+                {{#navbar.nav as |nav|}}
+                  {{#nav.item}}
+                    {{#nav.link-to "index"}}Home{{/nav.link-to}}
+                  {{/nav.item}}
+                  {{#nav.item}}
+                    {{#nav.link-to "projects"}}Projects{{/nav.link-to}}
+                  {{/nav.item}}
+                     {{#nav.item}}
+                    {{#nav.link-to "blog"}}Blog{{/nav.link-to}}
+                  {{/nav.item}}
+                {{/navbar.nav}}
+              {{/navbar.content}}
+            
+            {{/bs-navbar}}
+            
+
+
+
+
+
+
+  <div class = "container-fluid bg-light pt-5 pb-5">
+
+<div class="container">
+  {{outlet}}
+  </div>
+  </div>
+
+

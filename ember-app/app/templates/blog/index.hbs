@@ -1,0 +1,28 @@
+{{#each model as |project|}}
+
+<div class="card  {{first-card project.first}}">
+    <div class="card-header">
+        <h2>{{project.title}}</h2>
+        {{#each project.pic as |pict|}}
+        <img src="img/{{pict}}.png" class="img-thumbnail" > {{/each}}
+    </div>
+    <div class="card-body">
+        {{#if project.slide}} {{! If we are gonna have a two column with a slideshow }}
+        <div class="row">
+            <div class="col-sm">
+                {{#bs-carousel autoPlay=true interval=2000 showIndicators=false as |car|}} {{#each project.slide as |slide|}} {{#car.slide}}
+                <img src="img/ugames/{{slide}}.png" style="display: block; width:100%;"> {{/car.slide}} {{/each}} {{/bs-carousel}}
+            </div>
+            <div class="col-sm pt-3">
+                {{{project.body}}}
+            </div>
+        </div>
+        {{else}} {{! Normal One Column }} {{{project.body}}} {{/if}}
+    </div>
+    <div class="card-footer">
+    </div>
+</div>
+
+{{/each}}
+
+{{outlet}}
