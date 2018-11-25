@@ -1,10 +1,10 @@
- {{#each model as |project|}}
+ {{#each model as |project index|}}
 
-<div class="card  {{first-card project.first}}">
+<div class="card mb-5">
     <div class="card-header">
         <h2>{{project.title}}</h2>
         {{#each project.pic as |pict|}}
-        <img src="img/{{pict}}.png" class="img-thumbnail" > {{/each}}
+        <img src="img/skill/{{pict}}.png" class="img-thumbnail" > {{/each}}
     </div>
     <div class="card-body">
         {{#if project.slide}} {{! If we are gonna have a two column with a slideshow }}

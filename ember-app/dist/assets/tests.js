@@ -4610,10 +4610,10 @@ define('ember-test-helpers/wait', ['exports', '@ember/test-helpers/settled', '@e
     }, { timeout: Infinity });
   }
 });
-define('ember-app/tests/integration/helpers/first-card-test', ['qunit', 'ember-qunit', '@ember/test-helpers'], function (_qunit, _emberQunit, _testHelpers) {
+define('ember-app/tests/integration/helpers/nice-link-test', ['qunit', 'ember-qunit', '@ember/test-helpers'], function (_qunit, _emberQunit, _testHelpers) {
   'use strict';
 
-  (0, _qunit.module)('Integration | Helper | first-card', function (hooks) {
+  (0, _qunit.module)('Integration | Helper | nice-link', function (hooks) {
     (0, _emberQunit.setupRenderingTest)(hooks);
 
     // Replace this with your real tests.
@@ -4621,28 +4621,8 @@ define('ember-app/tests/integration/helpers/first-card-test', ['qunit', 'ember-q
       this.set('inputValue', '1234');
 
       await (0, _testHelpers.render)(Ember.HTMLBars.template({
-        "id": "axQLLeN+",
-        "block": "{\"symbols\":[],\"statements\":[[1,[27,\"first-card\",[[23,[\"inputValue\"]]],null],false]],\"hasEval\":false}",
-        "meta": {}
-      }));
-
-      assert.equal(this.element.textContent.trim(), '1234');
-    });
-  });
-});
-define('ember-app/tests/integration/helpers/for-first-test', ['qunit', 'ember-qunit', '@ember/test-helpers'], function (_qunit, _emberQunit, _testHelpers) {
-  'use strict';
-
-  (0, _qunit.module)('Integration | Helper | for-first', function (hooks) {
-    (0, _emberQunit.setupRenderingTest)(hooks);
-
-    // Replace this with your real tests.
-    (0, _qunit.test)('it renders', async function (assert) {
-      this.set('inputValue', '1234');
-
-      await (0, _testHelpers.render)(Ember.HTMLBars.template({
-        "id": "xPYeX0VW",
-        "block": "{\"symbols\":[],\"statements\":[[1,[27,\"for-first\",[[23,[\"inputValue\"]]],null],false]],\"hasEval\":false}",
+        "id": "KhUVng41",
+        "block": "{\"symbols\":[],\"statements\":[[1,[27,\"nice-link\",[[23,[\"inputValue\"]]],null],false]],\"hasEval\":false}",
         "meta": {}
       }));
 
@@ -4660,14 +4640,9 @@ define('ember-app/tests/lint/app.lint-test', [], function () {
     assert.ok(true, 'app.js should pass ESLint\n\n');
   });
 
-  QUnit.test('helpers/first-card.js', function (assert) {
+  QUnit.test('helpers/nice-link.js', function (assert) {
     assert.expect(1);
-    assert.ok(false, 'helpers/first-card.js should pass ESLint\n\n3:40 - \'rest\' is defined but never used. (no-unused-vars)');
-  });
-
-  QUnit.test('helpers/for-first.js', function (assert) {
-    assert.expect(1);
-    assert.ok(false, 'helpers/for-first.js should pass ESLint\n\n3:36 - \'theRest\' is defined but never used. (no-unused-vars)');
+    assert.ok(true, 'helpers/nice-link.js should pass ESLint\n\n');
   });
 
   QUnit.test('resolver.js', function (assert) {
@@ -4722,7 +4697,7 @@ define('ember-app/tests/lint/templates.template.lint-test', [], function () {
 
   QUnit.test('ember-app/templates/blog/index.hbs', function (assert) {
     assert.expect(1);
-    assert.ok(false, 'ember-app/templates/blog/index.hbs should pass TemplateLint.\n\nember-app/templates/blog/index.hbs\n  2:0  error  Incorrect indentation for `{{#if}}` beginning at L2:C0. Expected `{{#if}}` to be at an indentation of 2 but was found at 0.  block-indentation\n  6:0  error  Incorrect indentation for `<h3>` beginning at L6:C0. Expected `<h3>` to be at an indentation of 2 but was found at 0.  block-indentation\n  7:0  error  Incorrect indentation for `<p>` beginning at L7:C0. Expected `<p>` to be at an indentation of 2 but was found at 0.  block-indentation\n  9:0  error  Incorrect indentation for `<div>` beginning at L9:C0. Expected `<div>` to be at an indentation of 2 but was found at 0.  block-indentation\n  3:0  error  Incorrect indentation for `{{index}}` beginning at L3:C0. Expected `{{index}}` to be at an indentation of 2 but was found at 0.  block-indentation\n  4:0  error  Incorrect indentation for `<h4>` beginning at L4:C0. Expected `<h4>` to be at an indentation of 2 but was found at 0.  block-indentation\n  10:0  error  Incorrect indentation for `{{#each}}` beginning at L10:C0. Expected `{{#each}}` to be at an indentation of 2 but was found at 0.  block-indentation\n  20:5  error  Incorrect indentation for `<div>` beginning at L20:C5. Expected `<div>` to be at an indentation of 4 but was found at 5.  block-indentation\n  22:10  error  Incorrect indentation for `div` beginning at L20:C5. Expected `</div>` ending at L22:C10 to be at an indentation of 5 but was found at 4.  block-indentation\n  21:8  error  Incorrect indentation for `<p>` beginning at L21:C8. Expected `<p>` to be at an indentation of 7 but was found at 8.  block-indentation\n  13:22  error  elements cannot have inline styles  no-inline-styles\n');
+    assert.ok(false, 'ember-app/templates/blog/index.hbs should pass TemplateLint.\n\nember-app/templates/blog/index.hbs\n  17:9  error  Incorrect indentation of htmlAttribute \'class\' beginning at L17:C9. Expected \'class\' to be at L18:C6.  attribute-indentation\n  17:30  error  Incorrect indentation of htmlAttribute \'src\' beginning at L17:C30. Expected \'src\' to be at L19:C6.  attribute-indentation\n  17:86  error  Incorrect indentation of htmlAttribute \'alt\' beginning at L17:C86. Expected \'alt\' to be at L20:C6.  attribute-indentation\n  17:106  error  Incorrect indentation of close bracket \'>\' for the element \'<img>\' beginning at L17:C106. Expected \'<img>\' to be at L21:C4.  attribute-indentation\n  5:0  error  Incorrect indentation for `{{!0 index return false}}` beginning at L5:C0. Expected `{{!0 index return false}}` to be at an indentation of 2 but was found at 0.  block-indentation\n  6:0  error  Incorrect indentation for `{{if}}` beginning at L6:C0. Expected `{{if}}` to be at an indentation of 2 but was found at 0.  block-indentation\n  9:0  error  Incorrect indentation for `<h3>` beginning at L9:C0. Expected `<h3>` to be at an indentation of 2 but was found at 0.  block-indentation\n  10:0  error  Incorrect indentation for `<p>` beginning at L10:C0. Expected `<p>` to be at an indentation of 2 but was found at 0.  block-indentation\n  12:0  error  Incorrect indentation for `<div>` beginning at L12:C0. Expected `<div>` to be at an indentation of 2 but was found at 0.  block-indentation\n  13:0  error  Incorrect indentation for `{{#each}}` beginning at L13:C0. Expected `{{#each}}` to be at an indentation of 2 but was found at 0.  block-indentation\n  23:5  error  Incorrect indentation for `<div>` beginning at L23:C5. Expected `<div>` to be at an indentation of 4 but was found at 5.  block-indentation\n  25:10  error  Incorrect indentation for `div` beginning at L23:C5. Expected `</div>` ending at L25:C10 to be at an indentation of 5 but was found at 4.  block-indentation\n  24:8  error  Incorrect indentation for `<p>` beginning at L24:C8. Expected `<p>` to be at an indentation of 7 but was found at 8.  block-indentation\n  16:22  error  elements cannot have inline styles  no-inline-styles\n  6:0  error  Usage of triple curly brackets is unsafe  no-triple-curlies\n');
   });
 
   QUnit.test('ember-app/templates/blog/post.hbs', function (assert) {
@@ -4737,7 +4712,7 @@ define('ember-app/tests/lint/templates.template.lint-test', [], function () {
 
   QUnit.test('ember-app/templates/projects.hbs', function (assert) {
     assert.expect(1);
-    assert.ok(false, 'ember-app/templates/projects.hbs should pass TemplateLint.\n\nember-app/templates/projects.hbs\n  1:1  error  Incorrect indentation for `{{#each}}` beginning at L1:C1. Expected `{{#each}}` to be at an indentation of 0, but was found at 1.  block-indentation\n  25:9  error  Incorrect indentation for `each` beginning at L1:C1. Expected `{{/each}}` ending at L25:C9 to be at an indentation of 1 but was found at 0.  block-indentation\n  3:0  error  Incorrect indentation for `<div>` beginning at L3:C0. Expected `<div>` to be at an indentation of 3 but was found at 0.  block-indentation\n  4:4  error  Incorrect indentation for `<div>` beginning at L4:C4. Expected `<div>` to be at an indentation of 2 but was found at 4.  block-indentation\n  9:4  error  Incorrect indentation for `<div>` beginning at L9:C4. Expected `<div>` to be at an indentation of 2 but was found at 4.  block-indentation\n  5:8  error  Incorrect indentation for `<h2>` beginning at L5:C8. Expected `<h2>` to be at an indentation of 6 but was found at 8.  block-indentation\n  6:8  error  Incorrect indentation for `{{#each}}` beginning at L6:C8. Expected `{{#each}}` to be at an indentation of 6 but was found at 8.  block-indentation\n  7:69  error  Incorrect indentation for `each` beginning at L6:C8. Expected `{{/each}}` ending at L7:C69 to be at an indentation of 8 but was found at 60.  block-indentation\n  7:8  error  Incorrect indentation for `<img>` beginning at L7:C8. Expected `<img>` to be at an indentation of 10 but was found at 8.  block-indentation\n  10:8  error  Incorrect indentation for `{{#if}}` beginning at L10:C8. Expected `{{#if}}` to be at an indentation of 6 but was found at 8.  block-indentation\n  20:68  error  Incorrect indentation for `if` beginning at L10:C8. Expected `{{/if}}` ending at L20:C68 to be at an indentation of 8 but was found at 61.  block-indentation\n  10:30  error  Incorrect indentation for `{{! If we are gonna have a two column with a slideshow }}` beginning at L10:C30. Expected `{{! If we are gonna have a two column with a slideshow }}` to be at an indentation of 10 but was found at 30.  block-indentation\n  11:8  error  Incorrect indentation for `<div>` beginning at L11:C8. Expected `<div>` to be at an indentation of 10 but was found at 8.  block-indentation\n  20:17  error  Incorrect indentation for `{{! Normal One Column }}` beginning at L20:C17. Expected `{{! Normal One Column }}` to be at an indentation of 10 but was found at 17.  block-indentation\n  12:12  error  Incorrect indentation for `<div>` beginning at L12:C12. Expected `<div>` to be at an indentation of 10 but was found at 12.  block-indentation\n  16:12  error  Incorrect indentation for `<div>` beginning at L16:C12. Expected `<div>` to be at an indentation of 10 but was found at 12.  block-indentation\n  13:16  error  Incorrect indentation for `{{#bs-carousel}}` beginning at L13:C16. Expected `{{#bs-carousel}}` to be at an indentation of 14 but was found at 16.  block-indentation\n  14:130  error  Incorrect indentation for `bs-carousel` beginning at L13:C16. Expected `{{/bs-carousel}}` ending at L14:C130 to be at an indentation of 16 but was found at 114.  block-indentation\n  13:91  error  Incorrect indentation for `{{#each}}` beginning at L13:C91. Expected `{{#each}}` to be at an indentation of 18 but was found at 91.  block-indentation\n  14:113  error  Incorrect indentation for `each` beginning at L13:C91. Expected `{{/each}}` ending at L14:C113 to be at an indentation of 91 but was found at 104.  block-indentation\n  13:126  error  Incorrect indentation for `{{#component}}` beginning at L13:C126. Expected `{{#component}}` to be at an indentation of 93 but was found at 126.  block-indentation\n  14:16  error  Incorrect indentation for `<img>` beginning at L14:C16. Expected `<img>` to be at an indentation of 128 but was found at 16.  block-indentation\n  17:16  error  Incorrect indentation for `{{project.body}}` beginning at L17:C16. Expected `{{project.body}}` to be at an indentation of 14 but was found at 16.  block-indentation\n  7:8  error  img tags must have an alt attribute  img-alt-attributes\n  14:16  error  img tags must have an alt attribute  img-alt-attributes\n  14:52  error  elements cannot have inline styles  no-inline-styles\n  17:16  error  Usage of triple curly brackets is unsafe  no-triple-curlies\n  20:42  error  Usage of triple curly brackets is unsafe  no-triple-curlies\n');
+    assert.ok(false, 'ember-app/templates/projects.hbs should pass TemplateLint.\n\nember-app/templates/projects.hbs\n  1:1  error  Incorrect indentation for `{{#each}}` beginning at L1:C1. Expected `{{#each}}` to be at an indentation of 0, but was found at 1.  block-indentation\n  25:9  error  Incorrect indentation for `each` beginning at L1:C1. Expected `{{/each}}` ending at L25:C9 to be at an indentation of 1 but was found at 0.  block-indentation\n  3:0  error  Incorrect indentation for `<div>` beginning at L3:C0. Expected `<div>` to be at an indentation of 3 but was found at 0.  block-indentation\n  4:4  error  Incorrect indentation for `<div>` beginning at L4:C4. Expected `<div>` to be at an indentation of 2 but was found at 4.  block-indentation\n  9:4  error  Incorrect indentation for `<div>` beginning at L9:C4. Expected `<div>` to be at an indentation of 2 but was found at 4.  block-indentation\n  5:8  error  Incorrect indentation for `<h2>` beginning at L5:C8. Expected `<h2>` to be at an indentation of 6 but was found at 8.  block-indentation\n  6:8  error  Incorrect indentation for `{{#each}}` beginning at L6:C8. Expected `{{#each}}` to be at an indentation of 6 but was found at 8.  block-indentation\n  7:75  error  Incorrect indentation for `each` beginning at L6:C8. Expected `{{/each}}` ending at L7:C75 to be at an indentation of 8 but was found at 66.  block-indentation\n  7:8  error  Incorrect indentation for `<img>` beginning at L7:C8. Expected `<img>` to be at an indentation of 10 but was found at 8.  block-indentation\n  10:8  error  Incorrect indentation for `{{#if}}` beginning at L10:C8. Expected `{{#if}}` to be at an indentation of 6 but was found at 8.  block-indentation\n  20:68  error  Incorrect indentation for `if` beginning at L10:C8. Expected `{{/if}}` ending at L20:C68 to be at an indentation of 8 but was found at 61.  block-indentation\n  10:30  error  Incorrect indentation for `{{! If we are gonna have a two column with a slideshow }}` beginning at L10:C30. Expected `{{! If we are gonna have a two column with a slideshow }}` to be at an indentation of 10 but was found at 30.  block-indentation\n  11:8  error  Incorrect indentation for `<div>` beginning at L11:C8. Expected `<div>` to be at an indentation of 10 but was found at 8.  block-indentation\n  20:17  error  Incorrect indentation for `{{! Normal One Column }}` beginning at L20:C17. Expected `{{! Normal One Column }}` to be at an indentation of 10 but was found at 17.  block-indentation\n  12:12  error  Incorrect indentation for `<div>` beginning at L12:C12. Expected `<div>` to be at an indentation of 10 but was found at 12.  block-indentation\n  16:12  error  Incorrect indentation for `<div>` beginning at L16:C12. Expected `<div>` to be at an indentation of 10 but was found at 12.  block-indentation\n  13:16  error  Incorrect indentation for `{{#bs-carousel}}` beginning at L13:C16. Expected `{{#bs-carousel}}` to be at an indentation of 14 but was found at 16.  block-indentation\n  14:130  error  Incorrect indentation for `bs-carousel` beginning at L13:C16. Expected `{{/bs-carousel}}` ending at L14:C130 to be at an indentation of 16 but was found at 114.  block-indentation\n  13:91  error  Incorrect indentation for `{{#each}}` beginning at L13:C91. Expected `{{#each}}` to be at an indentation of 18 but was found at 91.  block-indentation\n  14:113  error  Incorrect indentation for `each` beginning at L13:C91. Expected `{{/each}}` ending at L14:C113 to be at an indentation of 91 but was found at 104.  block-indentation\n  13:126  error  Incorrect indentation for `{{#component}}` beginning at L13:C126. Expected `{{#component}}` to be at an indentation of 93 but was found at 126.  block-indentation\n  14:16  error  Incorrect indentation for `<img>` beginning at L14:C16. Expected `<img>` to be at an indentation of 128 but was found at 16.  block-indentation\n  17:16  error  Incorrect indentation for `{{project.body}}` beginning at L17:C16. Expected `{{project.body}}` to be at an indentation of 14 but was found at 16.  block-indentation\n  7:8  error  img tags must have an alt attribute  img-alt-attributes\n  14:16  error  img tags must have an alt attribute  img-alt-attributes\n  14:52  error  elements cannot have inline styles  no-inline-styles\n  17:16  error  Usage of triple curly brackets is unsafe  no-triple-curlies\n  20:42  error  Usage of triple curly brackets is unsafe  no-triple-curlies\n  1:35  error  \'index\' is defined but never used  no-unused-block-params\n');
   });
 });
 define('ember-app/tests/lint/tests.lint-test', [], function () {
@@ -4745,14 +4720,9 @@ define('ember-app/tests/lint/tests.lint-test', [], function () {
 
   QUnit.module('ESLint | tests');
 
-  QUnit.test('integration/helpers/first-card-test.js', function (assert) {
+  QUnit.test('integration/helpers/nice-link-test.js', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'integration/helpers/first-card-test.js should pass ESLint\n\n');
-  });
-
-  QUnit.test('integration/helpers/for-first-test.js', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'integration/helpers/for-first-test.js should pass ESLint\n\n');
+    assert.ok(true, 'integration/helpers/nice-link-test.js should pass ESLint\n\n');
   });
 
   QUnit.test('test-helper.js', function (assert) {

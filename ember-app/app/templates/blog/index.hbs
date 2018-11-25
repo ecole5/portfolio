@@ -1,21 +1,24 @@
 {{#each model as |series index|}}
-{{#if index == 0}}
-{{index}}
-<h4> Bitch</h4>
-{{/if}}
+
+
+
+{{!0 index return false}}
+{{{if index "<hr>"}}}
+
+
 <h3> {{series.title}}</h3>
 <p> {{series.description}}</p>
 
 <div class="card-deck mb-5">
-{{#each series.posts as |post|}}
+{{#each series.posts as |post postIndex|}}
 
 
   <div class="card "  style="max-width: 25rem;">
-    <img class="card-img-top" src="" alt="Card image cap">
+    <img class="card-img-top" src="img/blog/{{series.title}}/badge/{{postIndex}}.png" alt="Card image cap">
     <div class="card-body">
       <h5 class="card-title">{{post.title}}</h5>
       <p class="card-text">{{post.text}}</p>
-      {{#link-to "blog.post" post.title}}Read More{{/link-to}}
+      {{#link-to "blog.post"  post.title}}Read More{{/link-to}}
     </div>
      <div class="card-footer">
         <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
@@ -23,13 +26,11 @@
 
   </div>
   
-
-
-
 {{/each}}
 </div>
 
 
 {{/each}}
+
 
 {{outlet}}
