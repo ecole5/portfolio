@@ -64174,6 +64174,1005 @@ function createDeprecatedModule(moduleId) {
 createDeprecatedModule('ember/resolver');
 createDeprecatedModule('resolver');
 
+;define('@ember-decorators/argument/-debug/decorators/immutable', ['exports', '@ember-decorators/argument/-debug/utils/validation-decorator'], function (exports, _validationDecorator) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+
+  const immutable = (0, _validationDecorator.default)(function (target, key, desc, options, validations) {
+    validations.isImmutable = true;
+  });
+
+  exports.default = immutable;
+});
+;define('@ember-decorators/argument/-debug/decorators/required', ['exports', '@ember-decorators/argument/-debug/utils/validation-decorator'], function (exports, _validationDecorator) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+
+  const required = (0, _validationDecorator.default)(function (target, key, desc, options, validations) {
+    validations.isRequired = true;
+  });
+
+  exports.default = required;
+});
+;define('@ember-decorators/argument/-debug/decorators/type', ['exports', '@ember-decorators/argument/-debug/utils/validation-decorator', '@ember-decorators/argument/-debug/utils/validators'], function (exports, _validationDecorator, _validators) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = type;
+  function type(type) {
+    (true && !(arguments.length === 1) && Ember.assert(`The @type decorator can only receive one type, but instead received ${arguments.length}. Use the 'unionOf' helper to create a union type.`, arguments.length === 1));
+
+
+    const validator = (0, _validators.resolveValidator)(type);
+
+    return (0, _validationDecorator.default)(function (target, key, desc, options, validations) {
+      validations.typeValidators.push(validator);
+    });
+  }
+});
+;define("@ember-decorators/argument/-debug/errors", ["exports"], function (exports) {
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  class MutabilityError extends Error {}
+
+  exports.MutabilityError = MutabilityError;
+  class RequiredFieldError extends Error {}
+
+  exports.RequiredFieldError = RequiredFieldError;
+  class TypeError extends Error {}
+  exports.TypeError = TypeError;
+});
+;define('@ember-decorators/argument/-debug/helpers/array-of', ['exports', '@ember-decorators/argument/-debug/utils/validators'], function (exports, _validators) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = arrayOf;
+  function arrayOf(type) {
+    (true && !(arguments.length === 1) && Ember.assert(`The 'arrayOf' helper must receive exactly one type. Use the 'unionOf' helper to create a union type.`, arguments.length === 1));
+
+
+    const validator = (0, _validators.resolveValidator)(type);
+
+    return (0, _validators.makeValidator)(`arrayOf(${validator})`, value => {
+      return Ember.isArray(value) && value.every(validator);
+    });
+  }
+});
+;define('@ember-decorators/argument/-debug/helpers/one-of', ['exports', '@ember-decorators/argument/-debug/utils/validators'], function (exports, _validators) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = oneOf;
+  function oneOf(...list) {
+    (true && !(arguments.length >= 1) && Ember.assert(`The 'oneOf' helper must receive at least one argument`, arguments.length >= 1));
+    (true && !(list.every(item => typeof item === 'string')) && Ember.assert(`The 'oneOf' helper must receive arguments of strings, received: ${list}`, list.every(item => typeof item === 'string')));
+
+
+    return (0, _validators.makeValidator)(`oneOf(${list.join()})`, value => {
+      return list.includes(value);
+    });
+  }
+});
+;define('@ember-decorators/argument/-debug/helpers/optional', ['exports', '@ember-decorators/argument/-debug/utils/validators'], function (exports, _validators) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = optional;
+
+
+  const nullValidator = (0, _validators.resolveValidator)(null);
+  const undefinedValidator = (0, _validators.resolveValidator)(undefined);
+
+  function optional(type) {
+    (true && !(arguments.length === 1) && Ember.assert(`The 'optional' helper must receive exactly one type. Use the 'unionOf' helper to create a union type.`, arguments.length === 1));
+
+
+    const validator = (0, _validators.resolveValidator)(type);
+    const validatorDesc = validator.toString();
+
+    (true && !(validatorDesc !== 'null') && Ember.assert(`Passsing 'null' to the 'optional' helper does not make sense.`, validatorDesc !== 'null'));
+    (true && !(validatorDesc !== 'undefined') && Ember.assert(`Passsing 'undefined' to the 'optional' helper does not make sense.`, validatorDesc !== 'undefined'));
+
+
+    return (0, _validators.makeValidator)(`optional(${validator})`, value => nullValidator(value) || undefinedValidator(value) || validator(value));
+  }
+});
+;define('@ember-decorators/argument/-debug/helpers/shape-of', ['exports', '@ember-decorators/argument/-debug/utils/validators'], function (exports, _validators) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = shapeOf;
+  function shapeOf(shape) {
+    (true && !(arguments.length === 1) && Ember.assert(`The 'shapeOf' helper must receive exactly one shape`, arguments.length === 1));
+    (true && !(typeof shape === 'object') && Ember.assert(`The 'shapeOf' helper must receive an object to match the shape to, received: ${shape}`, typeof shape === 'object'));
+    (true && !(Object.keys(shape).length > 0) && Ember.assert(`The object passed to the 'shapeOf' helper must have at least one key:type pair`, Object.keys(shape).length > 0));
+
+
+    let typeDesc = [];
+
+    for (let key in shape) {
+      shape[key] = (0, _validators.resolveValidator)(shape[key]);
+
+      typeDesc.push(`${key}:${shape[key]}`);
+    }
+
+    return (0, _validators.makeValidator)(`shapeOf({${typeDesc.join()}})`, value => {
+      for (let key in shape) {
+        if (shape[key](Ember.get(value, key)) !== true) {
+          return false;
+        }
+      }
+
+      return true;
+    });
+  }
+});
+;define('@ember-decorators/argument/-debug/helpers/union-of', ['exports', '@ember-decorators/argument/-debug/utils/validators'], function (exports, _validators) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = unionOf;
+  function unionOf(...types) {
+    (true && !(arguments.length > 1) && Ember.assert(`The 'unionOf' helper must receive more than one type`, arguments.length > 1));
+
+
+    const validators = types.map(_validators.resolveValidator);
+
+    return (0, _validators.makeValidator)(`unionOf(${validators.join()})`, value => {
+      return validators.some(validator => validator(value));
+    });
+  }
+});
+;define('@ember-decorators/argument/-debug/index', ['exports', '@ember-decorators/argument/-debug/decorators/immutable', '@ember-decorators/argument/-debug/decorators/required', '@ember-decorators/argument/-debug/decorators/type', '@ember-decorators/argument/-debug/helpers/array-of', '@ember-decorators/argument/-debug/helpers/shape-of', '@ember-decorators/argument/-debug/helpers/union-of', '@ember-decorators/argument/-debug/helpers/optional', '@ember-decorators/argument/-debug/helpers/one-of', '@ember-decorators/argument/-debug/errors', '@ember-decorators/argument/-debug/utils/validations-for'], function (exports, _immutable, _required, _type, _arrayOf, _shapeOf, _unionOf, _optional, _oneOf, _errors, _validationsFor) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'immutable', {
+    enumerable: true,
+    get: function () {
+      return _immutable.default;
+    }
+  });
+  Object.defineProperty(exports, 'required', {
+    enumerable: true,
+    get: function () {
+      return _required.default;
+    }
+  });
+  Object.defineProperty(exports, 'type', {
+    enumerable: true,
+    get: function () {
+      return _type.default;
+    }
+  });
+  Object.defineProperty(exports, 'arrayOf', {
+    enumerable: true,
+    get: function () {
+      return _arrayOf.default;
+    }
+  });
+  Object.defineProperty(exports, 'shapeOf', {
+    enumerable: true,
+    get: function () {
+      return _shapeOf.default;
+    }
+  });
+  Object.defineProperty(exports, 'unionOf', {
+    enumerable: true,
+    get: function () {
+      return _unionOf.default;
+    }
+  });
+  Object.defineProperty(exports, 'optional', {
+    enumerable: true,
+    get: function () {
+      return _optional.default;
+    }
+  });
+  Object.defineProperty(exports, 'oneOf', {
+    enumerable: true,
+    get: function () {
+      return _oneOf.default;
+    }
+  });
+  Object.defineProperty(exports, 'MutabilityError', {
+    enumerable: true,
+    get: function () {
+      return _errors.MutabilityError;
+    }
+  });
+  Object.defineProperty(exports, 'RequiredFieldError', {
+    enumerable: true,
+    get: function () {
+      return _errors.RequiredFieldError;
+    }
+  });
+  Object.defineProperty(exports, 'TypeError', {
+    enumerable: true,
+    get: function () {
+      return _errors.TypeError;
+    }
+  });
+  Object.defineProperty(exports, 'getValidationsForKey', {
+    enumerable: true,
+    get: function () {
+      return _validationsFor.getValidationsForKey;
+    }
+  });
+});
+;define('@ember-decorators/argument/-debug/utils/computed', ['exports'], function (exports) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.isMandatorySetter = isMandatorySetter;
+  exports.isDescriptor = isDescriptor;
+  exports.isDescriptorTrap = isDescriptorTrap;
+  function isMandatorySetter(setter) {
+    return setter && setter.toString().match('You must use .*set()') !== null;
+  }
+
+  function isDescriptor(maybeDesc) {
+    return maybeDesc !== null && typeof maybeDesc === 'object' && maybeDesc.isDescriptor;
+  }
+
+  function isDescriptorTrap(maybeDesc) {
+    return maybeDesc !== null && typeof maybeDesc === 'object' && !!maybeDesc.__DESCRIPTOR__;
+  }
+});
+;define("@ember-decorators/argument/-debug/utils/object", ["exports"], function (exports) {
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.getPropertyDescriptor = getPropertyDescriptor;
+  function getPropertyDescriptor(object, key) {
+    if (object === undefined) return;
+
+    return Object.getOwnPropertyDescriptor(object, key) || getPropertyDescriptor(Object.getPrototypeOf(object), key);
+  }
+});
+;define('@ember-decorators/argument/-debug/utils/validation-decorator', ['exports', '@ember-decorators/argument/-debug/utils/computed', '@ember-decorators/argument/-debug/utils/object', '@ember-decorators/argument/-debug/utils/validations-for', '@ember-decorators/argument/-debug/errors'], function (exports, _computed, _object, _validationsFor, _errors) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = validationDecorator;
+  /* globals requireModule */
+  const notifyPropertyChange = Ember.notifyPropertyChange || Ember.propertyDidChange;
+
+  function guardBind(fn, ...args) {
+    if (typeof fn === 'function') {
+      return fn.bind(...args);
+    }
+  }
+
+  class ValidatedProperty {
+    constructor({ originalValue, klass, keyName, isImmutable, typeValidators }) {
+      this.isDescriptor = true;
+
+      this.klass = klass;
+      this.originalValue = originalValue;
+      this.isImmutable = isImmutable;
+      this.typeValidators = typeValidators;
+
+      runValidators(typeValidators, klass, keyName, originalValue, 'init');
+    }
+
+    get(obj, keyName) {
+      let {
+        klass,
+        originalValue,
+        isImmutable,
+        typeValidators
+      } = this;
+
+      let newValue = this._get(obj, keyName);
+
+      if (isImmutable && newValue !== originalValue) {
+        throw new _errors.MutabilityError(`Immutable value ${klass.name}#${keyName} changed by underlying computed, original value: ${originalValue}, new value: ${newValue}`);
+      }
+
+      if (typeValidators.length > 0) {
+        runValidators(typeValidators, klass, keyName, newValue, 'get');
+      }
+
+      return newValue;
+    }
+
+    set(obj, keyName, value) {
+      let {
+        klass,
+        isImmutable,
+        typeValidators
+      } = this;
+
+      if (isImmutable) {
+        throw new _errors.MutabilityError(`Attempted to set ${klass.name}#${keyName} to the value ${value} but the field is immutable`);
+      }
+
+      let newValue = this._set(obj, keyName, value);
+
+      if (typeValidators.length > 0) {
+        runValidators(typeValidators, klass, keyName, newValue, 'set');
+      }
+
+      return newValue;
+    }
+  }
+
+  class StandardValidatedProperty extends ValidatedProperty {
+    constructor({ originalValue }) {
+      super(...arguments);
+
+      this.cachedValue = originalValue;
+    }
+
+    _get() {
+      return this.cachedValue;
+    }
+
+    _set(obj, keyName, value) {
+      if (value === this.cachedValue) return value;
+
+      this.cachedValue = value;
+
+      notifyPropertyChange(obj, keyName);
+
+      return this.cachedValue;
+    }
+  }
+
+  class NativeComputedValidatedProperty extends ValidatedProperty {
+    constructor({ desc }) {
+      super(...arguments);
+
+      this.desc = desc;
+    }
+
+    _get(obj) {
+      return this.desc.get.call(obj);
+    }
+
+    _set(obj, keyName, value) {
+      // By default Ember.get will check to see if the value has changed before setting
+      // and calling propertyDidChange. In order to not change behavior, we must do the same
+      let currentValue = this._get(obj);
+
+      if (value === currentValue) return value;
+
+      this.desc.set.call(obj, value);
+
+      notifyPropertyChange(obj, keyName);
+
+      return this._get(obj);
+    }
+  }
+
+  class ComputedValidatedProperty extends ValidatedProperty {
+    constructor({ desc }) {
+      super(...arguments);
+
+      this.desc = desc;
+
+      this.setup = guardBind(desc.setup, desc);
+      this.teardown = guardBind(desc.teardown, desc);
+      this.willChange = guardBind(desc.willChange, desc);
+      this.didChange = guardBind(desc.didChange, desc);
+      this.willWatch = guardBind(desc.willWatch, desc);
+      this.didUnwatch = guardBind(desc.didUnwatch, desc);
+    }
+
+    _get(obj, keyName) {
+      return this.desc.get(obj, keyName);
+    }
+
+    _set(obj, keyName, value) {
+      if (true) {
+        return this.desc.set(obj, keyName, value);
+      }
+
+      this.desc.set(obj, keyName, value);
+
+      let { cache } = Ember.meta(obj);
+
+      return typeof cache === 'object' ? cache[keyName] : value;
+    }
+  }
+
+  function runValidators(validators, klass, key, value, phase) {
+    validators.forEach(validator => {
+      if (validator(value) === false) {
+        let formattedValue = typeof value === 'string' ? `'${value}'` : value;
+        throw new _errors.TypeError(`${klass.name}#${key} expected value of type ${validator} during '${phase}', but received: ${formattedValue}`);
+      }
+    });
+  }
+
+  function wrapField(klass, instance, validations, keyName) {
+    const {
+      isImmutable,
+      isRequired,
+      typeValidators,
+      typeRequired
+    } = validations[keyName];
+
+    if (isRequired && instance[keyName] === undefined && !instance.hasOwnProperty(keyName)) {
+      throw new _errors.RequiredFieldError(`${klass.name}#${keyName} is a required value, but was not provided. You can provide it as an argument, as a class field, or in the constructor`);
+    }
+
+    // opt out early if no further validations
+    if (!isImmutable && typeValidators.length === 0) {
+      if (typeValidators.length === 0 && typeRequired) {
+        throw new _errors.TypeError(`${klass.name}#${keyName} requires a type, add one using the @type decorator`);
+      }
+
+      return;
+    }
+
+    let originalValue = instance[keyName];
+    let meta = Ember.meta(instance);
+
+    if (true) {
+      let possibleDesc = meta.peekDescriptors(keyName);
+
+      if (possibleDesc !== undefined) {
+        originalValue = possibleDesc;
+      }
+    }
+
+    if ((0, _computed.isDescriptorTrap)(originalValue)) {
+      originalValue = originalValue.__DESCRIPTOR__;
+    }
+
+    let validatedProperty;
+
+    if ((0, _computed.isDescriptor)(originalValue)) {
+      let desc = originalValue;
+
+      originalValue = desc.get(instance, keyName);
+
+      validatedProperty = new ComputedValidatedProperty({
+        desc, isImmutable, keyName, klass, originalValue, typeValidators
+      });
+    } else {
+      let desc = (0, _object.getPropertyDescriptor)(instance, keyName);
+
+      if ((typeof desc.get === 'function' || typeof desc.set === 'function') && !(0, _computed.isMandatorySetter)(desc.set)) {
+        validatedProperty = new NativeComputedValidatedProperty({
+          desc, isImmutable, keyName, klass, originalValue, typeValidators
+        });
+      } else {
+        validatedProperty = new StandardValidatedProperty({
+          isImmutable, keyName, klass, originalValue, typeValidators
+        });
+      }
+    }
+
+    if (true) {
+      // We're trying to fly under the radar here, so don't use Ember.defineProperty.
+      // Ember should think the property is completely unchanged.
+      Object.defineProperty(instance, keyName, {
+        configurable: true,
+        enumerable: true,
+        get() {
+          return validatedProperty.get(this, keyName);
+        }
+      });
+
+      meta.writeDescriptors(keyName, validatedProperty);
+    } else {
+      // We're trying to fly under the radar here, so don't use Ember.defineProperty.
+      // Ember should think the property is completely unchanged.
+      Object.defineProperty(instance, keyName, {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        value: validatedProperty
+      });
+    }
+  }
+
+  const ValidatingCreateMixin = Ember.Mixin.create({
+    create() {
+      const instance = this._super.apply(this, arguments);
+
+      const klass = this;
+      const prototype = Object.getPrototypeOf(instance);
+      const validations = (0, _validationsFor.getValidationsFor)(prototype);
+
+      if (!validations) {
+        return instance;
+      }
+
+      for (let key in validations) {
+        wrapField(klass, instance, validations, key);
+      }
+
+      return instance;
+    }
+  });
+
+  Ember.Object.reopenClass(ValidatingCreateMixin);
+
+  // Reopening a parent class does not apply the mixin to existing child classes,
+  // so we need to apply it directly
+  ValidatingCreateMixin.apply(Ember.Component);
+  ValidatingCreateMixin.apply(Ember.Service);
+  ValidatingCreateMixin.apply(Ember.Controller);
+
+  if (requireModule.has('ember-data')) {
+    let DS = requireModule('ember-data').default;
+
+    if (DS.Model) {
+      ValidatingCreateMixin.apply(DS.Model);
+    }
+  }
+
+  function validationDecorator(fn) {
+    return function (target, key, desc, options) {
+      const validations = (0, _validationsFor.getValidationsForKey)(target, key);
+
+      fn(target, key, desc, options, validations);
+
+      if (!desc.get && !desc.set) {
+        // always ensure the property is writeable, doesn't make sense otherwise (babel bug?)
+        desc.writable = true;
+        desc.configurable = true;
+      }
+
+      if (desc.initializer === null) {
+        desc.initializer = undefined;
+      }
+    };
+  }
+});
+;define("@ember-decorators/argument/-debug/utils/validations-for", ["exports"], function (exports) {
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.getValidationsFor = getValidationsFor;
+  exports.getOrCreateValidationsFor = getOrCreateValidationsFor;
+  exports.getValidationsForKey = getValidationsForKey;
+  const validationMetaMap = new WeakMap();
+
+  class FieldValidations {
+    constructor(parentValidations = null) {
+      if (parentValidations === null) {
+        this.isRequired = false;
+        this.isImmutable = false;
+        this.isArgument = false;
+        this.typeRequired = false;
+
+        this.typeValidators = [];
+      } else {
+        const {
+          isRequired,
+          isImmutable,
+          isArgument,
+          typeRequired,
+          typeValidators
+        } = parentValidations;
+
+        this.isRequired = isRequired;
+        this.isImmutable = isImmutable;
+        this.isArgument = isArgument;
+        this.typeRequired = typeRequired;
+
+        this.typeValidators = typeValidators.slice();
+      }
+    }
+  }
+
+  function getValidationsFor(target) {
+    // Reached the root of the prototype chain
+    if (target === null) return;
+
+    return validationMetaMap.get(target) || getValidationsFor(Object.getPrototypeOf(target));
+  }
+
+  function getOrCreateValidationsFor(target) {
+    if (!validationMetaMap.has(target)) {
+      const parentMeta = getValidationsFor(Object.getPrototypeOf(target));
+      validationMetaMap.set(target, Object.create(parentMeta || null));
+    }
+
+    return validationMetaMap.get(target);
+  }
+
+  function getValidationsForKey(target, key) {
+    const validations = getOrCreateValidationsFor(target);
+
+    if (!Object.hasOwnProperty.call(validations, key)) {
+      const parentValidations = validations[key];
+      validations[key] = new FieldValidations(parentValidations);
+    }
+
+    return validations[key];
+  }
+});
+;define('@ember-decorators/argument/-debug/utils/validators', ['exports'], function (exports) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.makeValidator = makeValidator;
+  exports.resolveValidator = resolveValidator;
+
+
+  function instanceOf(type) {
+    return makeValidator(type.toString(), value => value instanceof type);
+  }
+
+  const primitiveTypeValidators = {
+    any: makeValidator('any', () => true),
+    object: makeValidator('object', value => {
+      return typeof value !== 'boolean' && typeof value !== 'number' && typeof value !== 'string' && typeof value !== 'symbol' && value !== null && value !== undefined;
+    }),
+
+    boolean: makeValidator('boolean', value => typeof value === 'boolean'),
+    number: makeValidator('number', value => typeof value === 'number'),
+    string: makeValidator('string', value => typeof value === 'string'),
+    symbol: makeValidator('symbol', value => typeof value === 'symbol'),
+
+    null: makeValidator('null', value => value === null),
+    undefined: makeValidator('undefined', value => value === undefined)
+  };
+
+  function makeValidator(desc, fn) {
+    fn.isValidator = true;
+    fn.toString = () => desc;
+    return fn;
+  }
+
+  function resolveValidator(type) {
+    if (type === null || type === undefined) {
+      return type === null ? primitiveTypeValidators.null : primitiveTypeValidators.undefined;
+    } else if (type.isValidator === true) {
+      return type;
+    } else if (typeof type === 'function' || typeof type === 'object') {
+      // We allow objects for certain classes in IE, like Element, which have typeof 'object' for some reason
+      return instanceOf(type);
+    } else if (typeof type === 'string') {
+      (true && !(primitiveTypeValidators[type] !== undefined) && Ember.assert(`Unknown primitive type received: ${type}`, primitiveTypeValidators[type] !== undefined));
+
+
+      return primitiveTypeValidators[type];
+    } else {
+      (true && !(false) && Ember.assert(`Types must either be a primitive type string, class, validator, or null or undefined, received: ${type}`, false));
+    }
+  }
+});
+;define('@ember-decorators/argument/-debug/validated-component', ['exports', 'ember-get-config', '@ember-decorators/argument/-debug/utils/validations-for', '@ember-decorators/argument/-debug/utils/validation-decorator'], function (exports, _emberGetConfig, _validationsFor) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+
+  let validatedComponent;
+
+  const whitelist = {
+    ariaRole: true,
+    class: true,
+    classNames: true,
+    id: true,
+    isVisible: true,
+    tagName: true,
+    target: true,
+    __ANGLE_ATTRS__: true
+  };
+
+  if (true) {
+    validatedComponent = Ember.Component.extend();
+
+    validatedComponent.reopenClass({
+      create(props) {
+        // First create the instance to realize any dynamically added bindings or fields
+        const instance = this._super(...arguments);
+
+        const prototype = Object.getPrototypeOf(instance);
+        const validations = (0, _validationsFor.getValidationsFor)(prototype) || {};
+        if (Ember.getWithDefault(_emberGetConfig.default, '@ember-decorators/argument.ignoreComponentsWithoutValidations', false) && Object.keys(validations).length === 0) {
+          return instance;
+        }
+
+        const attributes = instance.attributeBindings || [];
+        const classNames = (instance.classNameBindings || []).map(binding => binding.split(':')[0]);
+
+        for (let key in props.attrs) {
+          const isValidArgOrAttr = key in validations && validations[key].isArgument || key in whitelist || attributes.indexOf(key) !== -1 || classNames.indexOf(key) !== -1;
+
+          (true && !(isValidArgOrAttr) && Ember.assert(`Attempted to assign the argument '${key}' on an instance of ${this.name || this}, but no argument was defined for that key. Use the @argument helper on the class field to define an argument for that class.`, isValidArgOrAttr));
+        }
+
+        return instance;
+      }
+    });
+  } else {
+    validatedComponent = Ember.Component;
+  }
+
+  exports.default = validatedComponent;
+});
+;define('@ember-decorators/argument/errors', ['exports', '@ember-decorators/argument/-debug'], function (exports, _debug) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'MutabilityError', {
+    enumerable: true,
+    get: function () {
+      return _debug.MutabilityError;
+    }
+  });
+  Object.defineProperty(exports, 'RequiredFieldError', {
+    enumerable: true,
+    get: function () {
+      return _debug.RequiredFieldError;
+    }
+  });
+  Object.defineProperty(exports, 'TypeError', {
+    enumerable: true,
+    get: function () {
+      return _debug.TypeError;
+    }
+  });
+});
+;define('@ember-decorators/argument/index', ['exports', 'ember-get-config', '@ember-decorators/argument/utils/make-computed', '@ember-decorators/argument/-debug'], function (exports, _emberGetConfig, _makeComputed, _debug) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.argument = argument;
+
+
+  let valueMap = new WeakMap();
+
+  function valuesFor(obj) {
+    if (!valueMap.has(obj)) {
+      valueMap.set(obj, Object.create(null));
+    }
+
+    return valueMap.get(obj);
+  }
+
+  let internalArgumentDecorator = function (target, key, desc, options) {
+    if (true) {
+      let validations = (0, _debug.getValidationsForKey)(target, key);
+      validations.isArgument = true;
+      validations.typeRequired = Ember.getWithDefault(_emberGetConfig.default, '@ember-decorators/argument.typeRequired', false);
+    }
+
+    // always ensure the property is writeable, doesn't make sense otherwise (babel bug?)
+    desc.writable = true;
+    desc.configurable = true;
+
+    if (desc.initializer === null || desc.initializer === undefined) {
+      desc.initializer = undefined;
+      return;
+    }
+
+    let initializer = desc.initializer;
+
+    let get = function () {
+      let values = valuesFor(this);
+
+      if (!Object.hasOwnProperty.call(values, key)) {
+        values[key] = initializer.call(this);
+      }
+
+      return values[key];
+    };
+
+    if (options.defaultIfNullish === true || options.defaultIfUndefined === true) {
+      let defaultIf;
+
+      if (options.defaultIfNullish === true) {
+        defaultIf = v => v === undefined || v === null;
+      } else {
+        defaultIf = v => v === undefined;
+      }
+
+      if (true) {
+        return {
+          get,
+          set(value) {
+            if (defaultIf(value)) {
+              valuesFor(this)[key] = initializer.call(this);
+            } else {
+              valuesFor(this)[key] = value;
+            }
+          }
+        };
+      }
+
+      let descriptor = (0, _makeComputed.default)({
+        get,
+        set(keyName, value) {
+          if (defaultIf(value)) {
+            return valuesFor(this)[key] = initializer.call(this);
+          } else {
+            return valuesFor(this)[key] = value;
+          }
+        }
+      });
+
+      // Decorators spec doesn't allow us to make a computed directly on
+      // the prototype, so we need to wrap the descriptor in a getter
+      return {
+        get() {
+          return descriptor;
+        }
+      };
+    } else {
+      return {
+        get,
+        set(value) {
+          valuesFor(this)[key] = value;
+        }
+      };
+    }
+  };
+
+  function argument(maybeOptions, maybeKey, maybeDesc) {
+    if (typeof maybeKey === 'string' && typeof maybeDesc === 'object') {
+      return internalArgumentDecorator(maybeOptions, maybeKey, maybeDesc, { defaultIfUndefined: false });
+    }
+
+    return function (target, key, desc) {
+      return internalArgumentDecorator(target, key, desc, maybeOptions);
+    };
+  }
+});
+;define('@ember-decorators/argument/type', ['exports', '@ember-decorators/argument/-debug'], function (exports, _debug) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'type', {
+    enumerable: true,
+    get: function () {
+      return _debug.type;
+    }
+  });
+  Object.defineProperty(exports, 'arrayOf', {
+    enumerable: true,
+    get: function () {
+      return _debug.arrayOf;
+    }
+  });
+  Object.defineProperty(exports, 'shapeOf', {
+    enumerable: true,
+    get: function () {
+      return _debug.shapeOf;
+    }
+  });
+  Object.defineProperty(exports, 'unionOf', {
+    enumerable: true,
+    get: function () {
+      return _debug.unionOf;
+    }
+  });
+  Object.defineProperty(exports, 'optional', {
+    enumerable: true,
+    get: function () {
+      return _debug.optional;
+    }
+  });
+  Object.defineProperty(exports, 'oneOf', {
+    enumerable: true,
+    get: function () {
+      return _debug.oneOf;
+    }
+  });
+});
+;define('@ember-decorators/argument/types', ['exports', '@ember-decorators/argument/-debug'], function (exports, _debug) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.Node = exports.Element = exports.ClosureAction = exports.Action = undefined;
+
+
+  /**
+   * Action type, covers both string actions and closure actions
+   */
+  const Action = exports.Action = (0, _debug.unionOf)('string', Function);
+
+  /**
+   * Action type, covers both string actions and closure actions
+   */
+  const ClosureAction = exports.ClosureAction = Function;
+
+  /**
+   * Element type polyfill for fastboot
+   */
+  const Element = exports.Element = window ? window.Element : class Element {};
+
+  /**
+   * Node type polyfill for fastboot
+   */
+  const Node = exports.Node = window ? window.Node : class Node {};
+});
+;define('@ember-decorators/argument/utils/make-computed', ['exports'], function (exports) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = makeComputed;
+  function makeComputed(desc) {
+    if (true) {
+      return Ember.computed(desc);
+    } else {
+      const { get, set } = desc;
+
+      return Ember.computed(function (key, value) {
+        if (arguments.length > 1) {
+          return set.call(this, key, value);
+        }
+
+        return get.call(this);
+      });
+    }
+  }
+});
+;define('@ember-decorators/argument/validation', ['exports', '@ember-decorators/argument/-debug'], function (exports, _debug) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'immutable', {
+    enumerable: true,
+    get: function () {
+      return _debug.immutable;
+    }
+  });
+  Object.defineProperty(exports, 'required', {
+    enumerable: true,
+    get: function () {
+      return _debug.required;
+    }
+  });
+});
 ;define('@ember/ordered-set/index', ['exports'], function (exports) {
   'use strict';
 
@@ -96285,6 +97284,19 @@ createDeprecatedModule('resolver');
     value: true
   });
   exports.default = "3.5.0";
+});
+;define('ember-get-config/index', ['exports', 'ember-app/config/environment'], function (exports, _environment) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _environment.default;
+    }
+  });
 });
 ;define('ember-inflector/index', ['exports', 'ember-inflector/lib/system', 'ember-inflector/lib/ext/string'], function (exports, _system) {
   'use strict';

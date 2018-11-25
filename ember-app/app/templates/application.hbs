@@ -1,37 +1,38 @@
 {{#bs-navbar toggleBreakpoint="sm" backgroundColor="#FFFFF" as |navbar|}}
-              <div class="navbar-header">
-            
-                
-                  {{navbar.toggle}}
-              </div>
-              {{#navbar.content}}
-              <a class="navbar-brand" href="#">EC</a>
-                {{#navbar.nav as |nav|}}
-                  {{#nav.item}}
-                    {{#nav.link-to "index"}}Home{{/nav.link-to}}
-                  {{/nav.item}}
-                  {{#nav.item}}
-                    {{#nav.link-to "projects"}}Projects{{/nav.link-to}}
-                  {{/nav.item}}
-                     {{#nav.item}}
-                    {{#nav.link-to "blog"}}Blog{{/nav.link-to}}
-                  {{/nav.item}}
-                {{/navbar.nav}}
-              {{/navbar.content}}
-            
-            {{/bs-navbar}}
-            
-
-
-
-
-
-
-  <div class = "container-fluid bg-light pt-5 pb-5">
-
-<div class="container">
-  {{outlet}}
+  <div class="navbar-header">
+    {{navbar.toggle}}
   </div>
+  {{#navbar.content}}
+    {{#navbar.nav as |nav|}}
+      {{#nav.item}}
+        {{#nav.link-to "index" class="navbar-brand" }}EC{{/nav.link-to}}
+      {{/nav.item}}
+      {{#nav.item}}
+        {{#nav.link-to "projects"}}Projects{{/nav.link-to}}
+      {{/nav.item}}
+      {{#nav.item}}
+        {{#nav.link-to "blog"}}Blog{{/nav.link-to}}
+      {{/nav.item}}
+      {{#nav.item}}
+        {{#nav.link-to "contact"}}Contact{{/nav.link-to}}
+      {{/nav.item}}
+    {{/navbar.nav}}
+  {{/navbar.content}}
+{{/bs-navbar}}
+<div class="container-fluid bg-light pt-5 pb-5">
+  <div class="container">
+    {{outlet}}
   </div>
-
-
+</div>
+<div class="container-fluid bg-dark py-5 px-5">
+  <div class="row text-light ">
+    <div class="col-md-auto ">
+      <h2>Evan Cole</h2>
+      Software Engineer
+    </div>
+    <div class="col-md-auto">
+      {{fa-icon "envelope"}} employment@evancole.io
+      <br> {{fa-icon "github"}} github.com/ecole5
+    </div>
+  </div>
+</div>
