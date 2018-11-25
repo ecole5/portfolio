@@ -1,27 +1,34 @@
-{{#each model as |project|}}
+{{#each model as |series index|}}
+{{#if index == 0}}
+{{index}}
+<h4> Bitch</h4>
+{{/if}}
+<h3> {{series.title}}</h3>
+<p> {{series.description}}</p>
 
-<div class="card  {{first-card project.first}}">
-    <div class="card-header">
-        <h2>{{project.title}}</h2>
-        {{#each project.pic as |pict|}}
-        <img src="img/{{pict}}.png" class="img-thumbnail" > {{/each}}
-    </div>
+<div class="card-deck mb-5">
+{{#each series.posts as |post|}}
+
+
+  <div class="card "  style="max-width: 25rem;">
+    <img class="card-img-top" src="" alt="Card image cap">
     <div class="card-body">
-        {{#if project.slide}} {{! If we are gonna have a two column with a slideshow }}
-        <div class="row">
-            <div class="col-sm">
-                {{#bs-carousel autoPlay=true interval=2000 showIndicators=false as |car|}} {{#each project.slide as |slide|}} {{#car.slide}}
-                <img src="img/ugames/{{slide}}.png" style="display: block; width:100%;"> {{/car.slide}} {{/each}} {{/bs-carousel}}
-            </div>
-            <div class="col-sm pt-3">
-                {{{project.body}}}
-            </div>
-        </div>
-        {{else}} {{! Normal One Column }} {{{project.body}}} {{/if}}
+      <h5 class="card-title">{{post.title}}</h5>
+      <p class="card-text">{{post.text}}</p>
+      {{#link-to "blog.post" post.title}}Read More{{/link-to}}
     </div>
-    <div class="card-footer">
+     <div class="card-footer">
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
     </div>
+
+  </div>
+  
+
+
+
+{{/each}}
 </div>
+
 
 {{/each}}
 
