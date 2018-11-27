@@ -1,0 +1,17 @@
+<ul class="pagination">
+    {{#if prev}}
+        <li class="page-item">
+            {{#link-to "blog.post" prev class="page-link" }}Prev{{/link-to}}
+        </li>
+    {{/if}}
+    {{#each links as |link|}}
+        <li class="page-item">
+            {{#link-to "blog.post" link.title class="page-link" }}{{link.title}}{{/link-to}}
+        </li>
+    {{/each}}
+    {{#if next}}
+        <li class="page-item">
+            {{#link-to "blog.post" next class="page-link" }}Next{{/link-to}}
+        </li>
+    {{/if}}
+</ul>

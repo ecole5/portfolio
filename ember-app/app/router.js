@@ -9,11 +9,13 @@ const Router = EmberRouter.extend({
 Router.map(function () {
   this.route('projects');
   this.route('blog', function () {
-    this.route('post', { path: '/:post_id' });
+    this.route('post', { path: '/photos/:post_id' });
   });
 
 
   this.route('contact');
+
+
 });
 
 export default Router;
