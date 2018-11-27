@@ -4639,6 +4639,46 @@ define('ember-app/tests/integration/components/bootstrap-paginate-test', ['qunit
     });
   });
 });
+define('ember-app/tests/integration/helpers/equal-test', ['qunit', 'ember-qunit', '@ember/test-helpers'], function (_qunit, _emberQunit, _testHelpers) {
+  'use strict';
+
+  (0, _qunit.module)('Integration | Helper | equal', function (hooks) {
+    (0, _emberQunit.setupRenderingTest)(hooks);
+
+    // Replace this with your real tests.
+    (0, _qunit.test)('it renders', async function (assert) {
+      this.set('inputValue', '1234');
+
+      await (0, _testHelpers.render)(Ember.HTMLBars.template({
+        "id": "+VMymo+B",
+        "block": "{\"symbols\":[],\"statements\":[[1,[27,\"equal\",[[23,[\"inputValue\"]]],null],false]],\"hasEval\":false}",
+        "meta": {}
+      }));
+
+      assert.equal(this.element.textContent.trim(), '1234');
+    });
+  });
+});
+define('ember-app/tests/integration/helpers/incr-test', ['qunit', 'ember-qunit', '@ember/test-helpers'], function (_qunit, _emberQunit, _testHelpers) {
+  'use strict';
+
+  (0, _qunit.module)('Integration | Helper | incr', function (hooks) {
+    (0, _emberQunit.setupRenderingTest)(hooks);
+
+    // Replace this with your real tests.
+    (0, _qunit.test)('it renders', async function (assert) {
+      this.set('inputValue', '1234');
+
+      await (0, _testHelpers.render)(Ember.HTMLBars.template({
+        "id": "U96TO2Z1",
+        "block": "{\"symbols\":[],\"statements\":[[1,[27,\"incr\",[[23,[\"inputValue\"]]],null],false]],\"hasEval\":false}",
+        "meta": {}
+      }));
+
+      assert.equal(this.element.textContent.trim(), '1234');
+    });
+  });
+});
 define('ember-app/tests/integration/helpers/nice-link-test', ['qunit', 'ember-qunit', '@ember/test-helpers'], function (_qunit, _emberQunit, _testHelpers) {
   'use strict';
 
@@ -4671,12 +4711,17 @@ define('ember-app/tests/lint/app.lint-test', [], function () {
 
   QUnit.test('components/bootstrap-paginate.js', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'components/bootstrap-paginate.js should pass ESLint\n\n');
+    assert.ok(false, 'components/bootstrap-paginate.js should pass ESLint\n\n17:13 - Unexpected console statement. (no-console)\n18:13 - Unexpected console statement. (no-console)');
   });
 
-  QUnit.test('controllers/blog/post.js', function (assert) {
+  QUnit.test('helpers/equal.js', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'controllers/blog/post.js should pass ESLint\n\n');
+    assert.ok(false, 'helpers/equal.js should pass ESLint\n\n3:42 - \'theRest\' is defined but never used. (no-unused-vars)');
+  });
+
+  QUnit.test('helpers/incr.js', function (assert) {
+    assert.expect(1);
+    assert.ok(false, 'helpers/incr.js should pass ESLint\n\n3:34 - \'theRest\' is defined but never used. (no-unused-vars)');
   });
 
   QUnit.test('helpers/nice-link.js', function (assert) {
@@ -4706,7 +4751,7 @@ define('ember-app/tests/lint/app.lint-test', [], function () {
 
   QUnit.test('routes/blog/post.js', function (assert) {
     assert.expect(1);
-    assert.ok(false, 'routes/blog/post.js should pass ESLint\n\n4:11 - \'params\' is defined but never used. (no-unused-vars)');
+    assert.ok(true, 'routes/blog/post.js should pass ESLint\n\n');
   });
 
   QUnit.test('routes/contact.js', function (assert) {
@@ -4746,12 +4791,12 @@ define('ember-app/tests/lint/templates.template.lint-test', [], function () {
 
   QUnit.test('ember-app/templates/blog/post.hbs', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'ember-app/templates/blog/post.hbs should pass TemplateLint.\n\n');
+    assert.ok(false, 'ember-app/templates/blog/post.hbs should pass TemplateLint.\n\nember-app/templates/blog/post.hbs\n  10:29  error  Incorrect indentation of attribute \'links\' beginning at L10:C29. Expected \'links\' to be at L11:C10.  attribute-indentation\n  10:47  error  Incorrect indentation of attribute \'series_name\' beginning at L10:C47. Expected \'series_name\' to be at L12:C10.  attribute-indentation\n  10:77  error  Incorrect indentation of attribute \'post_title\' beginning at L10:C77. Expected \'post_title\' to be at L13:C10.  attribute-indentation\n  10:104  error  Incorrect indentation of close curly braces \'}}\' for the component \'{{bootstrap-paginate}}\' beginning at L10:C104. Expected \'{{bootstrap-paginate}}\' to be at L14:C8.  attribute-indentation\n  2:4  error  Incorrect indentation for `<div>` beginning at L2:C4. Expected `<div>` to be at an indentation of 2 but was found at 4.  block-indentation\n  6:4  error  Incorrect indentation for `<div>` beginning at L6:C4. Expected `<div>` to be at an indentation of 2 but was found at 4.  block-indentation\n  9:4  error  Incorrect indentation for `<div>` beginning at L9:C4. Expected `<div>` to be at an indentation of 2 but was found at 4.  block-indentation\n  3:8  error  Incorrect indentation for `<h1>` beginning at L3:C8. Expected `<h1>` to be at an indentation of 6 but was found at 8.  block-indentation\n  4:8  error  Incorrect indentation for `<h3>` beginning at L4:C8. Expected `<h3>` to be at an indentation of 6 but was found at 8.  block-indentation\n  7:8  error  Incorrect indentation for `{{model.post.body}}` beginning at L7:C8. Expected `{{model.post.body}}` to be at an indentation of 6 but was found at 8.  block-indentation\n  10:8  error  Incorrect indentation for `{{bootstrap-paginate}}` beginning at L10:C8. Expected `{{bootstrap-paginate}}` to be at an indentation of 6 but was found at 8.  block-indentation\n  7:8  error  Usage of triple curly brackets is unsafe  no-triple-curlies\n');
   });
 
   QUnit.test('ember-app/templates/components/bootstrap-paginate.hbs', function (assert) {
     assert.expect(1);
-    assert.ok(false, 'ember-app/templates/components/bootstrap-paginate.hbs should pass TemplateLint.\n\nember-app/templates/components/bootstrap-paginate.hbs\n  2:4  error  Incorrect indentation for `{{#if}}` beginning at L2:C4. Expected `{{#if}}` to be at an indentation of 2 but was found at 4.  block-indentation\n  7:4  error  Incorrect indentation for `{{#each}}` beginning at L7:C4. Expected `{{#each}}` to be at an indentation of 2 but was found at 4.  block-indentation\n  12:4  error  Incorrect indentation for `{{#if}}` beginning at L12:C4. Expected `{{#if}}` to be at an indentation of 2 but was found at 4.  block-indentation\n  3:8  error  Incorrect indentation for `<li>` beginning at L3:C8. Expected `<li>` to be at an indentation of 6 but was found at 8.  block-indentation\n  4:12  error  Incorrect indentation for `{{#link-to}}` beginning at L4:C12. Expected `{{#link-to}}` to be at an indentation of 10 but was found at 12.  block-indentation\n  8:8  error  Incorrect indentation for `<li>` beginning at L8:C8. Expected `<li>` to be at an indentation of 6 but was found at 8.  block-indentation\n  9:12  error  Incorrect indentation for `{{#link-to}}` beginning at L9:C12. Expected `{{#link-to}}` to be at an indentation of 10 but was found at 12.  block-indentation\n  13:8  error  Incorrect indentation for `<li>` beginning at L13:C8. Expected `<li>` to be at an indentation of 6 but was found at 8.  block-indentation\n  14:12  error  Incorrect indentation for `{{#link-to}}` beginning at L14:C12. Expected `{{#link-to}}` to be at an indentation of 10 but was found at 12.  block-indentation\n');
+    assert.ok(false, 'ember-app/templates/components/bootstrap-paginate.hbs should pass TemplateLint.\n\nember-app/templates/components/bootstrap-paginate.hbs\n  2:4  error  Incorrect indentation for `{{#if}}` beginning at L2:C4. Expected `{{#if}}` to be at an indentation of 2 but was found at 4.  block-indentation\n  11:4  error  Incorrect indentation for `{{#each}}` beginning at L11:C4. Expected `{{#each}}` to be at an indentation of 2 but was found at 4.  block-indentation\n  16:4  error  Incorrect indentation for `{{#if}}` beginning at L16:C4. Expected `{{#if}}` to be at an indentation of 2 but was found at 4.  block-indentation\n  3:8  error  Incorrect indentation for `<li>` beginning at L3:C8. Expected `<li>` to be at an indentation of 6 but was found at 8.  block-indentation\n  7:8  error  Incorrect indentation for `<li>` beginning at L7:C8. Expected `<li>` to be at an indentation of 6 but was found at 8.  block-indentation\n  4:12  error  Incorrect indentation for `{{#link-to}}` beginning at L4:C12. Expected `{{#link-to}}` to be at an indentation of 10 but was found at 12.  block-indentation\n  8:12  error  Incorrect indentation for `<a>` beginning at L8:C12. Expected `<a>` to be at an indentation of 10 but was found at 12.  block-indentation\n  12:8  error  Incorrect indentation for `<li>` beginning at L12:C8. Expected `<li>` to be at an indentation of 6 but was found at 8.  block-indentation\n  13:12  error  Incorrect indentation for `{{#link-to}}` beginning at L13:C12. Expected `{{#link-to}}` to be at an indentation of 10 but was found at 12.  block-indentation\n  17:8  error  Incorrect indentation for `<li>` beginning at L17:C8. Expected `<li>` to be at an indentation of 6 but was found at 8.  block-indentation\n  21:8  error  Incorrect indentation for `<li>` beginning at L21:C8. Expected `<li>` to be at an indentation of 6 but was found at 8.  block-indentation\n  18:12  error  Incorrect indentation for `{{#link-to}}` beginning at L18:C12. Expected `{{#link-to}}` to be at an indentation of 10 but was found at 12.  block-indentation\n  22:12  error  Incorrect indentation for `<a>` beginning at L22:C12. Expected `<a>` to be at an indentation of 10 but was found at 12.  block-indentation\n');
   });
 
   QUnit.test('ember-app/templates/contact.hbs', function (assert) {
@@ -4779,6 +4824,16 @@ define('ember-app/tests/lint/tests.lint-test', [], function () {
     assert.ok(true, 'integration/components/bootstrap-paginate-test.js should pass ESLint\n\n');
   });
 
+  QUnit.test('integration/helpers/equal-test.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'integration/helpers/equal-test.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('integration/helpers/incr-test.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'integration/helpers/incr-test.js should pass ESLint\n\n');
+  });
+
   QUnit.test('integration/helpers/nice-link-test.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'integration/helpers/nice-link-test.js should pass ESLint\n\n');
@@ -4787,11 +4842,6 @@ define('ember-app/tests/lint/tests.lint-test', [], function () {
   QUnit.test('test-helper.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'test-helper.js should pass ESLint\n\n');
-  });
-
-  QUnit.test('unit/controllers/blog/post-test.js', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'unit/controllers/blog/post-test.js should pass ESLint\n\n');
   });
 
   QUnit.test('unit/routes/blog-test.js', function (assert) {
@@ -4847,19 +4897,6 @@ define('ember-app/tests/test-helper', ['ember-app/app', 'ember-app/config/enviro
   (0, _testHelpers.setApplication)(_app.default.create(_environment.default.APP));
 
   (0, _emberQunit.start)();
-});
-define('ember-app/tests/unit/controllers/blog/post-test', ['qunit', 'ember-qunit'], function (_qunit, _emberQunit) {
-  'use strict';
-
-  (0, _qunit.module)('Unit | Controller | blog/post', function (hooks) {
-    (0, _emberQunit.setupTest)(hooks);
-
-    // Replace this with your real tests.
-    (0, _qunit.test)('it exists', function (assert) {
-      let controller = this.owner.lookup('controller:blog/post');
-      assert.ok(controller);
-    });
-  });
 });
 define('ember-app/tests/unit/routes/blog-test', ['qunit', 'ember-qunit'], function (_qunit, _emberQunit) {
   'use strict';

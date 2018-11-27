@@ -20,15 +20,43 @@
 
   exports.default = App;
 });
-;define("ember-app/components/bootstrap-paginate", ["exports"], function (exports) {
-    "use strict";
+;define('ember-app/components/bootstrap-paginate', ['exports'], function (exports) {
+    'use strict';
 
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
     exports.default = Ember.Component.extend({
-        next: "Ngrams",
-        prev: false
+        next: false, //false until proven true
+        prev: false,
+        activeIndex: null,
+
+        didReceiveAttrs() {
+            this._super(...arguments);
+            this.set('errors', []);
+
+            var links = this.get('links');
+            var currentPost = this.get('post_title');
+
+            for (var i = 0; i < links.length; i++) {
+                console.log(currentPost);
+                console.log(links[i]);
+                if (links[i] == currentPost) {
+                    this.set('activeIndex', i);
+                    if (i > 0) {
+                        this.set('prev', links[i - 1]);
+                    } else {
+                        this.set('prev', false);
+                    }
+                    if (i < links.length - 1) {
+                        //set next if not last index
+                        this.set('next', links[i + 1]);
+                    } else {
+                        this.set('next', false);
+                    }
+                }
+            }
+        }
 
     });
 });
@@ -838,18 +866,6 @@
     }
   });
 });
-;define('ember-app/controllers/blog/post', ['exports'], function (exports) {
-    'use strict';
-
-    Object.defineProperty(exports, "__esModule", {
-        value: true
-    });
-    exports.default = Ember.Controller.extend({
-        queryParams: ['title', 'subtitle'],
-        title: null,
-        subtitle: null
-    });
-});
 ;define('ember-app/helpers/app-version', ['exports', 'ember-app/config/environment', 'ember-cli-app-version/utils/regexp'], function (exports, _environment, _regexp) {
   'use strict';
 
@@ -936,6 +952,33 @@
       return _cancelAll.default;
     }
   });
+});
+;define('ember-app/helpers/equal', ['exports'], function (exports) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.equal = equal;
+  function equal([first, second, ...theRest]) {
+    return first == second;
+  }
+
+  exports.default = Ember.Helper.helper(equal);
+});
+;define('ember-app/helpers/incr', ['exports'], function (exports) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.incr = incr;
+  function incr([number, ...theRest]) {
+
+    return number + 1;
+  }
+
+  exports.default = Ember.Helper.helper(incr);
 });
 ;define('ember-app/helpers/nice-link', ['exports'], function (exports) {
   'use strict';
@@ -1153,7 +1196,7 @@
   Router.map(function () {
     this.route('projects');
     this.route('blog', function () {
-      this.route('post', { path: '/:series_id /:post_id' });
+      this.route('post', { path: '/:series_id/:post_id' });
     });
 
     this.route('contact');
@@ -1210,15 +1253,40 @@
         }
     });
 });
-;define("ember-app/routes/blog/post", ["exports"], function (exports) {
-    "use strict";
+;define('ember-app/routes/blog/post', ['exports'], function (exports) {
+    'use strict';
 
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
     exports.default = Ember.Route.extend({
         model(params) {
-            return this.modelFor("blog");
+
+            var allSeries = this.modelFor("blog");
+
+            var currentSeries;
+            var links = [];
+            var currentPost;
+            var i;
+
+            for (i = 0; i < allSeries.length; i++) {
+                if (params.series_id == allSeries[i].title) {
+                    currentSeries = allSeries[i]; //pick the correct series
+                }
+            }
+
+            for (i = 0; i < currentSeries.posts.length; i++) {
+                if (params.post_id == currentSeries.posts[i].title) {
+                    currentPost = currentSeries.posts[i]; //pick the correct post from the series
+                }
+                links.push(currentSeries.posts[i].title);
+            }
+
+            return Ember.RSVP.hash({
+                post: currentPost,
+                links: links,
+                series_name: currentSeries.title
+            });
         }
     });
 });
@@ -1311,7 +1379,7 @@
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  exports.default = Ember.HTMLBars.template({ "id": "Yk1ZrqzJ", "block": "{\"symbols\":[],\"statements\":[[0,\" \"],[1,[21,\"outlet\"],false]],\"hasEval\":false}", "meta": { "moduleName": "ember-app/templates/blog/post.hbs" } });
+  exports.default = Ember.HTMLBars.template({ "id": "nQmcEwSM", "block": "{\"symbols\":[],\"statements\":[[7,\"div\"],[11,\"class\",\"card\"],[9],[0,\"\\n    \"],[7,\"div\"],[11,\"class\",\"card-header\"],[9],[0,\"\\n        \"],[7,\"h1\"],[9],[1,[23,[\"model\",\"series_name\"]],false],[10],[0,\"\\n        \"],[7,\"h3\"],[9],[1,[23,[\"model\",\"post\",\"title\"]],false],[10],[0,\"\\n    \"],[10],[0,\"\\n    \"],[7,\"div\"],[11,\"class\",\"card-body\"],[9],[0,\"\\n        \"],[1,[23,[\"model\",\"post\",\"body\"]],true],[0,\"\\n    \"],[10],[0,\"\\n    \"],[7,\"div\"],[11,\"class\",\"card-footer\"],[9],[0,\"\\n        \"],[1,[27,\"bootstrap-paginate\",null,[[\"links\",\"series_name\",\"post_title\"],[[23,[\"model\",\"links\"]],[23,[\"model\",\"series_name\"]],[23,[\"model\",\"post\",\"title\"]]]]],false],[0,\"\\n    \"],[10],[0,\"\\n\"],[10],[0,\"\\n\"],[1,[21,\"outlet\"],false]],\"hasEval\":false}", "meta": { "moduleName": "ember-app/templates/blog/post.hbs" } });
 });
 ;define("ember-app/templates/components/bootstrap-paginate", ["exports"], function (exports) {
   "use strict";
@@ -1319,7 +1387,7 @@
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  exports.default = Ember.HTMLBars.template({ "id": "cPw/zCgA", "block": "{\"symbols\":[\"link\"],\"statements\":[[7,\"ul\"],[11,\"class\",\"pagination\"],[9],[0,\"\\n\"],[4,\"if\",[[23,[\"prev\"]]],null,{\"statements\":[[0,\"        \"],[7,\"li\"],[11,\"class\",\"page-item\"],[9],[0,\"\\n            \"],[4,\"link-to\",[\"blog.post\",[23,[\"prev\"]]],[[\"class\"],[\"page-link\"]],{\"statements\":[[0,\"Prev\"]],\"parameters\":[]},null],[0,\"\\n        \"],[10],[0,\"\\n\"]],\"parameters\":[]},null],[4,\"each\",[[23,[\"links\"]]],null,{\"statements\":[[0,\"        \"],[7,\"li\"],[11,\"class\",\"page-item\"],[9],[0,\"\\n            \"],[4,\"link-to\",[\"blog.post\",[22,1,[\"title\"]]],[[\"class\"],[\"page-link\"]],{\"statements\":[[1,[22,1,[\"title\"]],false]],\"parameters\":[]},null],[0,\"\\n        \"],[10],[0,\"\\n\"]],\"parameters\":[1]},null],[4,\"if\",[[23,[\"next\"]]],null,{\"statements\":[[0,\"        \"],[7,\"li\"],[11,\"class\",\"page-item\"],[9],[0,\"\\n            \"],[4,\"link-to\",[\"blog.post\",[23,[\"next\"]]],[[\"class\"],[\"page-link\"]],{\"statements\":[[0,\"Next\"]],\"parameters\":[]},null],[0,\"\\n        \"],[10],[0,\"\\n\"]],\"parameters\":[]},null],[10]],\"hasEval\":false}", "meta": { "moduleName": "ember-app/templates/components/bootstrap-paginate.hbs" } });
+  exports.default = Ember.HTMLBars.template({ "id": "+/BUdGEY", "block": "{\"symbols\":[\"link\",\"index\",\"&default\"],\"statements\":[[7,\"ul\"],[11,\"class\",\"pagination\"],[9],[0,\"\\n\"],[4,\"if\",[[23,[\"prev\"]]],null,{\"statements\":[[0,\"        \"],[7,\"li\"],[11,\"class\",\"page-item\"],[9],[0,\"\\n            \"],[4,\"link-to\",[\"blog.post\",[23,[\"series_name\"]],[23,[\"prev\"]]],[[\"class\"],[\"page-link\"]],{\"statements\":[[0,\"Previous\"]],\"parameters\":[]},null],[0,\"\\n        \"],[10],[0,\"\\n\"]],\"parameters\":[]},{\"statements\":[[0,\"        \"],[7,\"li\"],[11,\"class\",\"page-item disabled\"],[9],[0,\"\\n            \"],[7,\"a\"],[11,\"class\",\"page-link\"],[11,\"href\",\"#\"],[11,\"tabindex\",\"-1\"],[9],[0,\"Previous\"],[10],[0,\"\\n        \"],[10],[0,\"\\n\"]],\"parameters\":[]}],[4,\"each\",[[23,[\"links\"]]],null,{\"statements\":[[0,\"        \"],[7,\"li\"],[12,\"class\",[28,[\"page-item \",[27,\"if\",[[27,\"equal\",[[22,2,[]],[23,[\"activeIndex\"]]],null],\"active\"],null]]]],[9],[0,\"\\n            \"],[4,\"link-to\",[\"blog.post\",[23,[\"series_name\"]],[22,1,[]]],[[\"class\"],[\"page-link\"]],{\"statements\":[[1,[27,\"incr\",[[22,2,[]]],null],false]],\"parameters\":[]},null],[0,\"\\n        \"],[10],[0,\"\\n\"]],\"parameters\":[1,2]},null],[4,\"if\",[[23,[\"next\"]]],null,{\"statements\":[[0,\"        \"],[7,\"li\"],[11,\"class\",\"page-item\"],[9],[0,\"\\n            \"],[4,\"link-to\",[\"blog.post\",[23,[\"series_name\"]],[23,[\"next\"]]],[[\"class\"],[\"page-link\"]],{\"statements\":[[0,\"Next\"]],\"parameters\":[]},null],[0,\"\\n        \"],[10],[0,\"\\n\"]],\"parameters\":[]},{\"statements\":[[0,\"        \"],[7,\"li\"],[11,\"class\",\"page-item disabled\"],[9],[0,\"\\n            \"],[7,\"a\"],[11,\"class\",\"page-link\"],[11,\"href\",\"#\"],[11,\"tabindex\",\"-1\"],[9],[0,\"Next\"],[10],[0,\"\\n        \"],[10],[0,\"\\n\"]],\"parameters\":[]}],[10],[0,\"\\n\"],[14,3]],\"hasEval\":false}", "meta": { "moduleName": "ember-app/templates/components/bootstrap-paginate.hbs" } });
 });
 ;define('ember-app/templates/components/ember-popper-targeting-parent', ['exports', 'ember-popper/templates/components/ember-popper-targeting-parent'], function (exports, _emberPopperTargetingParent) {
   'use strict';

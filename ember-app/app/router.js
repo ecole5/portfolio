@@ -9,7 +9,7 @@ const Router = EmberRouter.extend({
 Router.map(function () {
   this.route('projects');
   this.route('blog', function () {
-    this.route('post', { path: '/:series_id /:post_id' });
+    this.route('post', { path: '/:series_id/:post_id' });
   });
 
 
