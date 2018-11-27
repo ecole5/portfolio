@@ -1153,7 +1153,7 @@
   Router.map(function () {
     this.route('projects');
     this.route('blog', function () {
-      this.route('post', { path: '/photos/:post_id' });
+      this.route('post', { path: '/:series_id /:post_id' });
     });
 
     this.route('contact');
@@ -1218,7 +1218,6 @@
     });
     exports.default = Ember.Route.extend({
         model(params) {
-
             return this.modelFor("blog");
         }
     });
@@ -1304,7 +1303,7 @@
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  exports.default = Ember.HTMLBars.template({ "id": "oNmRg7dq", "block": "{\"symbols\":[\"series\",\"index\",\"post\",\"postIndex\"],\"statements\":[[4,\"each\",[[23,[\"model\"]]],null,{\"statements\":[[0,\"  \"],[1,[27,\"if\",[[22,2,[]],\"<hr>\"],null],true],[0,\"\\n    \"],[7,\"div\"],[11,\"class\",\"card mb-5\"],[9],[0,\"\\n      \"],[7,\"div\"],[11,\"class\",\"card-header\"],[9],[0,\"\\n        \"],[7,\"h3\"],[9],[0,\" \"],[1,[22,1,[\"title\"]],false],[10],[0,\"\\n        \"],[7,\"p\"],[9],[0,\" \"],[1,[22,1,[\"description\"]],false],[10],[0,\"\\n      \"],[10],[0,\"\\n      \"],[7,\"div\"],[11,\"class\",\"card-body\"],[9],[0,\"\\n        \"],[7,\"div\"],[11,\"class\",\"card-deck\"],[9],[0,\"\\n\"],[4,\"each\",[[22,1,[\"posts\"]]],null,{\"statements\":[[0,\"            \"],[7,\"div\"],[11,\"class\",\"card \"],[11,\"style\",\"max-width: 25rem;\"],[9],[0,\"\\n              \"],[7,\"img\"],[11,\"class\",\"card-img-top\"],[12,\"src\",[28,[\"img/blog/\",[22,1,[\"title\"]],\"/badge/\",[22,4,[]],\".png\"]]],[11,\"alt\",\"Card image cap\"],[9],[10],[0,\"\\n              \"],[7,\"div\"],[11,\"class\",\"card-body\"],[9],[0,\"\\n                \"],[7,\"h5\"],[11,\"class\",\"card-title\"],[9],[1,[22,3,[\"title\"]],false],[10],[0,\"\\n                \"],[7,\"p\"],[11,\"class\",\"card-text\"],[9],[1,[22,3,[\"snippet\"]],false],[10],[0,\"\\n                \"],[4,\"link-to\",[\"blog.post\",[22,3,[\"title\"]]],null,{\"statements\":[[0,\"Read More\"]],\"parameters\":[]},null],[0,\"\\n              \"],[10],[0,\"\\n              \"],[7,\"div\"],[11,\"class\",\"card-footer\"],[9],[0,\"\\n                \"],[7,\"p\"],[11,\"class\",\"card-text\"],[9],[0,\"\\n                  \"],[7,\"small\"],[11,\"class\",\"text-muted\"],[9],[0,\"Last updated 3 mins ago\"],[10],[0,\"\\n                \"],[10],[0,\"\\n              \"],[10],[0,\"\\n            \"],[10],[0,\"\\n\"]],\"parameters\":[3,4]},null],[0,\"        \"],[10],[0,\"\\n      \"],[10],[0,\"\\n    \"],[10],[0,\"\\n\"]],\"parameters\":[1,2]},null],[1,[21,\"outlet\"],false]],\"hasEval\":false}", "meta": { "moduleName": "ember-app/templates/blog/index.hbs" } });
+  exports.default = Ember.HTMLBars.template({ "id": "m40nshjr", "block": "{\"symbols\":[\"series\",\"index\",\"post\",\"postIndex\"],\"statements\":[[4,\"each\",[[23,[\"model\"]]],null,{\"statements\":[[0,\"  \"],[1,[27,\"if\",[[22,2,[]],\"<hr>\"],null],true],[0,\"\\n    \"],[7,\"div\"],[11,\"class\",\"card mb-5\"],[9],[0,\"\\n      \"],[7,\"div\"],[11,\"class\",\"card-header\"],[9],[0,\"\\n        \"],[7,\"h3\"],[9],[0,\" \"],[1,[22,1,[\"title\"]],false],[10],[0,\"\\n        \"],[7,\"p\"],[9],[0,\" \"],[1,[22,1,[\"description\"]],false],[10],[0,\"\\n      \"],[10],[0,\"\\n      \"],[7,\"div\"],[11,\"class\",\"card-body\"],[9],[0,\"\\n        \"],[7,\"div\"],[11,\"class\",\"card-deck\"],[9],[0,\"\\n\"],[4,\"each\",[[22,1,[\"posts\"]]],null,{\"statements\":[[0,\"            \"],[7,\"div\"],[11,\"class\",\"card \"],[11,\"style\",\"max-width: 25rem;\"],[9],[0,\"\\n              \"],[7,\"img\"],[11,\"class\",\"card-img-top\"],[12,\"src\",[28,[\"img/blog/\",[22,1,[\"title\"]],\"/badge/\",[22,4,[]],\".png\"]]],[11,\"alt\",\"Card image cap\"],[9],[10],[0,\"\\n              \"],[7,\"div\"],[11,\"class\",\"card-body\"],[9],[0,\"\\n                \"],[7,\"h5\"],[11,\"class\",\"card-title\"],[9],[1,[22,3,[\"title\"]],false],[10],[0,\"\\n                \"],[7,\"p\"],[11,\"class\",\"card-text\"],[9],[1,[22,3,[\"snippet\"]],false],[10],[0,\"\\n                \"],[4,\"link-to\",[\"blog.post\",[22,1,[\"title\"]],[22,3,[\"title\"]]],null,{\"statements\":[[0,\"Read More\"]],\"parameters\":[]},null],[0,\"\\n              \"],[10],[0,\"\\n              \"],[7,\"div\"],[11,\"class\",\"card-footer\"],[9],[0,\"\\n                \"],[7,\"p\"],[11,\"class\",\"card-text\"],[9],[0,\"\\n                  \"],[7,\"small\"],[11,\"class\",\"text-muted\"],[9],[0,\"Last updated 3 mins ago\"],[10],[0,\"\\n                \"],[10],[0,\"\\n              \"],[10],[0,\"\\n            \"],[10],[0,\"\\n\"]],\"parameters\":[3,4]},null],[0,\"        \"],[10],[0,\"\\n      \"],[10],[0,\"\\n    \"],[10],[0,\"\\n\"]],\"parameters\":[1,2]},null],[1,[21,\"outlet\"],false]],\"hasEval\":false}", "meta": { "moduleName": "ember-app/templates/blog/index.hbs" } });
 });
 ;define("ember-app/templates/blog/post", ["exports"], function (exports) {
   "use strict";
@@ -1312,7 +1311,7 @@
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  exports.default = Ember.HTMLBars.template({ "id": "V7seoQuc", "block": "{\"symbols\":[],\"statements\":[[7,\"div\"],[11,\"class\",\"card mb-5\"],[9],[0,\"\\n    \"],[7,\"div\"],[11,\"class\",\"card-header\"],[9],[0,\"\\n        \"],[7,\"h1\"],[9],[1,[23,[\"model\",\"post\",\"title\"]],false],[10],[0,\"\\n        \"],[7,\"h3\"],[9],[1,[23,[\"model\",\"post\",\"subtitle\"]],false],[10],[0,\"\\n    \"],[10],[0,\"\\n    \"],[7,\"div\"],[11,\"class\",\"card-body\"],[9],[0,\"\\n        \"],[1,[23,[\"model\",\"post\",\"body\"]],true],[0,\"\\n    \"],[10],[0,\"\\n    \"],[7,\"div\"],[11,\"class\",\"card-footer\"],[9],[0,\"\\n    \"],[10],[0,\"\\n\"],[10],[0,\"\\n\"],[1,[21,\"outlet\"],false]],\"hasEval\":false}", "meta": { "moduleName": "ember-app/templates/blog/post.hbs" } });
+  exports.default = Ember.HTMLBars.template({ "id": "Yk1ZrqzJ", "block": "{\"symbols\":[],\"statements\":[[0,\" \"],[1,[21,\"outlet\"],false]],\"hasEval\":false}", "meta": { "moduleName": "ember-app/templates/blog/post.hbs" } });
 });
 ;define("ember-app/templates/components/bootstrap-paginate", ["exports"], function (exports) {
   "use strict";

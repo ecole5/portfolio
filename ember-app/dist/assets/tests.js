@@ -4746,7 +4746,7 @@ define('ember-app/tests/lint/templates.template.lint-test', [], function () {
 
   QUnit.test('ember-app/templates/blog/post.hbs', function (assert) {
     assert.expect(1);
-    assert.ok(false, 'ember-app/templates/blog/post.hbs should pass TemplateLint.\n\nember-app/templates/blog/post.hbs\n  2:4  error  Incorrect indentation for `<div>` beginning at L2:C4. Expected `<div>` to be at an indentation of 2 but was found at 4.  block-indentation\n  6:4  error  Incorrect indentation for `<div>` beginning at L6:C4. Expected `<div>` to be at an indentation of 2 but was found at 4.  block-indentation\n  9:4  error  Incorrect indentation for `<div>` beginning at L9:C4. Expected `<div>` to be at an indentation of 2 but was found at 4.  block-indentation\n  3:8  error  Incorrect indentation for `<h1>` beginning at L3:C8. Expected `<h1>` to be at an indentation of 6 but was found at 8.  block-indentation\n  4:8  error  Incorrect indentation for `<h3>` beginning at L4:C8. Expected `<h3>` to be at an indentation of 6 but was found at 8.  block-indentation\n  7:8  error  Incorrect indentation for `{{model.post.body}}` beginning at L7:C8. Expected `{{model.post.body}}` to be at an indentation of 6 but was found at 8.  block-indentation\n  7:8  error  Usage of triple curly brackets is unsafe  no-triple-curlies\n');
+    assert.ok(true, 'ember-app/templates/blog/post.hbs should pass TemplateLint.\n\n');
   });
 
   QUnit.test('ember-app/templates/components/bootstrap-paginate.hbs', function (assert) {
