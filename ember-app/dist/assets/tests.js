@@ -4801,7 +4801,7 @@ define('ember-app/tests/lint/templates.template.lint-test', [], function () {
 
   QUnit.test('ember-app/templates/contact.hbs', function (assert) {
     assert.expect(1);
-    assert.ok(false, 'ember-app/templates/contact.hbs should pass TemplateLint.\n\nember-app/templates/contact.hbs\n  1:31  error  elements cannot have inline styles  no-inline-styles\n');
+    assert.ok(true, 'ember-app/templates/contact.hbs should pass TemplateLint.\n\n');
   });
 
   QUnit.test('ember-app/templates/index.hbs', function (assert) {
