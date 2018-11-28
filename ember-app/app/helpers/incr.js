@@ -1,6 +1,6 @@
 import { helper } from '@ember/component/helper';
 
-export function incr([number, ...theRest]) {
+export function incr([number]) {
 
   return number + 1;
 }

@@ -1,6 +1,6 @@
 import { helper } from '@ember/component/helper';
 
-export function equal([first, second, ...theRest]) {
+export function equal([first, second]) {
   return first == second;
 }
 
