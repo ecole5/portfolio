@@ -1,18 +1,27 @@
 'use strict';
 
-const EmberApp = require('ember-cli/lib/broccoli/ember-app');
+const EmberApp = require('ember-cli/lib/broccoli/ember-app'),
+  writeFile = require('broccoli-file-creator'), //dependency for creating file and crating hash
+  md5 = require('md5')
 
 
 module.exports = function (defaults) {
+  const fingerprintHash = md5(Date.now()); //hash for all reasources based on date
+
   let app = new EmberApp(defaults, {
     'ember-bootstrap': {
       'bootstrapVersion': 4,
       'importBootstrapFont': false, //no bootstraph glphys (we are using font awesome)
       'importBootstrapCSS': true, //includes the bootstrap css file in dist
       'importBootstrapTheme': true
+    },
+    fingerprint: {
+      extensions: ['js', 'css', 'png', 'jpg', 'gif', 'map', 'json'], // list of extensions to fingerprint
+      customHash: fingerprintHash //use a single fingeprint/hash for all assets
     }
   });
 
+  var assetFingerprintTree = writeFile('./assets/assets-fingerprint.js', `(function(_window){ _window.ASSET_FINGERPRINT_HASH = "${(app.env === 'production' ? `-${fingerprintHash}` : '')}"; })(window);`); //write the generated hash to file on production, otherwise for dev write blank
 
   // Use `app.import` to add additional libraries to the generated
   // output files.
@@ -27,5 +36,6 @@ module.exports = function (defaults) {
   // please specify an object with the list of modules as keys
   // along with the exports of each module as its value.
 
-  return app.toTree();
+  return app.toTree(assetFingerprintTree); //include the hash file in the build
+
 };

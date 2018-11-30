@@ -14,7 +14,10 @@
 <body>
   {{content-for "body"}}
   <script src="{{rootURL}}assets/vendor.js"></script>
-  <script src="{{rootURL}}assets/ember-app.js"></script> {{content-for "body-footer"}}
+  <script src="{{rootURL}}assets/ember-app.js"></script>
+  <script src="{{rootURL}}assets/assets-fingerprint.js"></script>
+  <!––we are including the resource hash variable--->
+  {{content-for "body-footer"}}
 </body>
 
 </html>
