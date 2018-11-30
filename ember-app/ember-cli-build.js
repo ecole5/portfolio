@@ -12,7 +12,7 @@ module.exports = function (defaults) {
     'ember-bootstrap': {
       'bootstrapVersion': 4,
       'importBootstrapFont': false, //no bootstraph glphys (we are using font awesome)
-      'importBootstrapCSS': true, //includes the bootstrap css file in dist
+      'importBootstrapCSS': false, //includes the bootstrap css file in dist
       'importBootstrapTheme': true
     },
     fingerprint: {
