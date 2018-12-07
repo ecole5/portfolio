@@ -4776,7 +4776,7 @@ define('ember-app/tests/lint/templates.template.lint-test', [], function () {
 
   QUnit.test('ember-app/templates/application.hbs', function (assert) {
     assert.expect(1);
-    assert.ok(false, 'ember-app/templates/application.hbs should pass TemplateLint.\n\nember-app/templates/application.hbs\n  32:9  error  Incorrect indentation of htmlAttribute \'href\' beginning at L32:C9. Expected \'href\' to be at L33:C8.  attribute-indentation\n  32:76  error  Incorrect indentation of htmlAttribute \'class\' beginning at L32:C76. Expected \'class\' to be at L34:C8.  attribute-indentation\n  32:101  error  Incorrect indentation of close bracket \'>\' for the element \'<a>\' beginning at L32:C101. Expected \'<a>\' to be at L35:C6.  attribute-indentation\n  32:115  error  Incorrect indentation of close tag \'</a>\' for element \'<a>\' beginning at L32:C115. Expected \'</a>\' to be at L32:C6.  attribute-indentation\n');
+    assert.ok(true, 'ember-app/templates/application.hbs should pass TemplateLint.\n\n');
   });
 
   QUnit.test('ember-app/templates/blog.hbs', function (assert) {
