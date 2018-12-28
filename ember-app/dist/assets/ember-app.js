@@ -1463,7 +1463,7 @@ catch(err) {
 
 ;
           if (!runningTests) {
-            require("ember-app/app")["default"].create({"name":"ember-app","version":"0.0.0+f1070092"});
+            require("ember-app/app")["default"].create({"name":"ember-app","version":"0.0.0+4cb48a39"});
           }
         
 //# sourceMappingURL=ember-app.map
