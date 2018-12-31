@@ -2,7 +2,7 @@
 
 
 
-;define('ember-app/app', ['exports', 'ember-app/resolver', 'ember-load-initializers', 'ember-app/config/environment', 'mathjax'], function (exports, _resolver, _emberLoadInitializers, _environment, _mathjax) {
+;define('ember-app/app', ['exports', 'ember-app/resolver', 'ember-load-initializers', 'ember-app/config/environment'], function (exports, _resolver, _emberLoadInitializers, _environment) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
@@ -965,20 +965,6 @@
 
   exports.default = Ember.Helper.helper(equal);
 });
-;define('ember-app/helpers/format-markdown', ['exports', 'marked'], function (exports, _marked) {
-  'use strict';
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.formatMarkdown = formatMarkdown;
-  function formatMarkdown(params /*, hash*/) {
-    let value = params[0];
-    return Ember.String.htmlSafe((0, _marked.default)(value));
-  }
-
-  exports.default = Ember.Helper.helper(formatMarkdown);
-});
 ;define('ember-app/helpers/hash', ['exports'], function (exports) {
   'use strict';
 
@@ -1477,7 +1463,7 @@ catch(err) {
 
 ;
           if (!runningTests) {
-            require("ember-app/app")["default"].create({"name":"ember-app","version":"0.0.0+88fa3368"});
+            require("ember-app/app")["default"].create({"name":"ember-app","version":"0.0.0+4cb48a39"});
           }
         
 //# sourceMappingURL=ember-app.map

@@ -4659,26 +4659,6 @@ define('ember-app/tests/integration/helpers/equal-test', ['qunit', 'ember-qunit'
     });
   });
 });
-define('ember-app/tests/integration/helpers/format-markdown-test', ['qunit', 'ember-qunit', '@ember/test-helpers'], function (_qunit, _emberQunit, _testHelpers) {
-  'use strict';
-
-  (0, _qunit.module)('Integration | Helper | format-markdown', function (hooks) {
-    (0, _emberQunit.setupRenderingTest)(hooks);
-
-    // Replace this with your real tests.
-    (0, _qunit.test)('it renders', async function (assert) {
-      this.set('inputValue', '1234');
-
-      await (0, _testHelpers.render)(Ember.HTMLBars.template({
-        "id": "WHfRC8ef",
-        "block": "{\"symbols\":[],\"statements\":[[1,[27,\"format-markdown\",[[23,[\"inputValue\"]]],null],false]],\"hasEval\":false}",
-        "meta": {}
-      }));
-
-      assert.equal(this.element.textContent.trim(), '1234');
-    });
-  });
-});
 define('ember-app/tests/integration/helpers/hash-test', ['qunit', 'ember-qunit', '@ember/test-helpers'], function (_qunit, _emberQunit, _testHelpers) {
   'use strict';
 
@@ -4726,7 +4706,7 @@ define('ember-app/tests/lint/app.lint-test', [], function () {
 
   QUnit.test('app.js', function (assert) {
     assert.expect(1);
-    assert.ok(false, 'app.js should pass ESLint\n\n5:10 - \'mathjax\' is defined but never used. (no-unused-vars)');
+    assert.ok(true, 'app.js should pass ESLint\n\n');
   });
 
   QUnit.test('components/bootstrap-paginate.js', function (assert) {
@@ -4737,11 +4717,6 @@ define('ember-app/tests/lint/app.lint-test', [], function () {
   QUnit.test('helpers/equal.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'helpers/equal.js should pass ESLint\n\n');
-  });
-
-  QUnit.test('helpers/format-markdown.js', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'helpers/format-markdown.js should pass ESLint\n\n');
   });
 
   QUnit.test('helpers/hash.js', function (assert) {
@@ -4852,11 +4827,6 @@ define('ember-app/tests/lint/tests.lint-test', [], function () {
   QUnit.test('integration/helpers/equal-test.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'integration/helpers/equal-test.js should pass ESLint\n\n');
-  });
-
-  QUnit.test('integration/helpers/format-markdown-test.js', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'integration/helpers/format-markdown-test.js should pass ESLint\n\n');
   });
 
   QUnit.test('integration/helpers/hash-test.js', function (assert) {
