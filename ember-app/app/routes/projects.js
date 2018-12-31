@@ -2,30 +2,34 @@ import Route from '@ember/routing/route';
 
 export default Route.extend({
 
-    model(){
-        return [ {
+    model() {
+        return [{
             title: "GeoPredict",
-            pic: ["pandas","jupyter", "python"],
-            body: "<p class='card-text'> Data is the primary driver of the digital economy and the world’s most valuable commodity. While it is well understood how to capture and store data from Internet-connected sources, processing it is less clear—lots of data goes to waste. One data set which is particularly difficult to process is geolocation data (a set of GPS coordinates of a user device as it moves through space). Enter GeoPredict, a machine learning model I developed using Pandas during my time as a research associate at Western University. GeoPredict mines value from massive sets of geolocation data collected on a continuous basis bya pplying A.I techniques from the field of natural language processing.</p>",
-            first: true
-        },{
-            title: "Scaling Monster",
-            pic: ["docker", "spark", "swarm", "unix", "ec2", "hadoop" ],
-            body: "<p class='card-text'>Once I finished my summer research effort (GeoPredict) I wondered how to deploy the modelinto a production environment and make it scale. What I came up with is a framework for deploying scalablerecommender systems built on Spark SQL as web-accessible microservices. Through the use ofcontainerization, the implementation of a restFULL API and sophisticated integrated command-line tooling, Idesigned this framework to be highly usable, portable, customizable and interoperable. The framework ismeant to allow data scientist to focus on building ML models using instead of worrying about managingclusters and dealing with pesky configuration.</p>",
-          
-        },{
-            title: "Unity Minigame Suite",
-            pic: ["unity", "csharp", "lamp" ],
-            body: "<p class='card-text'>During my second year of study, I was tasked with constructing several mini-games with Unity3D and creating a portal for accessing them with an account system. The system I developed features cloud save and global leader boards built with a primitive LAMP architecture.</p><p class='card-text'>Go ahead and try it out yourself.Please be patient upon initial load. To make an account login as an administrator with user account and password:'admin'. </p>",
-            slide: ["1", "2", "3","4","5","6","7"]
-        
+            pic: ["pandas", "jupyter", "python"],
+            body: "<p class='card-text'>GeoPredict is a novel recommender system for shopping trip prediction. The system combines shopping history with timely contextual clues to deliver probabilistic forecasts of future movement to commercial locations. GeoPredict is built using specially trained Markov Chains and borrows techniques from many disciplines across the A.I landscape.</p><p class='card-text'>GeoPredict was initially developed in Python using the Pandas library and has since been redeveloped using the SparkPlug framework to handle big data and enable interoperability.</p><p class='card-text'>At the request of my partner, the source code remains proprietary. However, I have been cleared to provide a detailed technical rundown of my development process and solution which is available on the blog portion of this site.</p>",
+            link: "blog"
+        }, {
+            title: "SparkPlug",
+            pic: ["docker", "spark", "swarm", "unix", "ec2", "hadoop"],
+            body: "<p class='card-text'>SparkPlug is a framework for the rapid development and deployment of distributed Spark applications. By providing an interoperable architecture and a containerized deployment strategy SparkPlug makes it possible to rapidly bring data solutions to market without a great deal of programming expertise.</p><p class='card-text'>SparkPlug applications are built and deployed using an easy to use command line interface that provides blueprinting, service management and configuration. SparkPlug applications are implemented with a Microservice Architecture in which big data tasks running on the cluster are exposed via a RESTful API. Through the containerization of the entire architecture (including Spark and Hadoop clusters), SparkPlug enables instant out go the box deployment and easy scaling.</p><p class='card-text'>While the project repository is not available due to an intellectual property agreement further information about SparkPlug and its development can be found on the blog.</p>",
+            link: "blog"
+
+
+        }, {
+            title: "Unity Minigame Portal",
+            pic: ["unity", "csharp", "lamp"],
+            body: "<p class='card-text'>In this project, I developed a series of mini-games in Unity 3D and built a customizable portal to access them. Undertaken as part of a design course, the development of this application was meant to be a learning experience. It turns out that building game objects are an excellent way to understand object-oriented programming and gain practical exposure to composition, inheritance, and polymorphic reuse. Additionally, I had the opportunity to implement design patterns to optimize/standardize the application architecture.</p><p class='card-text'>Given that this project was a learning experience I decided to take things a step further by extending the requirements and exploring the LAMP stack to implement a web service to achieve cloud capabilities throughout the application.</p><p class='card-text'>The application was designed to be a standalone application for computers and mobile phones. However, I have rebuilt the application using WebGL for use in your browser. As the application was not optimized for WebGL, please give it a minute or two to load.</p><p class='card-text'>To make an account login to the administrator page using the credentials below and select create user:</p><p class='card-text'>Username: admin</p><p class='card-text'>Password: admin</p>",
+            slide: ["1", "2", "3", "4", "5", "6", "7"],
+            link: "/ugames/play.html"
+
+
 
         }];
 
 
-        
+
 
     }
 
-  
+
 });

@@ -8,7 +8,10 @@
         <div class="card-body">
             {{#if project.slide}} {{! If we are gonna have a two column with a slideshow }}
                 <div class="row">
-                    <div class="col-sm">
+                    <div class="col-sm pt-3">
+                        {{{project.body}}}
+                    </div>
+                    <div class="col-sm pt-3">
                         {{#bs-carousel autoPlay=true interval=2000 showIndicators=false as |car|}}
                             {{#each project.slide as |slide|}}
                                 {{#car.slide}}
@@ -16,13 +19,13 @@
                                 {{/car.slide}}
                             {{/each}}
                         {{/bs-carousel}}
-                    </div>
-                    <div class="col-sm pt-3">
-                        {{{project.body}}}
+                        <br>
+                        <a class="btn btn-light" href="/ugames/play.html" role="button">Lanch App</a>
                     </div>
                 </div>
             {{else}}{{! Normal One Column }}
                 {{{project.body}}}
+                {{#link-to project.link}}{{project.title}} Blog Series{{/link-to}}
             {{/if}}
         </div>
     </div>
