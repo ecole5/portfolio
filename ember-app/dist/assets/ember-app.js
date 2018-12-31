@@ -1202,8 +1202,6 @@
     this.route('blog', function () {
       this.route('post', { path: '/:series_id/:post_id' });
     });
-
-    this.route('contact');
   });
 
   exports.default = Router;
@@ -1290,14 +1288,6 @@
             });
         }
     });
-});
-;define('ember-app/routes/contact', ['exports'], function (exports) {
-  'use strict';
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.default = Ember.Route.extend({});
 });
 ;define('ember-app/routes/index', ['exports'], function (exports) {
   'use strict';
@@ -1416,14 +1406,6 @@
     }
   });
 });
-;define("ember-app/templates/contact", ["exports"], function (exports) {
-  "use strict";
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.default = Ember.HTMLBars.template({ "id": "vpk6EgFh", "block": "{\"symbols\":[],\"statements\":[[1,[21,\"outlet\"],false]],\"hasEval\":false}", "meta": { "moduleName": "ember-app/templates/contact.hbs" } });
-});
 ;define("ember-app/templates/index", ["exports"], function (exports) {
   "use strict";
 
@@ -1463,7 +1445,7 @@ catch(err) {
 
 ;
           if (!runningTests) {
-            require("ember-app/app")["default"].create({"name":"ember-app","version":"0.0.0+4cb48a39"});
+            require("ember-app/app")["default"].create({"name":"ember-app","version":"0.0.0+af893962"});
           }
         
 //# sourceMappingURL=ember-app.map

@@ -17,11 +17,6 @@ Router.map(function () {
   this.route('blog', function () {
     this.route('post', { path: '/:series_id/:post_id' });
   });
-
-
-  this.route('contact');
-
-
 });
 
 export default Router;

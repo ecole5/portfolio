@@ -4754,11 +4754,6 @@ define('ember-app/tests/lint/app.lint-test', [], function () {
     assert.ok(true, 'routes/blog/post.js should pass ESLint\n\n');
   });
 
-  QUnit.test('routes/contact.js', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'routes/contact.js should pass ESLint\n\n');
-  });
-
   QUnit.test('routes/index.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'routes/index.js should pass ESLint\n\n');
@@ -4797,11 +4792,6 @@ define('ember-app/tests/lint/templates.template.lint-test', [], function () {
   QUnit.test('ember-app/templates/components/bootstrap-paginate.hbs', function (assert) {
     assert.expect(1);
     assert.ok(false, 'ember-app/templates/components/bootstrap-paginate.hbs should pass TemplateLint.\n\nember-app/templates/components/bootstrap-paginate.hbs\n  2:4  error  Incorrect indentation for `{{#if}}` beginning at L2:C4. Expected `{{#if}}` to be at an indentation of 2 but was found at 4.  block-indentation\n  11:4  error  Incorrect indentation for `{{#each}}` beginning at L11:C4. Expected `{{#each}}` to be at an indentation of 2 but was found at 4.  block-indentation\n  16:4  error  Incorrect indentation for `{{#if}}` beginning at L16:C4. Expected `{{#if}}` to be at an indentation of 2 but was found at 4.  block-indentation\n  3:8  error  Incorrect indentation for `<li>` beginning at L3:C8. Expected `<li>` to be at an indentation of 6 but was found at 8.  block-indentation\n  7:8  error  Incorrect indentation for `<li>` beginning at L7:C8. Expected `<li>` to be at an indentation of 6 but was found at 8.  block-indentation\n  4:12  error  Incorrect indentation for `{{#link-to}}` beginning at L4:C12. Expected `{{#link-to}}` to be at an indentation of 10 but was found at 12.  block-indentation\n  8:12  error  Incorrect indentation for `<a>` beginning at L8:C12. Expected `<a>` to be at an indentation of 10 but was found at 12.  block-indentation\n  12:8  error  Incorrect indentation for `<li>` beginning at L12:C8. Expected `<li>` to be at an indentation of 6 but was found at 8.  block-indentation\n  13:12  error  Incorrect indentation for `{{#link-to}}` beginning at L13:C12. Expected `{{#link-to}}` to be at an indentation of 10 but was found at 12.  block-indentation\n  17:8  error  Incorrect indentation for `<li>` beginning at L17:C8. Expected `<li>` to be at an indentation of 6 but was found at 8.  block-indentation\n  21:8  error  Incorrect indentation for `<li>` beginning at L21:C8. Expected `<li>` to be at an indentation of 6 but was found at 8.  block-indentation\n  18:12  error  Incorrect indentation for `{{#link-to}}` beginning at L18:C12. Expected `{{#link-to}}` to be at an indentation of 10 but was found at 12.  block-indentation\n  22:12  error  Incorrect indentation for `<a>` beginning at L22:C12. Expected `<a>` to be at an indentation of 10 but was found at 12.  block-indentation\n');
-  });
-
-  QUnit.test('ember-app/templates/contact.hbs', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'ember-app/templates/contact.hbs should pass TemplateLint.\n\n');
   });
 
   QUnit.test('ember-app/templates/index.hbs', function (assert) {
@@ -4857,11 +4847,6 @@ define('ember-app/tests/lint/tests.lint-test', [], function () {
   QUnit.test('unit/routes/blog/post-test.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'unit/routes/blog/post-test.js should pass ESLint\n\n');
-  });
-
-  QUnit.test('unit/routes/contact-test.js', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'unit/routes/contact-test.js should pass ESLint\n\n');
   });
 
   QUnit.test('unit/routes/index-test.js', function (assert) {
@@ -4930,18 +4915,6 @@ define('ember-app/tests/unit/routes/blog/post-test', ['qunit', 'ember-qunit'], f
 
     (0, _qunit.test)('it exists', function (assert) {
       let route = this.owner.lookup('route:blog/post');
-      assert.ok(route);
-    });
-  });
-});
-define('ember-app/tests/unit/routes/contact-test', ['qunit', 'ember-qunit'], function (_qunit, _emberQunit) {
-  'use strict';
-
-  (0, _qunit.module)('Unit | Route | contact', function (hooks) {
-    (0, _emberQunit.setupTest)(hooks);
-
-    (0, _qunit.test)('it exists', function (assert) {
-      let route = this.owner.lookup('route:contact');
       assert.ok(route);
     });
   });
