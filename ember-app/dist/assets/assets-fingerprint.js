@@ -1,1 +1,0 @@
-(function(_window){ _window.ASSET_FINGERPRINT_HASH = ""; })(window);
