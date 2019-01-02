@@ -11,7 +11,7 @@
         {{#each series.posts as |post postIndex|}}
           <div class="col-md">
             <div class="card mb-5">
-              <img class=" card-img-top" src="img/blog/{{series.title}}/badge/{{postIndex}}{{hash}}.png" alt="Card image cap">
+              <img class=" card-img-top" src="img/blog/{{series.title}}/badge/{{postIndex}}{{{hash}}}.png" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">{{post.title}}</h5>
                 <p class="card-text">{{post.snippet}}</p>

@@ -1,1 +1,1 @@
-(function(_window){ _window.ASSET_FINGERPRINT_HASH = ""; })(window);
+(function(_window){"use strict";_window.ASSET_FINGERPRINT_HASH=""})(window)
