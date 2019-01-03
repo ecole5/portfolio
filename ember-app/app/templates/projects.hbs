@@ -3,7 +3,7 @@
         <div class="card-header">
             <h3>{{project.title}}</h3>
             {{#each project.pic as |pict|}}
-                <img src="img/skill/{{pict}}{{hash}}.png" alt="{{pict}} Logo" class="img-thumbnail"> {{/each}}
+                <img src="img/skill/{{pict}}{{better-link}}.png" alt="{{pict}} Logo" class="img-thumbnail"> {{/each}}
         </div>
         <div class="card-body">
             {{#if project.slide}} {{! If we are gonna have a two column with a slideshow }}
@@ -15,7 +15,8 @@
                         {{#bs-carousel autoPlay=true interval=2000 showIndicators=false as |car|}}
                             {{#each project.slide as |slide|}}
                                 {{#car.slide}}
-                                    <img src="img/ugames/{{slide}}{{hash}}.png" alt="Unity Games Demo {{slide}}" style="display: block; width:100%;">
+                                    <img src="img/ugames/{{slide}}{{better-link}}.png" alt="Unity Games Demo {{slide}}"
+                                        style="display: block; width:100%;">
                                 {{/car.slide}}
                             {{/each}}
                         {{/bs-carousel}}

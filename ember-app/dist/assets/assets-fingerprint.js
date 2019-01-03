@@ -1,1 +1,0 @@
-(function(_window){"use strict";_window.ASSET_FINGERPRINT_HASH=""})(window)
