@@ -1,7 +1,7 @@
 <ul class="pagination">
     {{#if prev}}
         <li class="page-item">
-            {{#link-to "blog.post" series_name prev class="page-link" }}Previous{{/link-to}}
+            {{#link-to "projects.post" series_name prev class="page-link" }}Previous{{/link-to}}
         </li>
     {{else}}
         <li class="page-item disabled">
@@ -10,12 +10,12 @@
     {{/if}}
     {{#each links as |link index|}}
         <li class="page-item {{if (equal index activeIndex) "active"}}">
-            {{#link-to "blog.post" series_name link class="page-link" }}{{incr index}}{{/link-to}}
+            {{#link-to "projects.post" series_name link class="page-link" }}{{incr index}}{{/link-to}}
         </li>
     {{/each}}
     {{#if next}}
         <li class="page-item">
-            {{#link-to "blog.post" series_name next class="page-link" }}Next{{/link-to}}
+            {{#link-to "projects.post" series_name next class="page-link" }}Next{{/link-to}}
         </li>
     {{else}}
         <li class="page-item disabled">

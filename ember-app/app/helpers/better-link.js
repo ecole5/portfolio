@@ -1,6 +1,6 @@
 import { helper } from '@ember/component/helper';
 
-export function betterLink(params/*, hash*/) {
+export function betterLink() {
   return window.ASSET_FINGERPRINT_HASH;
 }
 

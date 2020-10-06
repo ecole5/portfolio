@@ -1,13 +1,11 @@
 <div class="card">
     <div class="card-header">
-        <h1>{{model.series_name}}</h1>
-        <h3>{{model.post.title}}</h3>
+        <h1>{{model.this_post.title}}</h1>
+    
     </div>
     <div class="card-body">
-        {{{model.post.body}}}
+        {{{model.this_post.body}}}
     </div>
-    <div class="card-footer">
-        {{bootstrap-paginate links=model.links series_name=model.series_name post_title=model.post.title}}
-    </div>
+   
 </div>
 {{outlet}}

@@ -16,19 +16,14 @@ module.exports = function (defaults) {
       'importBootstrapTheme': true
     },
     fingerprint: {
-      extensions: ['js', 'css', 'png', 'jpg', 'gif', 'map', 'json'], // list of extensions to fingerprint
+      extensions: ['js', 'css', 'png', 'jpg', 'gif', 'map', 'json', ], // list of extensions to fingerprint
       customHash: fingerprintHash //use a single fingeprint/hash for all assets
-    },
-    minifyJS: {
-      options: {
-        //exclude: ["./assets/assets-fingerprint-*.js"]
-      }
     }
   });
 
   var assetFingerprintTree = writeFile('./assets/assets-fingerprint.js', `(function(_window){"use strict";_window.ASSET_FINGERPRINT_HASH="${(app.env === 'production' ? `-${fingerprintHash}` : '')}"})(window)`);
 
-  // Use `app.import` to add additional libraries to the generated
+  // Use `app.import` to add additional librarißes to the generated
   // output files.
   //
   // If you need to use different assets in different

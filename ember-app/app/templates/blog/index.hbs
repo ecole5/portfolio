@@ -1,31 +1,23 @@
-{{#each model as |series index|}}
-  {{!0 index return false}}
-  {{{if index "<hr>"}}}
+
+
   <div class="card mb-5 br-lg">
-    <div class="card-header">
-      <h3> {{series.title}}</h3>
-      <p> {{series.description}}</p>
-    </div>
+
     <div class="card-body">
       <div class="row">
-        {{#each series.posts as |post postIndex|}}
+        {{#each model as |post |}}
           <div class="col-md">
             <div class="card mb-5">
-              <img class=" card-img-top" src="img/blog/{{series.title}}/badge/{{postIndex}}{{better-link}}.png" alt="Card image cap">
+              <img class=" card-img-top" src="img/blog/{{series.title}}/badge{{better-link}}.png" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">{{post.title}}</h5>
-                <p class="card-text">{{post.snippet}}</p>
-                {{#link-to "blog.post" series.title post.title }}Read More{{/link-to}}
+                {{#link-to "blog.post" post.title }}Read More{{/link-to}}
               </div>
-              <div class="card-footer">
-                <p class="card-text">
-                </p>
-              </div>
+              
             </div>
           </div>
         {{/each}}
       </div>
     </div>
   </div>
-{{/each}}
+
 {{outlet}}

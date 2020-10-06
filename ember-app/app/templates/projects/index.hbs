@@ -1,0 +1,58 @@
+{{#each model as |project index|}}
+    <div class="card mb-5">
+        <div class="card-header">
+            <h3>{{project.title}}</h3>
+            {{#each project.pic as |pict|}}
+                <img src="img/projects/skill/{{pict}}{{better-link}}.png" alt="{{pict}} Logo" class="img-thumbnail"> {{/each}}
+        </div>
+        <div class="card-body">
+            {{#if project.slide}} {{! If we are gonna have a two column with a slideshow }}
+                <div class="row">
+                    <div class="col-sm pt-3">
+                        {{{project.body}}}
+                    </div>
+                    <div class="col-sm pt-3">
+                        {{#bs-carousel autoPlay=true interval=2000 showIndicators=false as |car|}}
+                            {{#each project.slide as |slide|}}
+                                {{#car.slide}}
+                                    <img src="img/projects/ugames/{{slide}}{{better-link}}.png" alt="Unity Games Demo {{slide}}"
+                                        style="display: block; width:100%;">
+                                {{/car.slide}}
+                            {{/each}}
+                        {{/bs-carousel}}
+                        <br>
+                        <a class="btn btn-light" href="/ugames/play.html" role="button">Lanch App</a>
+                        <br>
+                        <a class="btn btn-light" href="https://github.com/ecole5/UnityGames" role="button">View
+                            Repository</a>
+                    </div>
+                </div>
+            {{else}}{{! Normal One Column }}
+            
+          
+                {{{project.body}}}
+
+                <br>
+                  <div class="row">
+        {{#each project.posts as |post postIndex|}}
+          <div class="col-md">
+            <div class="card mb-5">
+              <img class=" card-img-top" src="img/projects/{{project.title}}/badge/{{postIndex}}{{better-link}}.png" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">{{post.title}}</h5>
+                <p class="card-text">{{post.snippet}}</p>
+                {{#link-to "projects.post" project.title post.title }}Read More{{/link-to}}
+              </div>
+              <div class="card-footer">
+                <p class="card-text">
+                </p>
+              </div>
+            </div>
+          </div>
+        {{/each}}
+      </div>
+            {{/if}}
+        </div>
+    </div>
+{{/each}}
+{{outlet}}
