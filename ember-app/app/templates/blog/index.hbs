@@ -7,9 +7,10 @@
         {{#each model as |post |}}
           <div class="col-md">
             <div class="card mb-5">
-              <img class=" card-img-top" src="img/blog/{{series.title}}/badge{{better-link}}.png" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">{{post.title}}</h5>
+                  <h5 class="card-title">{{post.date}}</h5>
+                  {{{post.content}}}
                 {{#link-to "blog.post" post.title }}Read More{{/link-to}}
               </div>
               
