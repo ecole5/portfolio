@@ -1,17 +1,16 @@
 
-
   <div class="card mb-5 br-lg">
 
     <div class="card-body">
       <div class="row">
-    
-        {{#each model as |post |}}
+        {{#each model as |ad |}}
           <div class="col-md">
             <div class="card mb-5">
-              <img class=" card-img-top" src="img/blog/{{series.title}}/badge{{better-link}}.png" alt="Card image cap">
+              <img class=" card-img-top" src={{ad.pic}} alt="Card image cap">
               <div class="card-body">
-                <h5 class="card-title">{{post.title}}</h5>
-            
+                <h5 class="card-title">{{ad.title}}</h5>
+                 <p class="card-text">{{ad.content}}</p>
+                {{#link-to "blog.post" ad.slug }}Read More{{/link-to}}
               </div>
               
             </div>
