@@ -8,7 +8,7 @@ export default DS.RESTAdapter.extend({
      
       return this.buildURL() + '/object-type/' + path + '?read_key=BBENvDAhP5Kc39vFpvO5jZCHA09vSjVz1aKodtTCkHJPJIlsdR';
     },
-    urlForQueryRecord(slug) {
+    urlForQuery(slug) {
        
       return this.buildURL() + '/object/' + slug + '?read_key=BBENvDAhP5Kc39vFpvO5jZCHA09vSjVz1aKodtTCkHJPJIlsdR';
     }
