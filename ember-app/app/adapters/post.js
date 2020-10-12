@@ -11,6 +11,5 @@ export default DS.RESTAdapter.extend({
 
   //The effect is that every time we query the Data Store for Listings, we tell Ember to fetch them from the response at https://api.cosmicjs.com/v1/cosmic-real-esate/object-type/listingor https://api.cosmicjs.com/v1/cosmic-real-esate\object\listing-slug, depending on whether we're retrieving a single listing or multiple.
   
-    //The effect is that every time we query the Data Store for Listings, we tell Ember to fetch them from the response at https://api.cosmicjs.com/v1/cosmic-real-esate/object-type/listingor https://api.cosmicjs.com/v1/cosmic-real-esate\object\listing-slug, depending on whether we're retrieving a single listing or multiple.
-
+ 
 });
