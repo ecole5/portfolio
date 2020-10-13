@@ -1,4 +1,4 @@
-{{#each model as |project index|}}
+{{#each model.projects as |project index|}}
 <div class="card mb-5">
   <div class="card-header">
     <h3>{{project.title}}</h3>
@@ -33,25 +33,35 @@
     {{{project.body}}}
 
     <br>
-    <div class="row">
-      {{#each project.posts as |post postIndex|}}
+      <div class="row">
+      {{#each model.ads as |ad|}}
+      {{#if (equal ad.series project.title) }} {{!inline helper}}
       <div class="col-md">
         <div class="card mb-5">
-          <img class=" card-img-top" src="img/projects/{{project.title}}/badge/{{postIndex}}{{better-link}}.png"
-            alt="Card image cap">
+          <img class=" card-img-top" src={{ad.pic}} alt="Card image cap">
+        
           <div class="card-body">
-            <h5 class="card-title">{{post.title}}</h5>
-            <p class="card-text">{{post.snippet}}</p>
-            {{#link-to "projects.post" project.title post.title }}Read More{{/link-to}}
+            <h5 class="card-title">{{ad.title}}</h5>
+            <p class="card-text">{{{ad.content}}}</p>
+            {{#link-to "projects.post" ad.slug }}Read More{{/link-to}}
           </div>
           <div class="card-footer">
 
           </div>
+
         </div>
       </div>
+
+      {{/if}}
       {{/each}}
     </div>
+ 
+
+
     {{/if}}
   </div>
 </div>
 {{/each}}
+
+
+  
