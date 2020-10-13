@@ -43,7 +43,7 @@
           <div class="card-body">
             <h5 class="card-title">{{ad.title}}</h5>
             <p class="card-text">{{{ad.content}}}</p>
-            {{#link-to "projects.post" ad.slug }}Read More{{/link-to}}
+            {{#link-to "projects.post" ad.series ad.slug }}Read More{{/link-to}}
           </div>
           <div class="card-footer">
 

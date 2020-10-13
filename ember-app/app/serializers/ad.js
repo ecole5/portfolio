@@ -7,7 +7,7 @@ function buildNormalizeAd(source) {
       slug: source.slug,
       content: source.content,
       title: source.title,
-      pic: source.metadata.pic,
+      pic: source.thumbnail,
     }
   }
 export default DS.RESTSerializer.extend({

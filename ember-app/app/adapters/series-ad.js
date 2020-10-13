@@ -12,4 +12,5 @@ export default DS.RESTAdapter.extend({
       "?read_key=BBENvDAhP5Kc39vFpvO5jZCHA09vSjVz1aKodtTCkHJPJIlsdR"
     );
   },
+  
 });

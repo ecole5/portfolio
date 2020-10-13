@@ -8,11 +8,15 @@
             <a class="page-link" href="#" tabindex="-1">Previous</a>
         </li>
     {{/if}}
+
+
     {{#each links as |link index|}}
         <li class="page-item {{if (equal index activeIndex) "active"}}">
             {{#link-to "projects.post" series_name link class="page-link" }}{{incr index}}{{/link-to}}
         </li>
     {{/each}}
+
+
     {{#if next}}
         <li class="page-item">
             {{#link-to "projects.post" series_name next class="page-link" }}Next{{/link-to}}
@@ -23,4 +27,6 @@
         </li>
     {{/if}}
 </ul>
+
+
 {{yield}}

@@ -4,6 +4,7 @@ export default Component.extend({
     next: false, //false until proven true
     prev: false,
     activeIndex: null,
+  
 
     didReceiveAttrs() {
         this._super(...arguments);
@@ -11,7 +12,8 @@ export default Component.extend({
 
 
         var links = this.get('links');
-        var currentPost = this.get('post_title')
+        var currentPost = this.get('post_slug')
+
 
         for (var i = 0; i < links.length; i++) {
 

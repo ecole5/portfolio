@@ -4,10 +4,11 @@ import DS from 'ember-data';
     function buildNormalizePost(source) {
         return {
           id: source._id,
-          slug: source.slug,
           content: source.content,
           title: source.title,
-          date: source.metadata.date,
+          date_published: source.created_at,
+          date_modified: source.modified_at
+          
         }
       }
 export default DS.RESTSerializer.extend({

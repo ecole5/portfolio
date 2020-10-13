@@ -3,10 +3,8 @@ import DS from "ember-data";
 function buildNormalizeAd(source) {
   return {
     id: source._id,
-    slug: source.slug,
     content: source.content,
     title: source.title,
-    series: source.series,
   };
 }
 export default DS.RESTSerializer.extend({

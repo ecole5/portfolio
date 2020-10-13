@@ -1,38 +1,31 @@
-import Route from '@ember/routing/route';
-import RSVP from 'rsvp';
+import Route from "@ember/routing/route";
+import RSVP from "rsvp";
 
 export default Route.extend({
-    model(params) {
+  model(params) {
 
-        var allSeries = this.modelFor("projects");
-
-
-        var currentSeries;
-        var links = [];
-        var currentPost;
-        var i;
-
-        for (i = 0; i < allSeries.length; i++) {
-            if (params.series_id == allSeries[i].title) {
-                currentSeries = allSeries[i]; //pick the correct series
-            }
+   
+  
+    var links = this.store.findAll('series-ad').then(function(allSeries){
+      var tmp = [];
+      allSeries.forEach(function(item, index){
+        if (item.series === params.series_id){
+          tmp.push(item.slug);
         }
 
+      });
+      return tmp;
 
-        for (i = 0; i < currentSeries.posts.length; i++) {
-            if (params.post_id == currentSeries.posts[i].title) {
-                currentPost = currentSeries.posts[i]; //pick the correct post from the series
-
-            }
-            links.push(currentSeries.posts[i].title);
+    });
 
 
-        }
-      
-        return RSVP.hash({
-            post: currentPost,
-            links: links,
-            series_name: currentSeries.title
-        });
-    }
+
+  return RSVP.hash({
+    post: this.store.findRecord("series-post", params.post_slug),
+    links: links,
+    series_name: params.series_id,
+    slug: params.post_slug
+  });
+ 
+  },
 });
