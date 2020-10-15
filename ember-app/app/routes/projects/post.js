@@ -8,7 +8,7 @@ export default Route.extend({
   
     var links = this.store.findAll('series-ad').then(function(allSeries){
       var tmp = [];
-      allSeries.forEach(function(item, index){
+      allSeries.forEach(function(item){
         if (item.series === params.series_id){
           tmp.push(item.slug);
         }
