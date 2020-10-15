@@ -1,6 +1,13 @@
 
 //$grid-columns: 1;
 //Add sass varaibles
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+.betterfont{
+  font-family: 'Montserrat';
+} 
 
 
-@import "ember-bootstrap/bootstrap";
+
+
+  @import "ember-bootstrap/bootstrap";

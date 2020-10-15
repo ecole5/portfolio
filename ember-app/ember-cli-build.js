@@ -9,12 +9,7 @@ module.exports = function (defaults) {
   const fingerprintHash = md5(Date.now()); //hash for all reasources based on date
 
   let app = new EmberApp(defaults, {
-    'ember-bootstrap': {
-      'bootstrapVersion': 4,
-      'importBootstrapFont': false, //no bootstraph glphys (we are using font awesome)
-      'importBootstrapCSS': false, //includes the bootstrap css file in dist
-      'importBootstrapTheme': true
-    },
+    //ember-bootstrap addon configuation could go here
     fingerprint: {
       extensions: ['js', 'css', 'png', 'jpg', 'gif', 'map', 'json', ], // list of extensions to fingerprint
       customHash: fingerprintHash //use a single fingeprint/hash for all assets
