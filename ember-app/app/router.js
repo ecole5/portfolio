@@ -18,7 +18,6 @@ Router.map(function () {
   this.route("blog", function () {
     this.route("post", { path: "/:post_slug" });
   });
-  this.route("about");
 });
 
 export default Router;

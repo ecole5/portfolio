@@ -3,9 +3,27 @@
 //Add sass varaibles
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 
+$enable-gradients :true;
+
 .betterfont{
   font-family: 'Montserrat';
 } 
+
+.homebanner{
+  
+  min-height: 85vh;
+  @extend .betterfont;
+}
+
+
+
+.textlead{
+
+  font-size: large;
+  font-weight: bolder;
+  display:inline;
+
+}
 
 
 
