@@ -1,3 +1,4 @@
 #!/bin/bash
+ember build --environment=production
 ssh -i ~/Desktop/Wordpress.pem ec2-user@3.18.16.83 'rm -r /var/www/html/img/*'
 scp -i ~/Desktop/Wordpress.pem -r dist/* ec2-user@3.18.16.83:/var/www/html

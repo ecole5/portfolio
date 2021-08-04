@@ -39,15 +39,14 @@ Make use of the many generators for code, try `ember help generate` for more det
 * `npm run lint:js`
 * `npm run lint:js -- --fix`
 
-### Building
-
 * `ember build` (development)
 * `ember build --environment production` (production)
 
 ### Deploying
 
 Specify what it takes to deploy your app.
-
+use the deploy script to build production version of app and copy files to cloud
+sudo sh deploy
 ## Further Reading / Useful Links
 
 * [ember.js](https://emberjs.com/)
