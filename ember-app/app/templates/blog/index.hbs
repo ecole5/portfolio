@@ -10,8 +10,11 @@
             <h5 class="card-title">{{ad.title}}</h5>
             <p class="card-text">{{{ad.content}}}</p>
             {{#link-to "blog.post" ad.slug }}Read More{{/link-to}}
+           
           </div>
           <div class="card-footer">
+               <p class="card-text">Published: {{{ad.date}}}</p>
+            
 
           </div>
 

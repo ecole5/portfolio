@@ -8,6 +8,7 @@ function buildNormalizeAd(source) {
       content: source.content,
       title: source.title,
       pic: source.thumbnail,
+      date: source.metadata.date,
     }
   }
 export default DS.RESTSerializer.extend({
