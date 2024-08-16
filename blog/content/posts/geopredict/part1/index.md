@@ -19,7 +19,7 @@ The first step towards the development of GeoPredict was gaining a solid underst
 
 We call a set of data a MobilityTrace and a discrete data point a Visit. My partner collected the provided MobilityTrace from their user base (millions of users) over three months.
 
-![](/posts/geopredict/img/er.png)
+![](er.png)
 
 A Visit is created when a Source captures a new Coordinate. A Coordinate contains the position of the Source (longitude and latitude) and the precision of this measurement.
 

@@ -3,7 +3,7 @@ title: "GeoPredict Part 2: Mobility Markov Chains (MMCs)"
 date: 2020-10-24T03:17:42.000Z
 draft: true
 cover:
-  image: posts/geopredict/img/cover2.png #because we are naming url part1 relative name does not work with routing system
+  image: cover.png #because we are naming url part1 relative name does not work with routing system
   caption: "In this section we start by exploring the data and defining the problem domain."
 ---
 
@@ -17,7 +17,7 @@ Having gained a solid grasp of both the problem and solution domains it was time
 
 A Markov Chain is a stochastic model in which the frequency of transition between states governs the probability distribution of the random variable. Many subdisciplines of A.I. use Markov Chains in some way or another, and every application has its domain-specific nomenclature. In the mobility context, we adopt the name Mobility Markov Chain (MMC). MMCs have an intuitive visualization as a state diagram as seen below.
 
-![](/posts/geopredict/img/nmmc.png)
+![](nmmc.png)
 
 In this MMC the nodes signify state (a specific POI) while the labels of the directed edges represent the probability of transition from one POI to the next. The simplest way to train an MMC is to record the counts of past transitions between two states using a set of training data (MobilityTrace). At prediction time we can build a probability distribution by looking at all the edges connected to the current state.
 

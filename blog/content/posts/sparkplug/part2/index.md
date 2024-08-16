@@ -3,7 +3,7 @@ title: "SparkPlug Part 2: Big Data Microservices"
 date: 2020-11-20T03:17:42.000Z
 draft: true
 cover:
-  image: posts/sparkplug/img/cover2.png #because we are naming url part1 relative name does not work with routing system
+  image: cover.png #because we are naming url part1 relative name does not work with routing system
   caption: "Learn how SparkPlug delivers big data microservices."
 ---
 
@@ -56,7 +56,7 @@ Additionally, given HTTP's ubiquity, we are almost guaranteed compatibility with
 
 Now we will dive into the technology stack that powers the framework we have discussed thus far. These are all the components that SparkPlug developers interact with hands-on. 
 
-![](/posts/sparkplug/img/DevStack.png)
+![](DevStack.png)
 
 At the top, we have CherryPy, a lightweight Python-based HTTP web server that gets automatically deployed alongside the SparkDriver node in a SparkPlug application. CherryPy handles incoming requests and responses from the data application. Developers need not interact with this directly. 
 

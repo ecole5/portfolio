@@ -3,7 +3,7 @@ title: "GeoPredict Part 3: Improvements and Considerations"
 date: 2020-10-25T03:17:44.000Z
 draft: true
 cover:
-  image: cover.png #because we are naming url part1 relative name does not work with routing system
+  image: cover.png
   caption: "Now we build better N-MMC to meet the demands of trip prediction."
 ---
 

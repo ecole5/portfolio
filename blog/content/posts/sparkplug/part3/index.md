@@ -3,7 +3,7 @@ title: "SparkPlug Part 3: Containerized Distributed Computing Infrastructure"
 date: 2020-11-21T03:17:44.000Z
 draft: true
 cover:
-  image: posts/sparkplug/img/cover3.png #because we are naming url part1 relative name does not work with routing system
+  image: cover.png #because we are naming url part1 relative name does not work with routing system
   caption: "Learn how SparkPlug simplifies deployment through containerized distributed infrastructure."
 ---
 
@@ -17,7 +17,7 @@ The SparkPlug deployment strategy containerizes the entirety of the underlying d
 
 **Deployment Strategy Overview**
 
-![](/posts/sparkplug/img/DeployStack.png)
+![](DeployStack.png)
 
 From the bottom, each component of the HDFS and Spark clusters are encapsulated into a unique container. The blue nodes relate to HDFS well the orange nodes are part of Spark. Spark is deployed in standalone mode using its built-in cluster manager rather than Yarn (Hadoop). This approach offers a clean and simple architecture and works great for apps like GeoPredict, which can run entirely in memory. If HDFS needs to be used more extensively in the regular course of operation, Spark should be deployed on Hadoop to take advantage of HDFS data locality. Stay tuned for SparkPlug 2.0!
 
@@ -49,7 +49,7 @@ One more thing. **Containers empower DevOps for distributed computing**! Access 
 
 Another fantastic property of containers is that we can dynamically allocate them resources (cores and memory) and effectively adapt to different compute topologies. The simplest topology is when every machine is identical. In this case, the ideal solution is to provision one container per physical machine. When our physical nodes are not of uniform power, however, this no longer makes sense.  Consider this physical cluster:
 
-![](/posts/sparkplug/img/SparkTunning.png)
+![](SparkTunning.png)
 
 We have three different physical nodes with varying amounts of resources. If we tune our SparkWorker for the least performant node and then deploy one container per node, we do not fully utilize our resources. We can resolve this by simply deploying more containers to the more powerful nodes until we achieve full resource utilization. Because we only must tune the SparkWorker once (setting the # of executors and cores per executor), we simplify development. Additionally, it helps bridge the Dev and Ops gap because, in most cases, personal desktops are more powerful than commodity hardware, so we can have multiple SparkWorker containers running on our development machines, tuned the same way as they would be at scale. 
 
