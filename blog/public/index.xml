@@ -6,7 +6,7 @@
     <description>Recent content on Evan Cole</description>
     <generator>Hugo -- 0.132.1</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 15 Aug 2024 23:17:42 -0400</lastBuildDate>
+    <lastBuildDate>Fri, 16 Aug 2024 03:17:42 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Regional Level HA on AWS</title>
@@ -19,7 +19,7 @@ A vast majority of AWS services are region scoped and can withstand the failure 
     <item>
       <title>SparkPlug Part 1: The Genesis of a Framework</title>
       <link>http://localhost:1313/posts/sparkplug/part1/</link>
-      <pubDate>Thu, 15 Aug 2024 23:17:42 -0400</pubDate>
+      <pubDate>Fri, 16 Aug 2024 03:17:42 +0000</pubDate>
       <guid>http://localhost:1313/posts/sparkplug/part1/</guid>
       <description>Introduction
 The world is undergoing a big data revolution- a new age gold rush. Never in the history of human civilization has there been such an abundance of data. Remarkably, however, most of this data goes to waste. Many organizations find themselves today in a situation analogous to sitting on vast reserves of gold-rich ore but not knowing how to extract it. The difficulty with big data lies in both variety and scale.</description>

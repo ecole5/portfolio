@@ -1,8 +1,12 @@
-+++
-title = 'SparkPlug Part 1: The Genesis of a Framework'
-date = 2024-08-15T23:17:42-04:00
-draft = true
-+++
+---
+title: "SparkPlug Part 1: The Genesis of a Framework"
+date: 2024-08-16T03:17:42.000Z
+draft: true
+cover:
+  image: posts/sparkplug/img/cap.png #because we are naming url part1 relative name does not work with routing system
+  caption: "How GeoPredict evolved into a framework."
+---
+
 **Introduction**
 
 The world is undergoing a big data revolution- a new age gold rush. Never in the history of human civilization has there been such an abundance of data. Remarkably, however, most of this data goes to waste. Many organizations find themselves today in a situation analogous to sitting on vast reserves of gold-rich ore but not knowing how to extract it. The difficulty with big data lies in both variety and scale. Firstly, there is no perfect cookie-cutter solution. Every data set requires a unique methodology that accounts for its domain-specific features. Secondly, real-world big data implementations must scale across compute clusters to handle massive volume and velocity, thus adding significant complexity.
