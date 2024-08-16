@@ -1,0 +1,18 @@
+baseURL: https://evancole.io/
+languageCode: en-us
+title: Evan Cole
+theme: PaperMod
+
+params:
+  homeInfoParams:
+    Title: Welcome to the Cole Cloud
+    Content: My blog about AI, DevSecOps and other tech I find intresting. 
+
+  socialIcons: # optional
+    - name: "linkedin"
+      url: "https://www.linkedin.com/in/ecole5/"
+    - name: "github"
+      url: "https://github.com/ecole5"
+    - name: "leetcode"
+      url: "https://leetcode.com/u/ecole5/"
+

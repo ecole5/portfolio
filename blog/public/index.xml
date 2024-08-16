@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Evan Cole</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content on Evan Cole</description>
+    <generator>Hugo -- 0.132.1</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 15 Aug 2024 23:17:42 -0400</lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Regional Level HA on AWS</title>
+      <link>http://localhost:1313/posts/regional-level-ha-on-aws/</link>
+      <pubDate>Thu, 15 Aug 2024 23:17:42 -0400</pubDate>
+      <guid>http://localhost:1313/posts/regional-level-ha-on-aws/</guid>
+      <description>Introduction
+A vast majority of AWS services are region scoped and can withstand the failure of an AZ with ease. Take S3, for example. If we request an object stored in the North California region and AZ-A is knocked offline due to an earthquake, S3 transparently serves a copy from AZ-B or AZ-C. But what happens if a configuration error impairs the service at a regional level? How well do modern applications handle regional cloud service outages?</description>
+    </item>
+  </channel>
+</rss>
