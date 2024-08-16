@@ -1,9 +1,9 @@
 ---
 title: "Regional Level HA on AWS"
-date: 2022-11-18T03:17:42.000Z
+date: 2021-01-11T03:17:42.000Z
 draft: true
 cover:
-  image: img/cover.png #because we are naming url part1 relative name does not work with routing system
+  image: cover.png #because we are naming url part1 relative name does not work with routing system
   caption: "Learn how to build multi-region architectures on AWS that are resilient to regional disruptions."
 ---
 
@@ -65,7 +65,7 @@ How do we make services bound to a specific region like API Gateway or Lambda av
 
   
 
-![](img/diagram.png)
+![](diagram.png)
 
   
 
