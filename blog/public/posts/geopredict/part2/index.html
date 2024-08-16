@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=61029&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>GeoPredict Part 2: Mobility Markov Chains (MMCs) | Evan Cole</title>
+<meta name="keywords" content="">
+<meta name="description" content="Introduction
+Having gained a solid grasp of both the problem and solution domains it was time to move towards implementation. How do we achieve effective next place prediction using MobilityTraces only containing Visits to commercial POIs? Given that trip prediction is a subset of the general mobility problem I figured it was unnecessary to reinvent the wheel, so I started researching techniques that consider complete MobilityTraces. After reviewing the literature, I landed on Markov Chains as the basis of my implementation.">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:61029/posts/geopredict/part2/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.fc220c15db4aef0318bbf30adc45d33d4d7c88deff3238b23eb255afdc472ca6.css" integrity="sha256-/CIMFdtK7wMYu/MK3EXTPU18iN7/MjiyPrJVr9xHLKY=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:61029/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:61029/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:61029/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:61029/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:61029/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:61029/posts/geopredict/part2/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:61029/" accesskey="h" title="Evan Cole (Alt + H)">Evan Cole</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      GeoPredict Part 2: Mobility Markov Chains (MMCs)
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="35" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h1>
+    <div class="post-meta"><span title='2021-02-18 03:17:42 +0000 UTC'>February 18, 2021</span>
+
+</div>
+  </header> 
+<figure class="entry-cover"><img loading="eager" src="http://localhost:61029/posts/geopredict/img/cover2.png" alt="In this section we start by exploring the data and defining the problem domain.">
+        <p>In this section we start by exploring the data and defining the problem domain.</p>
+</figure>
+  <div class="post-content"><p><strong>Introduction</strong></p>
+<p>Having gained a solid grasp of both the problem and solution domains it was time to move towards implementation. How do we achieve effective next place prediction using MobilityTraces only containing Visits to commercial POIs? Given that trip prediction is a subset of the general mobility problem I figured it was unnecessary to reinvent the wheel, so I started researching techniques that consider complete MobilityTraces. After reviewing the literature, I landed on Markov Chains as the basis of my implementation. While there are techniques involving neural networks that are slightly more accurate, they don&rsquo;t pay dividends considering their complexity and required computing power. The drivers of human mobility are not so involved as to need neural layers to capture them.</p>
+<p><strong>Mobility Markov Chains</strong></p>
+<p>A Markov Chain is a stochastic model in which the frequency of transition between states governs the probability distribution of the random variable. Many subdisciplines of A.I. use Markov Chains in some way or another, and every application has its domain-specific nomenclature. In the mobility context, we adopt the name Mobility Markov Chain (MMC). MMCs have an intuitive visualization as a state diagram as seen below.</p>
+<p><img loading="lazy" src="/posts/geopredict/img/nmmc.png" alt=""  />
+</p>
+<p>In this MMC the nodes signify state (a specific POI) while the labels of the directed edges represent the probability of transition from one POI to the next. The simplest way to train an MMC is to record the counts of past transitions between two states using a set of training data (MobilityTrace). At prediction time we can build a probability distribution by looking at all the edges connected to the current state.</p>
+<p>The MMC above considers one piece of context, the current POI, to define the state of the system. However, we could consider more context in our predictions and calculate the transition probabilities not just based on a single edge put on a path. Let us define some new terminology to describe the amount of context used in the calculation of the transition probabilities.    </p>
+<p> <em>Let an (N-MMC) be an MMC in which we calculate probabilities for paths of length N-1.</em></p>
+<p><em>Let a sequence of Visits to specific POIs be called an n-visit where n is the number of POIs as a numeral prefix.</em></p>
+<p><strong>Rationalizing N-MMC For Trip Prediction</strong></p>
+<p>Why do we consider context at all when making predictions? Why not just use a 1-MMC in which our state diagram devolves into a bubble chart? While a 1-MMC does capture preference, it fails to account for the structure of the data. Remember that time determines the order of the Visits in a MobilityTrace and if we don’t consider the order of the Visits we miss out on the hidden features that govern human mobility like the distance between POIs and POI Category.</p>
+<p>Consider the bi-visit “McDonalds SplashWorld” This would be very rare because most people do not like to eat immediately before going swimming. This rule would be part of what I call a “mobility grammar.” Another rule that most people follow is that they visit POIs near each other or on their trajectory of travel. As mobility grammars are far from universal, we do not write these rules but capture them empirically through building N-MMCs.</p>
+<p>The most important characteristic of an N-MMC is that it obeys the Markov Property allowing us to consider only a limited amount of context. If we consider too much context, we will have a data sparsity problem in which the training examples will be insufficient to make accurate predictions. Conversely, if we use too little context, then we may not capture essential relationships. While we know in the case of general mobility modelling, it is best to go with a 2-MMC model it is unclear how much context is best when it comes to trip prediction. My intuition was that a similar amount of context would be appropriate; however, this was only a hypothesis that needed validation to ensure the correct parameter be selected. We validate this hypothesis in the next section through empirical means.</p>
+<p><strong>Calculating Conditional Probability</strong></p>
+<p>Now I want to explain how we can calculate the probabilities of transition for a given N-MMC. We are going to approach this calculation more formally so bear with me.</p>
+<p><em>Let the occurrence of an n-Visit as defined above be analogous to an event in the probability space</em> </p>
+<p><em>Markov Assumption: Let P(Sk|S1S2S3…Sk-1) approx equal</em> <em>P(Sk|Sk+1-n…Sk-1)  for N &gt; 1</em></p>
+<p>Consider a MobilityTrace containing the sequence of Visits: “McDonald’s Walmart Starbucks FedEx.” In a 3-MMC model the probability of the sequence “FedEx” is only dependent on the sequence “Walmart Starbucks” appearing before it. Thus, we ignore McDonald&rsquo;s and can write the conditional probability as:</p>
+<p><em>P(FedEx | Walmart Starbucks) = P(Walmart Starbucks FedEx)/P(Walmart Starbucks)</em></p>
+<p>To calculate this probability, our model must contain counts of n-visits. To find the conditional probability, we will need to find the probability of the bi-visit “Walmart Starbucks” and the tri-visit “Walmart Starbucks FedEx.” We calculate these probabilities by counting how often they occur in the training data. Note that in a 3-MMC we must only actually store the tri-visits as we can derive bi-visit counts of “Walmart Starbucks” just by adding up all tri-visits that contain that bi-visit.</p>
+<p><em>Let C(x) be a count function for a specific n-visit</em> <br>
+<em>Let T be the number of n-visits in the MobilityTrace with length indicated by the subscript</em><br>
+<em>P (Walmart Starbucks FedEx) = C(Walmart Starbucks FedEx)/T3</em><br>
+<em>P(Walmart Starbucks) = C(Walmart Starbucks)/T2</em><br>
+<em>* Together then: P(FedEx | Walmart Starbucks) = C(Walmart Starbucks FedEx)/N3 / C(Walmart Starbucks)/N2</em></p>
+<p>We can simplify * because N2 will always be one more than N3. For large counts this tiny difference will not significantly impact the probability- we almost have symmetry. Let us use a concrete example to prove this.</p>
+<p><em>MobilityTrace: “Walmart Starbucks is Walmart Starbucks and when Walmart Starbucks FedEx he howls”</em><br>
+<em>C(Walmart Starbucks FedEx) = 1</em><br>
+<em>C(Walmart Starbucks) = 3</em><br>
+<em>N3 = 10 and thus N2 must equal 11</em><br>
+<em>Proof: 1/10 / 3/11 approximately equal to 1/3</em></p>
+<p><strong>Making Predictions</strong></p>
+<p>We have seen thus far how we find the probability for a specified state given context but what if we have context and need to make a prediction? Consider the context “Walmart Starbucks,” how do we decide which state comes next? We use our Ngram model to build a probability distribution using the counts of all tri-visits which start with the bi-visit &lsquo;Walmart Starbucks.&rsquo;</p>
+<p><em>Walmart Starbucks Costco =2</em> <br>
+<em>Walmart Starbucks Shell = 3</em> <br>
+<em>Walmart Starbucks Lowe’s  =4</em> <br>
+<em>This yields a distribution with 2/9, 3/9, 2/9.</em></p>
+<p>Looking at this distribution, we would choose “Lowe’s” as the most likely next state because it has the highest probability. Utilizing an N-MMC in such a way is called Maximum Likelihood Estimation (MLE).</p>
+<p>By now we should have a solid understanding of the N-MMC- a powerful tool for next place prediction. In the following article, we will tailor this tool for trip prediction.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2024 <a href="http://localhost:61029/">Evan Cole</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

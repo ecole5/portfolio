@@ -1,9 +1,15 @@
-+++
-title = 'Regional Level HA on AWS'
-date = 2024-08-15T23:17:42-04:00
-draft = true
-+++
+---
+title: "Regional Level HA on AWS"
+date: 2022-11-18T03:17:42.000Z
+draft: true
+cover:
+  image: img/cover.png #because we are naming url part1 relative name does not work with routing system
+  caption: "Learn how to build multi-region architectures on AWS that are resilient to regional disruptions."
+---
+
 Introduction
+
+
 
 A vast majority of AWS services are region scoped and can withstand the failure of an AZ with ease. Take S3, for example. If we request an object stored in the North California region and AZ-A is knocked offline due to an earthquake, S3 transparently serves a copy from AZ-B or AZ-C. But what happens if a configuration error impairs the service at a regional level? How well do modern applications handle regional cloud service outages? Based on reporting from the December 7th, 2021 N.Virginia region disruption, not very well. Everything from Slack to Roomba vacuums faced outages because of poor architectural choices.  
 
@@ -59,7 +65,7 @@ How do we make services bound to a specific region like API Gateway or Lambda av
 
   
 
-![](diagram.png)
+![](img/diagram.png)
 
   
 

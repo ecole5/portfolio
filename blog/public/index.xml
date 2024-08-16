@@ -2,35 +2,68 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Evan Cole</title>
-    <link>http://localhost:1313/</link>
+    <link>http://localhost:61029/</link>
     <description>Recent content on Evan Cole</description>
     <generator>Hugo -- 0.132.1</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 16 Aug 2024 03:17:42 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 18 Nov 2022 03:17:44 +0000</lastBuildDate>
+    <atom:link href="http://localhost:61029/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GeoPredict Part 3: Improvements and Considerations</title>
+      <link>http://localhost:61029/posts/geopredict/part3/</link>
+      <pubDate>Fri, 18 Nov 2022 03:17:44 +0000</pubDate>
+      <guid>http://localhost:61029/posts/geopredict/part3/</guid>
+      <description>Introduction
+The N-MMC we have developed thus far are excellent tools for the general problem of next place prediction. Now we must focus on adapting the model to accommodate the complications of trip prediction.
+Trip Separation
+The structure of the data poses the first complication. So far we have assumed that all Visits in a MobilityTrace are sequential, but in reality, they are not because Visits to private locations have been removed.</description>
+    </item>
     <item>
       <title>Regional Level HA on AWS</title>
-      <link>http://localhost:1313/posts/regional-level-ha-on-aws/</link>
-      <pubDate>Thu, 15 Aug 2024 23:17:42 -0400</pubDate>
-      <guid>http://localhost:1313/posts/regional-level-ha-on-aws/</guid>
+      <link>http://localhost:61029/posts/regional-level-ha-on-aws/</link>
+      <pubDate>Fri, 18 Nov 2022 03:17:42 +0000</pubDate>
+      <guid>http://localhost:61029/posts/regional-level-ha-on-aws/</guid>
       <description>Introduction
 A vast majority of AWS services are region scoped and can withstand the failure of an AZ with ease. Take S3, for example. If we request an object stored in the North California region and AZ-A is knocked offline due to an earthquake, S3 transparently serves a copy from AZ-B or AZ-C. But what happens if a configuration error impairs the service at a regional level? How well do modern applications handle regional cloud service outages?</description>
     </item>
     <item>
+      <title>GeoPredict Part 2: Mobility Markov Chains (MMCs)</title>
+      <link>http://localhost:61029/posts/geopredict/part2/</link>
+      <pubDate>Thu, 18 Feb 2021 03:17:42 +0000</pubDate>
+      <guid>http://localhost:61029/posts/geopredict/part2/</guid>
+      <description>Introduction
+Having gained a solid grasp of both the problem and solution domains it was time to move towards implementation. How do we achieve effective next place prediction using MobilityTraces only containing Visits to commercial POIs? Given that trip prediction is a subset of the general mobility problem I figured it was unnecessary to reinvent the wheel, so I started researching techniques that consider complete MobilityTraces. After reviewing the literature, I landed on Markov Chains as the basis of my implementation.</description>
+    </item>
+    <item>
+      <title>SparkPlug Part 3: Containerized Distributed Computing Infrastructure</title>
+      <link>http://localhost:61029/posts/sparkplug/part3/</link>
+      <pubDate>Wed, 18 Nov 2020 03:17:44 +0000</pubDate>
+      <guid>http://localhost:61029/posts/sparkplug/part3/</guid>
+      <description>Introduction
+SparkPlug employs Spark and HDFS to supercharge ML app performance through distributed computing. Spark and HDFS clusters, however, can be tricky to configure and time-consuming to the uninitiated engineer. Furthermore, to tune Spark applications, we need a distributed test environment akin to the final operational environment posing a significant logistic and economic challenge to developers. SparkPlug remedies these problems through containerization. The SparkPlug deployment strategy containerizes the entirety of the underlying distributed infrastructure so that SparkPlug apps are ready to deploy out of the box with zero configuration.</description>
+    </item>
+    <item>
       <title>SparkPlug Part 1: The Genesis of a Framework</title>
-      <link>http://localhost:1313/posts/sparkplug/part1/</link>
-      <pubDate>Fri, 16 Aug 2024 03:17:42 +0000</pubDate>
-      <guid>http://localhost:1313/posts/sparkplug/part1/</guid>
+      <link>http://localhost:61029/posts/sparkplug/part1/</link>
+      <pubDate>Wed, 18 Nov 2020 03:17:42 +0000</pubDate>
+      <guid>http://localhost:61029/posts/sparkplug/part1/</guid>
       <description>Introduction
 The world is undergoing a big data revolution- a new age gold rush. Never in the history of human civilization has there been such an abundance of data. Remarkably, however, most of this data goes to waste. Many organizations find themselves today in a situation analogous to sitting on vast reserves of gold-rich ore but not knowing how to extract it. The difficulty with big data lies in both variety and scale.</description>
     </item>
     <item>
       <title>SparkPlug Part 2: Big Data Microservices</title>
-      <link>http://localhost:1313/posts/sparkplug/part2/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/sparkplug/part2/</guid>
+      <link>http://localhost:61029/posts/sparkplug/part2/</link>
+      <pubDate>Wed, 18 Nov 2020 03:17:42 +0000</pubDate>
+      <guid>http://localhost:61029/posts/sparkplug/part2/</guid>
       <description>Introduction
 When developing AI systems, we are interested in spending time and energy extracting value from the data. Building the architecture that delivers the solution to the end-user should not dominate the development cycle. By including a robust predefine architecture in the SparkPlug framework, ML scientists can build full-fledged apps while focusing on what matters most. In the rest of this section, we will focus on the qualities and components of the SparkPlug architecture.</description>
+    </item>
+    <item>
+      <title>GeoPredict Part 1: Origins &amp; Data Exploration</title>
+      <link>http://localhost:61029/posts/geopredict/part1/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:61029/posts/geopredict/part1/</guid>
+      <description>Introduction This series details the development of a novel machine learning solution called GeoPredict. I designed GeoPredict with the intent of leveraging large-scale mobility data in a commercially viable manner. The first step towards the development of GeoPredict was gaining a solid understanding of the problem domain-the data. The data provided by my industry partner was not just raw mobility data but a richer set of contextual and semantic information. Let us try to unpack the structure of this data.</description>
     </item>
   </channel>
 </rss>

@@ -10,7 +10,7 @@
 <meta name="description" content="Introduction
 A vast majority of AWS services are region scoped and can withstand the failure of an AZ with ease. Take S3, for example. If we request an object stored in the North California region and AZ-A is knocked offline due to an earthquake, S3 transparently serves a copy from AZ-B or AZ-C. But what happens if a configuration error impairs the service at a regional level? How well do modern applications handle regional cloud service outages?">
 <meta name="author" content="">
-<link rel="canonical" href="http://localhost:1313/posts/regional-level-ha-on-aws/">
+<link rel="canonical" href="http://localhost:1313/posts/regional-level-ha-on-aws/img/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.fc220c15db4aef0318bbf30adc45d33d4d7c88deff3238b23eb255afdc472ca6.css" integrity="sha256-/CIMFdtK7wMYu/MK3EXTPU18iN7/MjiyPrJVr9xHLKY=" rel="preload stylesheet" as="style">
 <link rel="icon" href="http://localhost:1313/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
@@ -19,7 +19,7 @@ A vast majority of AWS services are region scoped and can withstand the failure 
 <link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/regional-level-ha-on-aws/">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/regional-level-ha-on-aws/img/">
 <noscript>
     <style>
         #theme-toggle,
@@ -116,13 +116,13 @@ A vast majority of AWS services are region scoped and can withstand the failure 
         </svg>
       </span>
     </h1>
-    <div class="post-meta"><span title='2022-11-18 03:17:42 +0000 UTC'>November 18, 2022</span>
+    <div class="post-meta"><span title='2020-11-18 03:17:42 +0000 UTC'>November 18, 2020</span>
 
 </div>
   </header> 
 <figure class="entry-cover">
-        <img loading="eager" src="http://localhost:1313/posts/regional-level-ha-on-aws/img/cover.png" alt="Learn how to build multi-region architectures on AWS that are resilient to regional disruptions.">
-        <p>Learn how to build multi-region architectures on AWS that are resilient to regional disruptions.</p>
+        <img loading="eager" src="http://localhost:1313/posts/regional-level-ha-on-aws/img/img/cover.png" alt="How GeoPredict evolved into a framework.">
+        <p>How GeoPredict evolved into a framework.</p>
 </figure>
   <div class="post-content"><p>Introduction</p>
 <p>A vast majority of AWS services are region scoped and can withstand the failure of an AZ with ease. Take S3, for example. If we request an object stored in the North California region and AZ-A is knocked offline due to an earthquake, S3 transparently serves a copy from AZ-B or AZ-C. But what happens if a configuration error impairs the service at a regional level? How well do modern applications handle regional cloud service outages? Based on reporting from the December 7th, 2021 N.Virginia region disruption, not very well. Everything from Slack to Roomba vacuums faced outages because of poor architectural choices.  </p>
@@ -144,7 +144,7 @@ A vast majority of AWS services are region scoped and can withstand the failure 
 <p>For Those That Don&rsquo;t Replicate</p>
 <p>Most AWS services cannot do any cross-region replication. Why would that be? From an engineering perspective, a regional service that offers cross-region capabilities increases the coupling between instances of said application. Managing coupled services is more difficult because maintenance must be coordinated and carries a higher risk for cascading faults. Also, consider that latency between regions is higher than between AZs, naturally limiting the types of services offered with global support in a performant manner.</p>
 <p>How do we make services bound to a specific region like API Gateway or Lambda available across regions to ensure regional HA?</p>
-<p><img loading="lazy" src="img/diagram.png" alt=""  />
+<p><img loading="lazy" src="diagram.png" alt=""  />
 </p>
 <p>Suppose a web application is served by a fleet of EC2 instances behind an ELB. Application data is stored in an Aurora database, which has already been made multi-regional using Aurora Global Databases. We launch our compute infrastructure twice in two different regions and use Route 53 to route traffic to them. We must assign health checks to each record so that traffic will not be sent to the impaired region in case of failure.</p>
 <p>Route 53 is one way to route traffic between applications deployed in multiple regions but not the best way. Global Accelerator can provide faster failover by using Multicast IPs to do routing at the IP layer instead of relying on DNS. Unlike Route53, Global accelerator is not suspectable to DNS caching issues. When a health check fails, traffic is immediately routed to another region. </p>

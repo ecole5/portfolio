@@ -1,9 +1,9 @@
 ---
 title: "SparkPlug Part 1: The Genesis of a Framework"
-date: 2024-08-16T03:17:42.000Z
+date: 2020-11-18T03:17:42.000Z
 draft: true
 cover:
-  image: posts/sparkplug/img/cap.png #because we are naming url part1 relative name does not work with routing system
+  image: posts/sparkplug/img/cover1.png #because we are naming url part1 relative name does not work with routing system
   caption: "How GeoPredict evolved into a framework."
 ---
 

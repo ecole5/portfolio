@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=61029&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>GeoPredict Part 3: Improvements and Considerations | Evan Cole</title>
+<meta name="keywords" content="">
+<meta name="description" content="Introduction
+The N-MMC we have developed thus far are excellent tools for the general problem of next place prediction. Now we must focus on adapting the model to accommodate the complications of trip prediction.
+Trip Separation
+The structure of the data poses the first complication. So far we have assumed that all Visits in a MobilityTrace are sequential, but in reality, they are not because Visits to private locations have been removed.">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:61029/posts/geopredict/part3/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.fc220c15db4aef0318bbf30adc45d33d4d7c88deff3238b23eb255afdc472ca6.css" integrity="sha256-/CIMFdtK7wMYu/MK3EXTPU18iN7/MjiyPrJVr9xHLKY=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:61029/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:61029/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:61029/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:61029/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:61029/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:61029/posts/geopredict/part3/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:61029/" accesskey="h" title="Evan Cole (Alt + H)">Evan Cole</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      GeoPredict Part 3: Improvements and Considerations
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="35" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h1>
+    <div class="post-meta"><span title='2022-11-18 03:17:44 +0000 UTC'>November 18, 2022</span>
+
+</div>
+  </header> 
+<figure class="entry-cover"><img loading="eager" src="http://localhost:61029/posts/geopredict/img/cover3.png" alt="Now we build better N-MMC to meet the demands of trip prediction.">
+        <p>Now we build better N-MMC to meet the demands of trip prediction.</p>
+</figure>
+  <div class="post-content"><p><strong>Introduction</strong></p>
+<p>The N-MMC we have developed thus far are excellent tools for the general problem of next place prediction. Now we must focus on adapting the model to accommodate the complications of trip prediction.</p>
+<p><strong>Trip Separation</strong></p>
+<p>The structure of the data poses the first complication. So far we have assumed that all Visits in a MobilityTrace are sequential, but in reality, they are not because Visits to private locations have been removed. Non-sequential Visits results in false inferences when training our N-MMC. To illustrate this point consider training a 2-MMC using the following MobilityTrace:</p>
+<p><em>Bed Bath Beyond -&gt; 7:00</em></p>
+<p><em>McDonald&rsquo;s -&gt; 7:30</em></p>
+<p><em>SplashWorld -&gt; 20:00</em></p>
+<p>There are two bi-visits in this MobilityTrace: “Bed Bath Beyond McDonald&rsquo;s” and “McDonald&rsquo;s SplashWorld” each with a single occurrence. Thus, if given the context McDonald&rsquo;s we would predict SplashWorld as the next POI. Looking at the timestamps, we notice that McDonalds and SplashWorld are many hours apart. It is reasonable to assume that the user didn’t just stay at McDonald&rsquo;s till 20:00 and likely visited other personal POIs in between McDonald&rsquo;s and SplashWorld that were removed. These Visits are not sequential, yet we treat them as if they are. If we don’t rectify this issue, we might make the false inference that people tend to eat right before they swim which for many people is not the case.</p>
+<p>Another way to think about this MobilityTrace is that it is composed of two separate trips.  The first trip in the morning and the second at night. To avoid false inferences, we must make sure that all visits in an n-visit are from the same trip. Luckily it is relatively straightforward to create these groupings by merely looking at the amount of time between two Visits.</p>
+<p><em>For two “sequential” Visits in a MobilityTrace let the first Visit occur at time Ta and the second Visit with time Tb.</em></p>
+<p><em>Let Te be a hyperparameter defining a time threshold between two trips</em></p>
+<p><em>If |Tb-Ta| &gt; Te punctuate MobilityTrace with End of Trip (EoT) after Ta</em></p>
+<p>How do we figure out the correct hypermeter Te to prevent false inferences? The ideal solution would be to optimize Te using a duplicate MobilityTrace containing EoT markers. Without this labelled MobilityTrace we don’t have ground truth, and the best we can do is make an educated guess- somewhere around three to four hours should be ideal.</p>
+<p><strong>Selecting the Right (N)-MMC</strong></p>
+<p>Now that we have split our MobilityTrace into trips, we move on to choosing the correct amount of context. The MobilityTrace provided by my partner was captured over three months, and the number of Visits recorded for each user varied significantly meaning that the correct N might differ depending on the user.</p>
+<p>My intuition was that the N value appropriate for trip prediction would be in the neighbourhood of the N value for the general mobility problem (N=2).  The big difference between general mobility and trip prediction is that long n-visits are less frequent because they get cut off when trips end, thus a smaller N value might be better because n-visits of a high order would mean many unseen contexts.</p>
+<p>I moved forward and conducted an empirical analysis, comparing N=1 to N=5 MMC for every user.  The data showed that for most users the 2-MMC model was the best. For the most active users (the top 10%), however, a 3-MMC was better. If we had six months of data would this change anything? The answer is not clear because while we would have more Visits, perhaps the prior Visits would be outdated. It may be the case that 3-MMC only works well for users that go on long shopping trips.</p>
+<p><strong>Smoothing</strong></p>
+<p>Maximum likelihood estimation is an adequate technique if all we care about is trying to make the best guess possible with the data we have. A great deal of value, however, comes from being able to present a probability distribution for every prediction so that the data is more actionable based on the tolerances of error for the desired application. For example, if GeoPredict is being used to send emergency alert messages warning people to steer clear of a specific POI, any POI in the distribution with a 10% likelihood or higher might be considered actionable.  If GeoPredict is used for targeted advertising, then perhaps you might only want to push ads when there is a &gt;60% chance of the next Visit being to a particular POI.</p>
+<p>If we care about the accuracy of the distribution, then we must adjust for the unseen events in the probability space (the unseen n-visits). As N increases the number of possible paths we can take through our MMC explodes by #POIn. As these paths (n-visits) increase the data set becomes sparer. We can define the total number of possible POIs as the number of POIs in a geographic region available in the Google Maps database.  There are several methods for smoothing our distributions to resolve the sparsity problem, but perhaps the best is an adapted version of Good-Turing frequency estimation which works by borrowing some of the probability space from the seen events and allocating it to the unseen events. This technique is commonly employed in NLP for similar purposes.</p>
+<p><strong>Multiple Models</strong></p>
+<p>A 3-MMC inherently contains a 2-MMC and 1-MMC inside of it thus we only need to store a 3-MMC (tri-visits) and can derive the counts of bi-visits and uni-visits. However, this process is computationally expensive, and we are looking to maximize speed to achieve near real-time predictions it is best to make a time-space tradeoff by generating hash tables to store the count of all n-visits from n=1 to the desired N. While to make predictions with a 3-MMC we only actually need tri-visits and bi-visits it is prudent to keep uni-visits because it allows us the flexibility to use a lower order N model if we don’t have enough context so that we can always make some educated prediction.</p>
+<p><strong>Expanded Context (Day of The Week)</strong></p>
+<p>So far we have constructed a model in which the state is represented only by physical and semantic location. What about time? Can we use temporal context to aid in predictions? To realize this expanded context I built 7 N-MMC as opposed to one in which each N-MMC was trained using trips from a particular day of the week. The idea here is that many commercial offers and promotions occur on a specific day of the week and that may be a determent of consumer shopping habits.</p>
+<p>I tested my day of the week N-MMCs by considering the day of the week at prediction time and making the prediction only using the associated N-MMC. Unfourtantly the results were worse than just using a single N-MMC. There just wasn’t enough data to make this approach work because so many n-visits were unseen and thus the system kept reverting down to uni-MMC to make predictions. Perhaps with more Visits (6 month collection period), this would be worth another shot.</p>
+<p><strong>Training/Operation Phase Notes</strong></p>
+<p>During training, we can think of each trip as a MobilityTrace which we train separately on the same table of counts.  At the start of the trip, we have no context, so we can only count uni-visits and then as we get more context we count bigger n-visits up to the (N) parameter of the selected model (N=2 or N=3).</p>
+<p>When making predictions (operation phase) we receive Visits on a continual basis as they occur. We cannot know if the next Visit we will receive will be on a different trip thus we always make a prediction as soon as a Visit is received. We do need to consider the case where N &gt; 2 as we can apply threshold Te between the context to ensure it is from the same trip. Remember that if the time gap is over the threshold and we have to through away the first piece of context we can revert to a 2-MMC model.</p>
+<p>During the prediction phase, we also must make sure that the timestamp on the most recent Visit we receive is close to the current system time.  If there is too much of a delay in receiving the Visit, it is likely the user always transitioned.</p>
+<p>All the visits we capture during the operation phase can be saved so we can update the model&rsquo;s counts in the future.</p>
+<p><strong>Conclusion</strong></p>
+<p>So there we have it- a novel recommender system to address the problem of shopping trip prediction.  Of course, as with any data solution, there is lots of room for improvement particularly in the area of metric development and testing. Overall, however, GeoPredict performs similarly to recommender systems for general mobility- which is an excellent result. To see how we scale GeoPredict to handle big data read my series on SparkPlug.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2024 <a href="http://localhost:61029/">Evan Cole</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

@@ -2,7 +2,7 @@
 <html lang="en" dir="auto">
 
 <head>
-	<meta name="generator" content="Hugo 0.132.1"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+	<meta name="generator" content="Hugo 0.132.1"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=61029&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="noindex, nofollow">
@@ -10,17 +10,17 @@
 
 <meta name="description" content="">
 <meta name="author" content="">
-<link rel="canonical" href="http://localhost:1313/">
+<link rel="canonical" href="http://localhost:61029/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.fc220c15db4aef0318bbf30adc45d33d4d7c88deff3238b23eb255afdc472ca6.css" integrity="sha256-/CIMFdtK7wMYu/MK3EXTPU18iN7/MjiyPrJVr9xHLKY=" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<link rel="icon" href="http://localhost:61029/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:61029/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:61029/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:61029/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:61029/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/index.xml">
-<link rel="alternate" hreflang="en" href="http://localhost:1313/">
+<link rel="alternate" type="application/rss+xml" href="http://localhost:61029/index.xml">
+<link rel="alternate" hreflang="en" href="http://localhost:61029/">
 <noscript>
     <style>
         #theme-toggle,
@@ -75,7 +75,7 @@
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="Evan Cole (Alt + H)">Evan Cole</a>
+            <a href="http://localhost:61029/" accesskey="h" title="Evan Cole (Alt + H)">Evan Cole</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -145,6 +145,32 @@
 </article>
 
 <article class="post-entry"> 
+<figure class="entry-cover"><img loading="lazy" src="http://localhost:61029/posts/geopredict/img/cover3.png" alt="Now we build better N-MMC to meet the demands of trip prediction.">
+</figure>
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">GeoPredict Part 3: Improvements and Considerations
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Introduction
+The N-MMC we have developed thus far are excellent tools for the general problem of next place prediction. Now we must focus on adapting the model to accommodate the complications of trip prediction.
+Trip Separation
+The structure of the data poses the first complication. So far we have assumed that all Visits in a MobilityTrace are sequential, but in reality, they are not because Visits to private locations have been removed....</p>
+  </div>
+  <footer class="entry-footer"><span title='2022-11-18 03:17:44 +0000 UTC'>November 18, 2022</span></footer>
+  <a class="entry-link" aria-label="post link to GeoPredict Part 3: Improvements and Considerations" href="http://localhost:61029/posts/geopredict/part3/"></a>
+</article>
+
+<article class="post-entry"> 
+<figure class="entry-cover">
+        <img loading="lazy" src="http://localhost:61029/posts/regional-level-ha-on-aws/img/cover.png" alt="Learn how to build multi-region architectures on AWS that are resilient to regional disruptions.">
+</figure>
   <header class="entry-header">
     <h2 class="entry-hint-parent">Regional Level HA on AWS
       <span class="entry-hint" title="Draft">
@@ -159,12 +185,54 @@
     <p>Introduction
 A vast majority of AWS services are region scoped and can withstand the failure of an AZ with ease. Take S3, for example. If we request an object stored in the North California region and AZ-A is knocked offline due to an earthquake, S3 transparently serves a copy from AZ-B or AZ-C. But what happens if a configuration error impairs the service at a regional level? How well do modern applications handle regional cloud service outages?...</p>
   </div>
-  <footer class="entry-footer"><span title='2024-08-15 23:17:42 -0400 EDT'>August 15, 2024</span></footer>
-  <a class="entry-link" aria-label="post link to Regional Level HA on AWS" href="http://localhost:1313/posts/regional-level-ha-on-aws/"></a>
+  <footer class="entry-footer"><span title='2022-11-18 03:17:42 +0000 UTC'>November 18, 2022</span></footer>
+  <a class="entry-link" aria-label="post link to Regional Level HA on AWS" href="http://localhost:61029/posts/regional-level-ha-on-aws/"></a>
 </article>
 
 <article class="post-entry"> 
-<figure class="entry-cover"><img loading="lazy" src="http://localhost:1313/posts/sparkplug/img/cap.png" alt="How GeoPredict evolved into a framework.">
+<figure class="entry-cover"><img loading="lazy" src="http://localhost:61029/posts/geopredict/img/cover2.png" alt="In this section we start by exploring the data and defining the problem domain.">
+</figure>
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">GeoPredict Part 2: Mobility Markov Chains (MMCs)
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Introduction
+Having gained a solid grasp of both the problem and solution domains it was time to move towards implementation. How do we achieve effective next place prediction using MobilityTraces only containing Visits to commercial POIs? Given that trip prediction is a subset of the general mobility problem I figured it was unnecessary to reinvent the wheel, so I started researching techniques that consider complete MobilityTraces. After reviewing the literature, I landed on Markov Chains as the basis of my implementation....</p>
+  </div>
+  <footer class="entry-footer"><span title='2021-02-18 03:17:42 +0000 UTC'>February 18, 2021</span></footer>
+  <a class="entry-link" aria-label="post link to GeoPredict Part 2: Mobility Markov Chains (MMCs)" href="http://localhost:61029/posts/geopredict/part2/"></a>
+</article>
+
+<article class="post-entry"> 
+<figure class="entry-cover"><img loading="lazy" src="http://localhost:61029/posts/sparkplug/img/cover3.png" alt="Learn how SparkPlug simplifies deployment through containerized distributed infrastructure.">
+</figure>
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">SparkPlug Part 3: Containerized Distributed Computing Infrastructure
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Introduction
+SparkPlug employs Spark and HDFS to supercharge ML app performance through distributed computing. Spark and HDFS clusters, however, can be tricky to configure and time-consuming to the uninitiated engineer. Furthermore, to tune Spark applications, we need a distributed test environment akin to the final operational environment posing a significant logistic and economic challenge to developers. SparkPlug remedies these problems through containerization. The SparkPlug deployment strategy containerizes the entirety of the underlying distributed infrastructure so that SparkPlug apps are ready to deploy out of the box with zero configuration....</p>
+  </div>
+  <footer class="entry-footer"><span title='2020-11-18 03:17:44 +0000 UTC'>November 18, 2020</span></footer>
+  <a class="entry-link" aria-label="post link to SparkPlug Part 3: Containerized Distributed Computing Infrastructure" href="http://localhost:61029/posts/sparkplug/part3/"></a>
+</article>
+
+<article class="post-entry"> 
+<figure class="entry-cover"><img loading="lazy" src="http://localhost:61029/posts/sparkplug/img/cover1.png" alt="How GeoPredict evolved into a framework.">
 </figure>
   <header class="entry-header">
     <h2 class="entry-hint-parent">SparkPlug Part 1: The Genesis of a Framework
@@ -180,11 +248,13 @@ A vast majority of AWS services are region scoped and can withstand the failure 
     <p>Introduction
 The world is undergoing a big data revolution- a new age gold rush. Never in the history of human civilization has there been such an abundance of data. Remarkably, however, most of this data goes to waste. Many organizations find themselves today in a situation analogous to sitting on vast reserves of gold-rich ore but not knowing how to extract it. The difficulty with big data lies in both variety and scale....</p>
   </div>
-  <footer class="entry-footer"><span title='2024-08-16 03:17:42 +0000 UTC'>August 16, 2024</span></footer>
-  <a class="entry-link" aria-label="post link to SparkPlug Part 1: The Genesis of a Framework" href="http://localhost:1313/posts/sparkplug/part1/"></a>
+  <footer class="entry-footer"><span title='2020-11-18 03:17:42 +0000 UTC'>November 18, 2020</span></footer>
+  <a class="entry-link" aria-label="post link to SparkPlug Part 1: The Genesis of a Framework" href="http://localhost:61029/posts/sparkplug/part1/"></a>
 </article>
 
 <article class="post-entry"> 
+<figure class="entry-cover"><img loading="lazy" src="http://localhost:61029/posts/sparkplug/img/cover2.png" alt="Learn how SparkPlug delivers big data microservices.">
+</figure>
   <header class="entry-header">
     <h2 class="entry-hint-parent">SparkPlug Part 2: Big Data Microservices
       <span class="entry-hint" title="Draft">
@@ -199,13 +269,33 @@ The world is undergoing a big data revolution- a new age gold rush. Never in the
     <p>Introduction
 When developing AI systems, we are interested in spending time and energy extracting value from the data. Building the architecture that delivers the solution to the end-user should not dominate the development cycle. By including a robust predefine architecture in the SparkPlug framework, ML scientists can build full-fledged apps while focusing on what matters most. In the rest of this section, we will focus on the qualities and components of the SparkPlug architecture....</p>
   </div>
+  <footer class="entry-footer"><span title='2020-11-18 03:17:42 +0000 UTC'>November 18, 2020</span></footer>
+  <a class="entry-link" aria-label="post link to SparkPlug Part 2: Big Data Microservices" href="http://localhost:61029/posts/sparkplug/part2/"></a>
+</article>
+
+<article class="post-entry"> 
+<figure class="entry-cover"><img loading="lazy" src="http://localhost:61029/posts/geopredict/img/cover1.png" alt="How GeoPredict evolved into a framework.">
+</figure>
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">GeoPredict Part 1: Origins &amp; Data Exploration
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Introduction This series details the development of a novel machine learning solution called GeoPredict. I designed GeoPredict with the intent of leveraging large-scale mobility data in a commercially viable manner. The first step towards the development of GeoPredict was gaining a solid understanding of the problem domain-the data. The data provided by my industry partner was not just raw mobility data but a richer set of contextual and semantic information. Let us try to unpack the structure of this data....</p>
+  </div>
   <footer class="entry-footer"></footer>
-  <a class="entry-link" aria-label="post link to SparkPlug Part 2: Big Data Microservices" href="http://localhost:1313/posts/sparkplug/part2/"></a>
+  <a class="entry-link" aria-label="post link to GeoPredict Part 1: Origins & Data Exploration" href="http://localhost:61029/posts/geopredict/part1/"></a>
 </article>
     </main>
     
 <footer class="footer">
-        <span>&copy; 2024 <a href="http://localhost:1313/">Evan Cole</a></span> · 
+        <span>&copy; 2024 <a href="http://localhost:61029/">Evan Cole</a></span> · 
 
     <span>
         Powered by
