@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head>
-	<meta name="generator" content="Hugo 0.132.1"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="noindex, nofollow">
-<title>Evan Cole</title>
-
-<meta name="description" content="">
+<title>SparkPlug Part 1: The Genesis of a Framework | Evan Cole</title>
+<meta name="keywords" content="">
+<meta name="description" content="Introduction
+The world is undergoing a big data revolution- a new age gold rush. Never in the history of human civilization has there been such an abundance of data. Remarkably, however, most of this data goes to waste. Many organizations find themselves today in a situation analogous to sitting on vast reserves of gold-rich ore but not knowing how to extract it. The difficulty with big data lies in both variety and scale.">
 <meta name="author" content="">
-<link rel="canonical" href="http://localhost:1313/">
+<link rel="canonical" href="http://localhost:1313/posts/sparkplug/part1/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.fc220c15db4aef0318bbf30adc45d33d4d7c88deff3238b23eb255afdc472ca6.css" integrity="sha256-/CIMFdtK7wMYu/MK3EXTPU18iN7/MjiyPrJVr9xHLKY=" rel="preload stylesheet" as="style">
 <link rel="icon" href="http://localhost:1313/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
@@ -19,8 +19,7 @@
 <link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/index.xml">
-<link rel="alternate" hreflang="en" href="http://localhost:1313/">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/sparkplug/part1/">
 <noscript>
     <style>
         #theme-toggle,
@@ -60,7 +59,7 @@
 </noscript>
 </head>
 
-<body class="list" id="top">
+<body class="" id="top">
 <script>
     if (localStorage.getItem("pref-theme") === "dark") {
         document.body.classList.add('dark');
@@ -103,102 +102,44 @@
         </ul>
     </nav>
 </header>
-<main class="main"> 
-<article class="first-entry home-info">
-    <header class="entry-header">
-        <h1>Welcome to the Cole Cloud</h1>
-    </header>
-    <div class="entry-content">
-        My blog about AI, DevSecOps and other tech I find intresting.
-    </div>
-    <footer class="entry-footer">
-        <div class="social-icons" >
-    <a href="https://www.linkedin.com/in/ecole5/" target="_blank" rel="noopener noreferrer me"
-        title="Linkedin">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-    stroke-linecap="round" stroke-linejoin="round">
-    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-    <rect x="2" y="9" width="4" height="12"></rect>
-    <circle cx="4" cy="4" r="2"></circle>
-</svg>
-    </a>
-    <a href="https://github.com/ecole5" target="_blank" rel="noopener noreferrer me"
-        title="Github">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-    stroke-linecap="round" stroke-linejoin="round">
-    <path
-        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
-    </path>
-</svg>
-    </a>
-    <a href="https://leetcode.com/u/ecole5/" target="_blank" rel="noopener noreferrer me"
-        title="Leetcode">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none" stroke-width="2"
-    stroke-linecap="round" stroke-linejoin="round">
-    <path
-        d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .066-.523 2.545 2.545 0 0 1 .619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 0 0-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0 0 13.483 0zm-2.866 12.815a1.38 1.38 0 0 0-1.38 1.382 1.38 1.38 0 0 0 1.38 1.382H20.79a1.38 1.38 0 0 0 1.38-1.382 1.38 1.38 0 0 0-1.38-1.382z" />
-</svg>
-    </a>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      SparkPlug Part 1: The Genesis of a Framework
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="35" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h1>
+    <div class="post-meta"><span title='2024-08-15 23:17:42 -0400 EDT'>August 15, 2024</span>
+
 </div>
+  </header> 
+  <div class="post-content"><p><strong>Introduction</strong></p>
+<p>The world is undergoing a big data revolution- a new age gold rush. Never in the history of human civilization has there been such an abundance of data. Remarkably, however, most of this data goes to waste. Many organizations find themselves today in a situation analogous to sitting on vast reserves of gold-rich ore but not knowing how to extract it. The difficulty with big data lies in both variety and scale. Firstly, there is no perfect cookie-cutter solution. Every data set requires a unique methodology that accounts for its domain-specific features. Secondly, real-world big data implementations must scale across compute clusters to handle massive volume and velocity, thus adding significant complexity.</p>
+<p>Having just finished developing GeoPredict, an ML recommender agent for shopping trip prediction, I was familiar with one side of the big data coin. GeoPredict addressed the specificity of the mobility domain, but it did not scale. If GeoPredict were to be of any real value to my partner, it would need to be capable of making near real-time predictions for millions of users simultaneously. To accomplish this in an economically viable way, I knew I needed to enable GeoPredict to scale horizontally across commodity hardware. Also, I needed a way to integrate my solution with my partner&rsquo;s system quickly. I launched this newfound effort as my CAPSTONE project for my engineering degree while maintaining the original GeoPredict stakeholders.</p>
+<p><strong>Scaling GeoPredict</strong></p>
+<p>The key to horizontally scaling is to distribute the computation across a cluster.  Luckily many big data engines exist that help abstract away the enormous complexity of designing these parallel applications. After researching my options, I landed on the Spark engine. It offers better performance than modern Hadoop MapReduce and has broad adoption in the industry. Given that I already knew SQL, I implemented GeoPredict as a series of database operations using the SparkSQL library with the PySpark API.</p>
+<p>To achieve interoperability, I completely decoupled my system from my partner&rsquo;s by implementing a microservice architecture with a RESTful API. I went ahead and encapsulated different functions of GeoPredict into routes of the API and designed a way to submit each route to the Spark cluster for on-demand computation. </p>
+<p><strong>Towards A Framework</strong></p>
+<p>When I had finished implementing the architecture, I needed a way to make it easy for my partner to deploy the system. I found Spark cluster configuration quite tedious, so I decided to containerize the entire underlying distributed computing architecture with Docker.</p>
+<p>After finishing my work and demonstrating the system to my supervisor and partner, I had a revelation.  More so than a way to scale GeoPredict, I had developed an architecture and deployment strategy that could be broadly applied across the industry. I called this framework <strong>SparkPlug</strong>.</p>
+<p>To realize the vision of a framework, as opposed to a specific implementation, I developed the SparkPlug CLI. The CLI provides a user-friendly way to build out the SparkPlug architecture and automates the containerized infrastructure&rsquo;s deployment and configuration.</p>
+<p>By providing an interoperable architecture and a containerized deployment strategy, SparkPlug makes it possible to bring data solutions to market rapidly. SparkPlug enables data scientists with limited programming experience to create commercial solutions to big data problems.</p>
+<p>In the next few articles, we will dive into the details of the three central components of SparkPlug: Architecture, Deployment Strategy and SparkPlug CLI.</p>
 
-    </footer>
-</article>
 
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Regional Level HA on AWS
-      <span class="entry-hint" title="Draft">
-        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
-          <path
-            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
-        </svg>
-      </span>
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Introduction
-A vast majority of AWS services are region scoped and can withstand the failure of an AZ with ease. Take S3, for example. If we request an object stored in the North California region and AZ-A is knocked offline due to an earthquake, S3 transparently serves a copy from AZ-B or AZ-C. But what happens if a configuration error impairs the service at a regional level? How well do modern applications handle regional cloud service outages?...</p>
   </div>
-  <footer class="entry-footer"><span title='2024-08-15 23:17:42 -0400 EDT'>August 15, 2024</span></footer>
-  <a class="entry-link" aria-label="post link to Regional Level HA on AWS" href="http://localhost:1313/posts/regional-level-ha-on-aws/"></a>
-</article>
 
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">SparkPlug Part 1: The Genesis of a Framework
-      <span class="entry-hint" title="Draft">
-        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
-          <path
-            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
-        </svg>
-      </span>
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Introduction
-The world is undergoing a big data revolution- a new age gold rush. Never in the history of human civilization has there been such an abundance of data. Remarkably, however, most of this data goes to waste. Many organizations find themselves today in a situation analogous to sitting on vast reserves of gold-rich ore but not knowing how to extract it. The difficulty with big data lies in both variety and scale....</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-08-15 23:17:42 -0400 EDT'>August 15, 2024</span></footer>
-  <a class="entry-link" aria-label="post link to SparkPlug Part 1: The Genesis of a Framework" href="http://localhost:1313/posts/sparkplug/part1/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">SparkPlug Part 2: Big Data Microservices
-      <span class="entry-hint" title="Draft">
-        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
-          <path
-            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
-        </svg>
-      </span>
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Introduction
-When developing AI systems, we are interested in spending time and energy extracting value from the data. Building the architecture that delivers the solution to the end-user should not dominate the development cycle. By including a robust predefine architecture in the SparkPlug framework, ML scientists can build full-fledged apps while focusing on what matters most. In the rest of this section, we will focus on the qualities and components of the SparkPlug architecture....</p>
-  </div>
-  <footer class="entry-footer"></footer>
-  <a class="entry-link" aria-label="post link to SparkPlug Part 2: Big Data Microservices" href="http://localhost:1313/posts/sparkplug/part2/"></a>
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
 </article>
     </main>
     

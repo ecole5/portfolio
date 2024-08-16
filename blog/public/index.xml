@@ -16,5 +16,21 @@
       <description>Introduction
 A vast majority of AWS services are region scoped and can withstand the failure of an AZ with ease. Take S3, for example. If we request an object stored in the North California region and AZ-A is knocked offline due to an earthquake, S3 transparently serves a copy from AZ-B or AZ-C. But what happens if a configuration error impairs the service at a regional level? How well do modern applications handle regional cloud service outages?</description>
     </item>
+    <item>
+      <title>SparkPlug Part 1: The Genesis of a Framework</title>
+      <link>http://localhost:1313/posts/sparkplug/part1/</link>
+      <pubDate>Thu, 15 Aug 2024 23:17:42 -0400</pubDate>
+      <guid>http://localhost:1313/posts/sparkplug/part1/</guid>
+      <description>Introduction
+The world is undergoing a big data revolution- a new age gold rush. Never in the history of human civilization has there been such an abundance of data. Remarkably, however, most of this data goes to waste. Many organizations find themselves today in a situation analogous to sitting on vast reserves of gold-rich ore but not knowing how to extract it. The difficulty with big data lies in both variety and scale.</description>
+    </item>
+    <item>
+      <title>SparkPlug Part 2: Big Data Microservices</title>
+      <link>http://localhost:1313/posts/sparkplug/part2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/sparkplug/part2/</guid>
+      <description>Introduction
+When developing AI systems, we are interested in spending time and energy extracting value from the data. Building the architecture that delivers the solution to the end-user should not dominate the development cycle. By including a robust predefine architecture in the SparkPlug framework, ML scientists can build full-fledged apps while focusing on what matters most. In the rest of this section, we will focus on the qualities and components of the SparkPlug architecture.</description>
+    </item>
   </channel>
 </rss>

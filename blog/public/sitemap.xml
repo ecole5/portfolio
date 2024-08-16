@@ -11,7 +11,12 @@
     <loc>http://localhost:1313/posts/regional-level-ha-on-aws/</loc>
     <lastmod>2024-08-15T23:17:42-04:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/posts/sparkplug/part1/</loc>
+    <lastmod>2024-08-15T23:17:42-04:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/categories/</loc>
+  </url><url>
+    <loc>http://localhost:1313/posts/sparkplug/part2/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/</loc>
   </url>
