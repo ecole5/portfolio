@@ -1,13 +1,11 @@
 ---
 title: "GeoPredict Part 1: Origins & Data Exploration"
 date: 2020-10-23T03:17:42.000Z
-draft: true
+draft: false
 cover:
   image: cover.png #because we are naming url part1 relative name does not work with routing system
   caption: "How GeoPredict evolved into a framework."
 ---
-
-**Introduction** 
 
 This series details the development of a novel machine learning solution called GeoPredict. I designed GeoPredict with the intent of leveraging large-scale mobility data in a commercially viable manner. 
 

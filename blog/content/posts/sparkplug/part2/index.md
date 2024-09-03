@@ -1,14 +1,14 @@
 ---
 title: "SparkPlug Part 2: Big Data Microservices"
 date: 2020-11-20T03:17:42.000Z
-draft: true
+draft: false
 cover:
   image: cover.png #because we are naming url part1 relative name does not work with routing system
   caption: "Learn how SparkPlug delivers big data microservices."
 ---
 
 
-**Introduction**
+
 
 When developing AI systems, we are interested in spending time and energy extracting value from the data. Building the architecture that delivers the solution to the end-user should not dominate the development cycle.  By including a robust predefine architecture in the SparkPlug framework, ML scientists can build full-fledged apps while focusing on what matters most. 
 

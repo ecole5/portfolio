@@ -1,13 +1,13 @@
 ---
 title: "GeoPredict Part 3: Improvements and Considerations"
 date: 2020-10-25T03:17:44.000Z
-draft: true
+draft: false
 cover:
   image: cover.png
   caption: "Now we build better N-MMC to meet the demands of trip prediction."
 ---
 
-**Introduction**
+
 
 The N-MMC we have developed thus far are excellent tools for the general problem of next place prediction. Now we must focus on adapting the model to accommodate the complications of trip prediction.
 

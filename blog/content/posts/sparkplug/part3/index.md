@@ -1,13 +1,13 @@
 ---
 title: "SparkPlug Part 3: Containerized Distributed Computing Infrastructure"
 date: 2020-11-21T03:17:44.000Z
-draft: true
+draft: false
 cover:
   image: cover.png #because we are naming url part1 relative name does not work with routing system
   caption: "Learn how SparkPlug simplifies deployment through containerized distributed infrastructure."
 ---
 
-**Introduction**
+
 
 SparkPlug employs Spark and HDFS to supercharge ML app performance through distributed computing. Spark and HDFS clusters, however, can be tricky to configure and time-consuming to the uninitiated engineer. Furthermore, to tune Spark applications, we need a distributed test environment akin to the final operational environment posing a significant logistic and economic challenge to developers. SparkPlug remedies these problems through containerization. 
 

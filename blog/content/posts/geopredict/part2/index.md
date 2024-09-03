@@ -1,13 +1,11 @@
 ---
 title: "GeoPredict Part 2: Mobility Markov Chains (MMCs)"
 date: 2020-10-24T03:17:42.000Z
-draft: true
+draft: false
 cover:
   image: cover.png #because we are naming url part1 relative name does not work with routing system
   caption: "In this section we start by exploring the data and defining the problem domain."
 ---
-
-**Introduction**
 
 Having gained a solid grasp of both the problem and solution domains it was time to move towards implementation. How do we achieve effective next place prediction using MobilityTraces only containing Visits to commercial POIs? Given that trip prediction is a subset of the general mobility problem I figured it was unnecessary to reinvent the wheel, so I started researching techniques that consider complete MobilityTraces. After reviewing the literature, I landed on Markov Chains as the basis of my implementation. While there are techniques involving neural networks that are slightly more accurate, they don't pay dividends considering their complexity and required computing power. The drivers of human mobility are not so involved as to need neural layers to capture them.
 
