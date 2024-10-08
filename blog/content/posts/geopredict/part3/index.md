@@ -2,9 +2,9 @@
 title: "GeoPredict Part 3: Improvements and Considerations"
 date: 2020-10-25T03:17:44.000Z
 draft: false
+summary: "Now we build better N-MMC to meet the demands of trip prediction."
 cover:
   image: cover.png
-  caption: "Now we build better N-MMC to meet the demands of trip prediction."
 ---
 
 

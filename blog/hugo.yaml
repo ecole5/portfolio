@@ -26,3 +26,4 @@ params:
   defaultTheme: auto # to switch between dark or light according to browser theme
   disableThemeToggle: true
 
+

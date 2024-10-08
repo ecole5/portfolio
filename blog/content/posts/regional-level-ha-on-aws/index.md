@@ -2,9 +2,10 @@
 title: "Regional Level HA on AWS"
 date: 2021-01-11T03:17:42.000Z
 draft: false
+summary: "Building multi-region architectures on AWS that are resilient to regional disruptions."
 cover:
   image: cover.png #because we are naming url part1 relative name does not work with routing system
-  caption: "Learn how to build multi-region architectures on AWS that are resilient to regional disruptions."
+
 ---
 
 

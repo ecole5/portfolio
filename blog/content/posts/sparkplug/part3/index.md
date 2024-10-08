@@ -2,9 +2,10 @@
 title: "SparkPlug Part 3: Containerized Distributed Computing Infrastructure"
 date: 2020-11-21T03:17:44.000Z
 draft: false
+summary: "How SparkPlug simplifies deployment through containerized distributed infrastructure."
 cover:
   image: cover.png #because we are naming url part1 relative name does not work with routing system
-  caption: "Learn how SparkPlug simplifies deployment through containerized distributed infrastructure."
+
 ---
 
 

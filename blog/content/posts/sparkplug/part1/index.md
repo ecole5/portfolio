@@ -2,9 +2,10 @@
 title: "SparkPlug Part 1: The Genesis of Big Data Framework"
 date: 2020-11-19T03:17:42.000Z
 draft: false
+summary: "How GeoPredict evolved into a big data framework."
 cover:
   image: cover.png #because we are naming url part1 relative name does not work with routing system
-  caption: "How GeoPredict evolved into a big data framework."
+
 ---
 
 

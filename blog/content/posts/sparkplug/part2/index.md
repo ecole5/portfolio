@@ -2,9 +2,9 @@
 title: "SparkPlug Part 2: Big Data Microservices"
 date: 2020-11-20T03:17:42.000Z
 draft: false
+summary: "How SparkPlug delivers big data microservices."
 cover:
   image: cover.png #because we are naming url part1 relative name does not work with routing system
-  caption: "Learn how SparkPlug delivers big data microservices."
 ---
 
 
