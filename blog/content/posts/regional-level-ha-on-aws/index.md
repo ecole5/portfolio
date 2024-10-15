@@ -1,6 +1,6 @@
 ---
 title: "Regional Level HA on AWS"
-date: 2021-01-11T03:17:42.000Z
+date: 2022-01-11T03:17:42.000Z
 draft: false
 summary: "Building multi-region architectures on AWS that are resilient to regional disruptions."
 cover:
@@ -18,7 +18,7 @@ Although regional outages are rare, some business applications cannot accept eve
 
   
 
-Replicating Data
+***Replicating Data***
 
 The first step in designing a multi-region architecture is ensuring that the data used by our applications is replicated across multiple regions. Luckily, we can take advantage of some built-in AWS features to help.
 
@@ -56,7 +56,7 @@ As of January 2022, EFS now supports the ability to do replication across region
 
   
 
-For Those That Don't Replicate
+***For Those That Don't Replicate***
 
 Most AWS services cannot do any cross-region replication. Why would that be? From an engineering perspective, a regional service that offers cross-region capabilities increases the coupling between instances of said application. Managing coupled services is more difficult because maintenance must be coordinated and carries a higher risk for cascading faults. Also, consider that latency between regions is higher than between AZs, naturally limiting the types of services offered with global support in a performant manner.
 
@@ -78,6 +78,6 @@ Route 53 is one way to route traffic between applications deployed in multiple r
 
   
 
-Conclusion
+***Conclusion***
 
 Now is the time to evaluate your organization's application architecture to ensure HA across regions. Although regional outages may only last a few hours a year, the bad impression you impart on your customers sticks around. Make good architectural choices today, so no Roomba vacuum misses a cleaning again.
